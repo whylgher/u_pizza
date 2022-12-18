@@ -6,7 +6,7 @@ class PizzasModel {
   String id;
   String name;
   String subtitle;
-  String url;
+  String urlImg;
   Map sizePrice;
   String? sale;
 
@@ -14,21 +14,21 @@ class PizzasModel {
     required this.id,
     required this.name,
     required this.subtitle,
-    required this.url,
+    required this.urlImg,
     required this.sizePrice,
     this.sale,
   });
 
   @override
   String toString() {
-    return 'PizzasModel(id: $id, name: $name, subtitle: $subtitle, url: $url, sizePrice: $sizePrice, sale: $sale)';
+    return 'PizzasModel(id: $id, name: $name, subtitle: $subtitle, url_img: $urlImg, sizePrice: $sizePrice, sale: $sale)';
   }
 
   PizzasModel copyWith({
     String? id,
     String? name,
     String? subtitle,
-    String? url,
+    String? urlImg,
     Map? sizePrice,
     String? sale,
   }) {
@@ -36,7 +36,7 @@ class PizzasModel {
       id: id ?? this.id,
       name: name ?? this.name,
       subtitle: subtitle ?? this.subtitle,
-      url: url ?? this.url,
+      urlImg: urlImg ?? this.urlImg,
       sizePrice: sizePrice ?? this.sizePrice,
       sale: sale ?? this.sale,
     );
@@ -47,7 +47,7 @@ class PizzasModel {
       'id': id,
       'name': name,
       'subtitle': subtitle,
-      'url': url,
+      'url_img': urlImg,
       'size_price': sizePrice,
       'sale': sale,
     };
@@ -58,7 +58,7 @@ class PizzasModel {
       id: map['id'] as String,
       name: map['name'] as String,
       subtitle: map['subtitle'] as String,
-      url: map['url_img'] as String,
+      urlImg: map['url_img'] as String,
       sizePrice: Map.from(
         (map['size_price'] as Map),
       ),
@@ -78,7 +78,7 @@ class PizzasModel {
     return other.id == id &&
         other.name == name &&
         other.subtitle == subtitle &&
-        other.url == url &&
+        other.urlImg == urlImg &&
         mapEquals(other.sizePrice, sizePrice) &&
         other.sale == sale;
   }
@@ -88,7 +88,7 @@ class PizzasModel {
     return id.hashCode ^
         name.hashCode ^
         subtitle.hashCode ^
-        url.hashCode ^
+        urlImg.hashCode ^
         sizePrice.hashCode ^
         sale.hashCode;
   }

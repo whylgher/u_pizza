@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-
-import '../../../../core/ui/extensions/size_screen_extension.dart';
-import '../product_page.dart';
+part of '../product_page.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
   const BottomNavigationBarWidget({Key? key}) : super(key: key);
@@ -13,19 +10,10 @@ class BottomNavigationBarWidget extends StatefulWidget {
 
 class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   int unity = 1;
-  var pizzaData = null;
 
-  @override
-  void initState() {
-    super.initState();
-    pizzaData = ProductPage.pizzaData.toMap();
-    print('\npizzaData');
-    print(pizzaData);
-  }
-
+  var finalyPrice = ProductPage.pizzaData['size_price']['regular']['price'];
   @override
   Widget build(BuildContext context) {
-    var finalyPrice = pizzaData['size_price']['regular']['price'];
     return Container(
       height: 110.h,
       decoration: const BoxDecoration(
@@ -49,7 +37,6 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
                     onTap: () {
                       setState(() {
                         unity++;
-                        // print(pizzaData);
                       });
                     },
                     child: Container(
@@ -103,18 +90,16 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
                 ],
               ),
             ),
-            Container(
-              decoration: BoxDecoration(
-                color: const Color(0xFFF49134),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              height: 50.h,
-              width: 230.w,
-              child: GestureDetector(
-                onTap: () {
-                  // print(pizzaData['size_price']['regular']);
-                },
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF49134),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                height: 50.h,
+                width: 230.w,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
