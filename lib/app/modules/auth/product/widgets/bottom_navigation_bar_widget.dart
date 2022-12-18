@@ -1,0 +1,153 @@
+import 'package:flutter/material.dart';
+
+import '../../../../core/ui/extensions/size_screen_extension.dart';
+import '../product_page.dart';
+
+class BottomNavigationBarWidget extends StatefulWidget {
+  const BottomNavigationBarWidget({Key? key}) : super(key: key);
+
+  @override
+  State<BottomNavigationBarWidget> createState() =>
+      _BottomNavigationBarWidgetState();
+}
+
+class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
+  int unity = 1;
+  var pizzaData = null;
+
+  @override
+  void initState() {
+    super.initState();
+    pizzaData = ProductPage.pizzaData.toMap();
+    print('\npizzaData');
+    print(pizzaData);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var finalyPrice = pizzaData['size_price']['regular']['price'];
+    return Container(
+      height: 110.h,
+      decoration: const BoxDecoration(
+        color: Color.fromARGB(255, 171, 46, 29),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      child: SafeArea(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            SizedBox(
+              height: 60.h,
+              width: 80.w,
+              child: Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        unity++;
+                        // print(pizzaData);
+                      });
+                    },
+                    child: Container(
+                      height: 25.h,
+                      width: 25.w,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color(0xFFF49134),
+                      ),
+                      child: const Icon(
+                        Icons.add,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 8.w),
+                    child: Text(
+                      unity.toString(),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.sp,
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        if (unity <= 1) {
+                          unity = 1;
+                          // finalyPrice = finalyPrice / unity;
+                        } else {
+                          unity--;
+                        }
+                      });
+                    },
+                    child: Container(
+                      height: 25.h,
+                      width: 25.w,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color(0xFFF49134),
+                      ),
+                      child: const Icon(
+                        Icons.remove,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: const Color(0xFFF49134),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              height: 50.h,
+              width: 230.w,
+              child: GestureDetector(
+                onTap: () {
+                  // print(pizzaData['size_price']['regular']);
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      'Add to card',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.sp,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30.h,
+                      child: const VerticalDivider(
+                        color: Colors.white,
+                        thickness: 1,
+                      ),
+                    ),
+                    Text(
+                      'U\$$finalyPrice',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18.sp,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

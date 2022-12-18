@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "121993624732",
+    "project_id": "u-pizzas",
+    "storage_bucket": "u-pizzas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:121993624732:android:c2cbe923d808efffedc159",
+        "android_client_info": {
+          "package_name": "com.upizzas.u_pizzas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "121993624732-jlq1qufi24jq912lkaf4ni87182oqvjm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzj_Fxfd27bvrTGVtnZY6PY3z8cv92uhc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "121993624732-jlq1qufi24jq912lkaf4ni87182oqvjm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "121993624732-8ohf075iirhf3o3joprb9av152h5o70j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.upizzas.uPizzas"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
