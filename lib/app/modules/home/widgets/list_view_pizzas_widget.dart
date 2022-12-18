@@ -9,7 +9,7 @@ final Map<String, dynamic> entriess = {
     'url_img': 'https://quemservicos.com.br/cbjr/imgs/pizza1.png',
     'size_price': {
       'regular': {
-        'standart': 'FREE',
+        'standard': 'FREE',
         'price': '12.95',
       },
       'double': '25.47',
@@ -25,13 +25,14 @@ final Map<String, dynamic> entriess = {
     'url_img': 'https://quemservicos.com.br/cbjr/imgs/pizza2.png',
     'size_price': {
       'regular': {
-        'standart': 'FREE',
+        'standard': 'FREE',
         'price': '21.47',
       },
       'double': '28.15',
       'large': '30.33',
       'x_large': '34.45',
     },
+    'sale': 'regular',
   },
   'pizzas3': {
     'id': '4',
@@ -41,13 +42,14 @@ final Map<String, dynamic> entriess = {
     'url_img': 'https://quemservicos.com.br/cbjr/imgs/pizza3.png',
     'size_price': {
       'regular': {
-        'standart': 'FREE',
+        'standard': 'FREE',
         'price': '12.11',
       },
       'double': '23.09',
       'large': '25.87',
       'x_large': '30.33',
     },
+    'sale': 'regular',
   },
   'pizzas4': {
     'id': '4',
@@ -56,13 +58,14 @@ final Map<String, dynamic> entriess = {
     'url_img': 'https://quemservicos.com.br/cbjr/imgs/pizza4.png',
     'size_price': {
       'regular': {
-        'standart': 'FREE',
+        'standard': 'FREE',
         'price': '16.11',
       },
       'double': '27.17',
       'large': '31.23',
       'x_large': '36.54',
     },
+    'sale': 'regular',
   },
   'pizzas5': {
     'id': '5',
@@ -72,13 +75,14 @@ final Map<String, dynamic> entriess = {
     'url_img': 'https://quemservicos.com.br/cbjr/imgs/pizza1.png',
     'size_price': {
       'regular': {
-        'standart': 'FREE',
+        'standard': 'FREE',
         'price': '12.95',
       },
       'double': '25.47',
       'large': '28.79',
       'x_large': '32.99',
     },
+    'sale': 'regular',
   },
   'pizzas6': {
     'id': '6',
@@ -87,13 +91,14 @@ final Map<String, dynamic> entriess = {
     'url_img': 'https://quemservicos.com.br/cbjr/imgs/pizza2.png',
     'size_price': {
       'regular': {
-        'standart': 'FREE',
+        'standard': 'FREE',
         'price': '21.47',
       },
       'double': '28.15',
       'large': '30.33',
       'x_large': '34.45',
     },
+    'sale': 'regular',
   },
   'pizzas7': {
     'id': '7',
@@ -103,13 +108,14 @@ final Map<String, dynamic> entriess = {
     'url_img': 'https://quemservicos.com.br/cbjr/imgs/pizza3.png',
     'size_price': {
       'regular': {
-        'standart': 'FREE',
+        'standard': 'FREE',
         'price': '12,11',
       },
       'double': '23,09',
       'large': '25,87',
       'x_large': '30,33',
     },
+    'sale': 'regular',
   },
   'pizzas8': {
     'id': '8',
@@ -118,13 +124,14 @@ final Map<String, dynamic> entriess = {
     'url_img': 'https://quemservicos.com.br/cbjr/imgs/pizza4.png',
     'size_price': {
       'regular': {
-        'standart': 'FREE',
+        'standard': 'FREE',
         'price': '16.11',
       },
       'double': '27.17',
       'large': '31.23',
       'x_large': '36.54',
     },
+    'sale': 'regular',
   },
 };
 
@@ -147,12 +154,6 @@ class ListViewPizzasWidget extends PreferredSize {
               return GestureDetector(
                 onTap: () {
                   pizza = PizzasModel.fromMap(c[index]);
-                  // ignore: avoid_print
-                  print('\npizza');
-                  // ignore: avoid_print
-                  print(pizza);
-                  // ignore: avoid_print
-                  print('\npizza');
                   Modular.to.navigate('/auth/product_page');
                 },
                 child: Container(
@@ -207,9 +208,9 @@ class ListViewPizzasWidget extends PreferredSize {
                                   color: context.primaryColor,
                                 ),
                                 padding: const EdgeInsets.all(5),
-                                child: const Text(
-                                  'Standart',
-                                  style: TextStyle(
+                                child: Text(
+                                  '${c[index]['sale'].toUpperCase()}',
+                                  style: const TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 12,

@@ -63,17 +63,33 @@ class _RegisterPageState extends State<RegisterPage> {
 
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.black, size: 17),
         backgroundColor: Colors.transparent,
         titleTextStyle: TextStyle(
           color: Colors.black,
           fontSize: 20.sp,
           fontWeight: FontWeight.w600,
         ),
-        title: const Align(
+        title: Align(
           alignment: Alignment.centerLeft,
-          child: Text(
-            'Register',
+          child: Row(
+            children: [
+              IconButton(
+                onPressed: () {
+                  Modular.to.navigate('/auth/login');
+                },
+                icon: Icon(
+                  Icons.arrow_back_ios_rounded,
+                  color: Colors.black,
+                  size: 18.h,
+                ),
+              ),
+              SizedBox(
+                width: 20.w,
+              ),
+              const Text(
+                'Register',
+              ),
+            ],
           ),
         ),
         elevation: 0,
@@ -119,7 +135,7 @@ class _RegisterPageState extends State<RegisterPage> {
             physics: const NeverScrollableScrollPhysics(),
             child: Align(
               alignment: Alignment.bottomCenter,
-              heightFactor: 3.4.h,
+              heightFactor: 3.2.h,
               child: Stack(
                 children: [
                   GestureDetector(
@@ -329,9 +345,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     SizedBox(
                       width: sizeDevice.width * .7,
-                      height: sizeDevice.width * .15,
+                      height: sizeDevice.width * .2,
                       child: const Text(
-                        'And your phone, we will let you know about your order and also for our motoboys to communicate with you.',
+                        'And your phone, we will let you know about your order and also for our delivery agent communicate with you.',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 16,
