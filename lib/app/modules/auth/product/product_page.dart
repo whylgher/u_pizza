@@ -16,7 +16,7 @@ class ProductPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: context.primaryColorDark,
       appBar: AppBarProductPage(),
-      bottomNavigationBar: BottomNavigationBarWidget(),
+      bottomNavigationBar: const BottomNavigationBarWidget(),
       body: SafeArea(
         child: Container(
           alignment: Alignment.center,
