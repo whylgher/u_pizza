@@ -165,7 +165,7 @@ class TitleAddItems extends StatelessWidget {
             ),
             padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 2.h),
             child: Text(
-              required ? 'Required' : 'Optional',
+              required ? 'REQUIRED' : 'OPTIONAL',
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
