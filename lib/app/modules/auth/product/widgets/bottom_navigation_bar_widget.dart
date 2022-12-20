@@ -91,7 +91,9 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
               ),
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Modular.to.navigate('/auth/order_page');
+              },
               child: Container(
                 decoration: BoxDecoration(
                   color: const Color(0xFFF49134),

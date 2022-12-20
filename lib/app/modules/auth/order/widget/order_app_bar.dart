@@ -1,16 +1,16 @@
-part of '../product_page.dart';
+part of '../order_page.dart';
 
-class AppBarProductPage extends PreferredSize {
-  AppBarProductPage({super.key})
+class OrderAppBar extends PreferredSize {
+  OrderAppBar({super.key})
       : super(
-          preferredSize: Size.fromHeight(100.h),
+          preferredSize: Size.fromHeight(80.h),
           child: Stack(
             children: [
               Stack(
                 alignment: AlignmentDirectional.center,
                 children: [
                   Container(
-                    height: 130.h,
+                    height: 100.h,
                     decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
@@ -21,7 +21,7 @@ class AppBarProductPage extends PreferredSize {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Modular.to.navigate('/home');
+                      Modular.to.navigate('/auth/product_page');
                     },
                     child: SafeArea(
                       child: Row(
@@ -38,14 +38,14 @@ class AppBarProductPage extends PreferredSize {
                             child: Icon(
                               Icons.arrow_back_ios_rounded,
                               color: Colors.black,
-                              size: 18.h,
+                              size: 15.h,
                             ),
                           ),
                           Text(
-                            'U Pizza',
+                            'Cart',
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 18.sp,
+                              fontSize: 15.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           )
@@ -54,20 +54,6 @@ class AppBarProductPage extends PreferredSize {
                     ),
                   ),
                 ],
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  height: 50.h,
-                  padding: const EdgeInsets.all(10),
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.orange,
-                  ),
-                  child: UPizzaIcons.pizzaPizza(
-                    height: 40.h,
-                  ),
-                ),
               ),
             ],
           ),
