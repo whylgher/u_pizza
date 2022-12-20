@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:u_pizzas/app/core/ui/extensions/size_screen_extension.dart';
 
+import '../../../core/ui/extensions/size_screen_extension.dart';
 import 'widgets/app_bar_menu_widget.dart';
 import 'widgets/card_widget.dart';
 

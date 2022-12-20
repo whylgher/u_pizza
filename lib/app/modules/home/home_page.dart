@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
-import 'package:u_pizzas/app/models/pizzas_model.dart';
 
 import '../../core/ui/extensions/size_screen_extension.dart';
 import '../../core/ui/extensions/theme_extension.dart';
 import '../../core/ui/icons/u_pizza_icons.dart';
+import '../../models/pizzas_model.dart';
 
 part 'widgets/app_bar/app_bar_tab_widget.dart';
 part 'widgets/app_bar/app_bar_widget.dart';
