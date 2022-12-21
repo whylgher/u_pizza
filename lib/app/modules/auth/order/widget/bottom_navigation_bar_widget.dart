@@ -128,7 +128,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Modular.to.navigate('/auth/order_page');
+                    // Modular.to.navigate('/auth/payment');
                   },
                   child: Container(
                       decoration: BoxDecoration(
