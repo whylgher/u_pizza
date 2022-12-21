@@ -20,7 +20,7 @@ class AddressPaymenCouponWidget extends StatelessWidget {
             height: 55.h,
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(7),
               border: Border.all(
                 color: Colors.grey.shade300,
               ),
@@ -93,7 +93,7 @@ class AddressPaymenCouponWidget extends StatelessWidget {
             height: 55.h,
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(7),
               border: Border.all(
                 color: Colors.grey.shade300,
               ),
