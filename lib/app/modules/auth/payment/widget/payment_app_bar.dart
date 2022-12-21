@@ -21,7 +21,7 @@ class PaymentAppBar extends PreferredSize {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Modular.to.navigate('/auth/product_page');
+                      Modular.to.navigate('/auth/order_page');
                     },
                     child: SafeArea(
                       child: Row(
@@ -42,7 +42,7 @@ class PaymentAppBar extends PreferredSize {
                             ),
                           ),
                           Text(
-                            'Cart',
+                            'Avalaible payment methods',
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 15.sp,

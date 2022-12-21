@@ -58,6 +58,24 @@ class UPizzaIcons {
     );
   }
 
+  static Widget cash({Color? color, double? width, double? height}) {
+    return SvgPicture.asset(
+      'assets/icons/cash.svg',
+      color: color,
+      width: width,
+      height: height,
+    );
+  }
+
+  static Widget credit_card({Color? color, double? width, double? height}) {
+    return SvgPicture.asset(
+      'assets/icons/credit_card.svg',
+      color: color,
+      width: width,
+      height: height,
+    );
+  }
+
   static Widget pizzaPizza({Color? color, double? width, double? height}) {
     return SvgPicture.asset(
       'assets/icons/twemoji_pizzapizza.svg',

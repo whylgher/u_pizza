@@ -55,27 +55,30 @@ class AddressPaymenCouponWidget extends StatelessWidget {
           SizedBox(
             height: 5.w,
           ),
-          DottedBorder(
-            color: Colors.grey.shade600,
-            strokeWidth: 1.5,
-            dashPattern: const [8, 4],
-            child: SizedBox(
-              height: 45.h,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: 15.w,
-                  ),
-                  Text(
-                    'Choose how you want to pay?',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14.sp,
+          GestureDetector(
+            onTap: () => Modular.to.navigate('/auth/payment'),
+            child: DottedBorder(
+              color: Colors.grey.shade600,
+              strokeWidth: 1.5,
+              dashPattern: const [8, 4],
+              child: SizedBox(
+                height: 45.h,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 15.w,
                     ),
-                  ),
-                ],
+                    Text(
+                      'Choose how you want to pay?',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14.sp,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
