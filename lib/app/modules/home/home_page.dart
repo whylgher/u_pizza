@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -9,11 +7,11 @@ import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 import '../../core/ui/extensions/size_screen_extension.dart';
 import '../../core/ui/extensions/theme_extension.dart';
 import '../../core/ui/icons/u_pizza_icons.dart';
+import '../../core/ui/widgets/button_make_pizza.dart';
 import '../../models/pizzas_model.dart';
 
 part 'widgets/app_bar/app_bar_tab_widget.dart';
 part 'widgets/app_bar/app_bar_widget.dart';
-part 'widgets/button_make_pizza.dart';
 part 'widgets/list_view_pizzas_widget.dart';
 part 'widgets/slider_banner_widget.dart';
 
@@ -53,7 +51,9 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 30.h,
               ),
-              const ButtonMakePizza(),
+              const ButtonMakePizza(
+                navigate: '/auth/make_pizza',
+              ),
               Divider(
                 height: 40.h,
                 color: Colors.grey,

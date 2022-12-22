@@ -26,6 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     final sizeDevice = MediaQuery.of(context).size;
+
     Widget bigCircle = Container(
       width: 250.0.w,
       height: 250.0.h,
