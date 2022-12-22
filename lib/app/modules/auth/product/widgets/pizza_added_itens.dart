@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of '../product_page.dart';
 
 class PizzaAddedItens extends StatelessWidget {
@@ -136,10 +137,12 @@ class PizzaAddedItens extends StatelessWidget {
 
 class TitleAddItems extends StatelessWidget {
   final String title;
+  final String? subTitle;
   final bool required;
   const TitleAddItems({
     Key? key,
     required this.title,
+    this.subTitle,
     required this.required,
   }) : super(key: key);
 
@@ -150,13 +153,27 @@ class TitleAddItems extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 15.sp,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Montserrat',
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.w700,
+                  fontFamily: 'Montserrat',
+                ),
+              ),
+              Text(
+                subTitle ?? '',
+                style: TextStyle(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'Montserrat',
+                  color: Colors.red,
+                ),
+              ),
+            ],
           ),
           Container(
             decoration: BoxDecoration(

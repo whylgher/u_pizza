@@ -18,7 +18,7 @@ class _SliderBannerWidgetState extends State<SliderBannerWidget> {
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(
-                    'https://quemservicos.com.br/cbjr/imgs/banner.png',
+                    'https://quemservicos.com.br/u_pizzas/imgs/banner.png',
                     scale: 0.1,
                   ),
                 ),
@@ -28,7 +28,7 @@ class _SliderBannerWidgetState extends State<SliderBannerWidget> {
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(
-                    'https://quemservicos.com.br/cbjr/imgs/banner.png',
+                    'https://quemservicos.com.br/u_pizzas/imgs/banner.png',
                     scale: 0.1,
                   ),
                 ),
@@ -38,7 +38,7 @@ class _SliderBannerWidgetState extends State<SliderBannerWidget> {
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(
-                    'https://quemservicos.com.br/cbjr/imgs/banner.png',
+                    'https://quemservicos.com.br/u_pizzas/imgs/banner.png',
                     scale: 0.1,
                   ),
                 ),

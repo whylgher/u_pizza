@@ -6,7 +6,7 @@ final Map<String, dynamic> entriess = {
     'name': 'Vegetarian',
     'subtitle':
         '18” XLarge | Olives, onion, pepper, cheese, tomato puree18” XLarge | Olives, onion, pepper, cheese, tomato puree',
-    'url_img': 'https://quemservicos.com.br/cbjr/imgs/pizza1.png',
+    'url_img': 'https://quemservicos.com.br/u_pizzas/imgs/pizza1.png',
     'size_price': {
       'regular': {
         'standard': 'FREE',
@@ -22,7 +22,7 @@ final Map<String, dynamic> entriess = {
     'id': '2',
     'name': 'Magherita',
     'subtitle': '18” XLarge | Cheese, tomato puree, pepperoni, Basil',
-    'url_img': 'https://quemservicos.com.br/cbjr/imgs/pizza2.png',
+    'url_img': 'https://quemservicos.com.br/u_pizzas/imgs/pizza2.png',
     'size_price': {
       'regular': {
         'standard': 'FREE',
@@ -39,7 +39,7 @@ final Map<String, dynamic> entriess = {
     'name': 'Classic Supreme',
     'subtitle':
         '18” XLarge | Tomato, onion, basil, cheese, pepperoni, mushroom',
-    'url_img': 'https://quemservicos.com.br/cbjr/imgs/pizza3.png',
+    'url_img': 'https://quemservicos.com.br/u_pizzas/imgs/pizza3.png',
     'size_price': {
       'regular': {
         'standard': 'FREE',
@@ -55,7 +55,7 @@ final Map<String, dynamic> entriess = {
     'id': '4',
     'name': 'Garden Supreme',
     'subtitle': '15” Large | Olives, onion, pepper, mushroom, cheese',
-    'url_img': 'https://quemservicos.com.br/cbjr/imgs/pizza4.png',
+    'url_img': 'https://quemservicos.com.br/u_pizzas/imgs/pizza4.png',
     'size_price': {
       'regular': {
         'standard': 'FREE',
@@ -72,7 +72,7 @@ final Map<String, dynamic> entriess = {
     'name': 'Vegetarian',
     'subtitle':
         '18” XLarge | Olives, onion, pepper, cheese, tomato puree18” XLarge | Olives, onion, pepper, cheese, tomato puree',
-    'url_img': 'https://quemservicos.com.br/cbjr/imgs/pizza1.png',
+    'url_img': 'https://quemservicos.com.br/u_pizzas/imgs/pizza1.png',
     'size_price': {
       'regular': {
         'standard': 'FREE',
@@ -88,7 +88,7 @@ final Map<String, dynamic> entriess = {
     'id': '6',
     'name': 'Magherita',
     'subtitle': '18” XLarge | Cheese, tomato puree, pepperoni, Basil',
-    'url_img': 'https://quemservicos.com.br/cbjr/imgs/pizza2.png',
+    'url_img': 'https://quemservicos.com.br/u_pizzas/imgs/pizza2.png',
     'size_price': {
       'regular': {
         'standard': 'FREE',
@@ -105,7 +105,7 @@ final Map<String, dynamic> entriess = {
     'name': 'Classic Supreme',
     'subtitle':
         '18” XLarge | Tomato, onion, basil, cheese, pepperoni, mushroom',
-    'url_img': 'https://quemservicos.com.br/cbjr/imgs/pizza3.png',
+    'url_img': 'https://quemservicos.com.br/u_pizzas/imgs/pizza3.png',
     'size_price': {
       'regular': {
         'standard': 'FREE',
@@ -121,7 +121,7 @@ final Map<String, dynamic> entriess = {
     'id': '8',
     'name': 'Garden Supreme',
     'subtitle': '15” Large | Olives, onion, pepper, mushroom, cheese',
-    'url_img': 'https://quemservicos.com.br/cbjr/imgs/pizza4.png',
+    'url_img': 'https://quemservicos.com.br/u_pizzas/imgs/pizza4.png',
     'size_price': {
       'regular': {
         'standard': 'FREE',
