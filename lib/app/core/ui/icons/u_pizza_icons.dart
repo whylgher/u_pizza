@@ -67,7 +67,7 @@ class UPizzaIcons {
     );
   }
 
-  static Widget credit_card({Color? color, double? width, double? height}) {
+  static Widget creditCard({Color? color, double? width, double? height}) {
     return SvgPicture.asset(
       'assets/icons/credit_card.svg',
       color: color,
@@ -79,6 +79,33 @@ class UPizzaIcons {
   static Widget pizzaPizza({Color? color, double? width, double? height}) {
     return SvgPicture.asset(
       'assets/icons/twemoji_pizzapizza.svg',
+      color: color,
+      width: width,
+      height: height,
+    );
+  }
+
+  static Widget cheeseFull({Color? color, double? width, double? height}) {
+    return SvgPicture.asset(
+      'assets/icons/cheese_full.svg',
+      color: color,
+      width: width,
+      height: height,
+    );
+  }
+
+  static Widget cheeseLeft({Color? color, double? width, double? height}) {
+    return SvgPicture.asset(
+      'assets/icons/cheese_left.svg',
+      color: color,
+      width: width,
+      height: height,
+    );
+  }
+
+  static Widget cheeseRight({Color? color, double? width, double? height}) {
+    return SvgPicture.asset(
+      'assets/icons/cheese_right.svg',
       color: color,
       width: width,
       height: height,
