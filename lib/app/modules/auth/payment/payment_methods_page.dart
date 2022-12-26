@@ -107,7 +107,7 @@ class PaymentMethodsPage extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            UPizzaIcons.credit_card(),
+                            UPizzaIcons.creditCard(),
                             SizedBox(
                               width: 15.w,
                             ),

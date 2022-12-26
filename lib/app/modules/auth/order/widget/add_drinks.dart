@@ -35,7 +35,7 @@ class AddDrinks extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: 10.w),
                   width: 135.w,
                   height: 180.h,
-                  padding: EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(15),
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.grey.shade400,
@@ -83,7 +83,7 @@ class AddDrinks extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: 10.w),
                   width: 135.w,
                   height: 180.h,
-                  padding: EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(15),
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.grey.shade400,
@@ -131,7 +131,7 @@ class AddDrinks extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: 10.w),
                   width: 135.w,
                   height: 180.h,
-                  padding: EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(15),
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.grey.shade400,
@@ -179,7 +179,7 @@ class AddDrinks extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: 10.w),
                   width: 135.w,
                   height: 180.h,
-                  padding: EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(15),
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.grey.shade400,
@@ -227,7 +227,7 @@ class AddDrinks extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: 10.w),
                   width: 135.w,
                   height: 180.h,
-                  padding: EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(15),
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.grey.shade400,
@@ -275,7 +275,7 @@ class AddDrinks extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: 10.w),
                   width: 135.w,
                   height: 180.h,
-                  padding: EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(15),
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.grey.shade400,

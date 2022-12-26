@@ -1,7 +1,7 @@
 part of '../make_pizza_page.dart';
 
 class MakePizzaAppBar extends PreferredSize {
-  var appBar;
+  final dynamic appBar;
   MakePizzaAppBar({required this.appBar, super.key})
       : super(
           preferredSize: Size.fromHeight(appBar ? 200.h : 100.h),
@@ -12,7 +12,9 @@ class MakePizzaAppBar extends PreferredSize {
                 child: AppBarDefaultWidget(
                   action: () {
                     MakePizzaPage.controller.previousPage(
-                        duration: Duration(seconds: 1), curve: Curves.ease);
+                      duration: const Duration(seconds: 1),
+                      curve: Curves.ease,
+                    );
                   },
                 ),
               ),
