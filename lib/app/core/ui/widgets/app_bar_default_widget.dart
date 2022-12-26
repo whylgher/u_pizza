@@ -6,11 +6,13 @@ import '../icons/u_pizza_icons.dart';
 
 class AppBarDefaultWidget extends PreferredSize {
   final String label;
+  final bool? visibleIcon;
   final int fromHeight;
   final dynamic action;
 
   AppBarDefaultWidget(
       {required this.label,
+      this.visibleIcon = false,
       required this.action,
       this.fromHeight = 100,
       super.key})
@@ -71,17 +73,20 @@ class AppBarDefaultWidget extends PreferredSize {
                   ),
                 ],
               ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  height: 50.h,
-                  padding: const EdgeInsets.all(10),
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.orange,
-                  ),
-                  child: UPizzaIcons.pizzaPizza(
-                    height: 40.h,
+              Visibility(
+                visible: visibleIcon!,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    height: 50.h,
+                    padding: const EdgeInsets.all(10),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.orange,
+                    ),
+                    child: UPizzaIcons.pizzaPizza(
+                      height: 40.h,
+                    ),
                   ),
                 ),
               ),

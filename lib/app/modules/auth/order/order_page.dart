@@ -20,7 +20,6 @@ class OrderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF7F8FA),
-      // appBar: OrderAppBar(),
       appBar: AppBarDefaultWidget(
         label: 'Cart',
         action: () {

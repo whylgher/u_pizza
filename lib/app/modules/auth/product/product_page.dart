@@ -22,6 +22,7 @@ class ProductPage extends StatelessWidget {
       backgroundColor: context.primaryColorDark,
       appBar: AppBarDefaultWidget(
         label: 'U Pizza',
+        visibleIcon: true,
         action: '/home',
       ),
       bottomNavigationBar: const BottomNavigationBarWidget(),
