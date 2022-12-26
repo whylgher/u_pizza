@@ -21,7 +21,7 @@ class ProductPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: context.primaryColorDark,
       appBar: AppBarDefaultWidget(
-        navigate: '/home',
+        action: '/home',
       ),
       bottomNavigationBar: const BottomNavigationBarWidget(),
       body: SafeArea(

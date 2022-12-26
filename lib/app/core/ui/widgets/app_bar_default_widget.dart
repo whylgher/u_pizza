@@ -5,11 +5,10 @@ import '../../../core/ui/extensions/size_screen_extension.dart';
 import '../icons/u_pizza_icons.dart';
 
 class AppBarDefaultWidget extends PreferredSize {
-  final String navigate;
   final int fromHeight;
+  final dynamic action;
 
-  AppBarDefaultWidget(
-      {required this.navigate, this.fromHeight = 100, super.key})
+  AppBarDefaultWidget({required this.action, this.fromHeight = 100, super.key})
       : super(
           preferredSize: Size.fromHeight(fromHeight.h),
           child: Stack(
@@ -29,7 +28,11 @@ class AppBarDefaultWidget extends PreferredSize {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Modular.to.navigate(navigate);
+                      if (action is String) {
+                        Modular.to.navigate(action);
+                      } else if (action is Function) {
+                        action();
+                      }
                     },
                     child: SafeArea(
                       child: Row(
