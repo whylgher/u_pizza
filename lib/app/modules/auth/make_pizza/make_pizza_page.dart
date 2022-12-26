@@ -7,6 +7,10 @@ import '../../../core/ui/widgets/app_bar_default_widget.dart';
 import '../../../core/ui/widgets/button_make_pizza.dart';
 import '../product/product_page.dart';
 
+part 'view/cheese_pizza_view.dart';
+part 'view/size_pizza_view.dart';
+part 'widget/bottom_start_widget.dart';
+part 'widget/drop_down_sauce_widget.dart';
 part 'widget/make_pizza_app_bar.dart';
 
 class MakePizzaPage extends StatefulWidget {
@@ -60,154 +64,18 @@ class _MakePizzaPageState extends State<MakePizzaPage> {
                 controller: MakePizzaPage.controller,
                 children: [
                   Container(),
-                  SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Text(
-                          'In the first step, choose the desired size.',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14.sp,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10.h,
-                        ),
-                        SizedBox(
-                          width: sizeDevice.width * .65,
-                          child: const Image(
-                            image: NetworkImage(
-                                'https://quemservicos.com.br/u_pizzas/make_pizza/raw_pizza.png'),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10.h,
-                        ),
-                        const TitleAddItems(
-                          title: 'Choose your size',
-                          subTitle: 'Choose one',
-                          required: true,
-                        ),
-                        SizedBox(
-                          height: 20.h,
-                        ),
-                        PizzaAddedItens(label: '9" Regular', price: 'FREE'),
-                        SizedBox(
-                          height: 10.h,
-                        ),
-                        PizzaAddedItens(
-                            label: '12" Regular', price: 'U\$ 25,00'),
-                        SizedBox(
-                          height: 10.h,
-                        ),
-                        PizzaAddedItens(
-                            label: '15" Regular', price: 'U\$ 28,00'),
-                        SizedBox(
-                          height: 10.h,
-                        ),
-                        PizzaAddedItens(
-                            label: '18" Regular', price: 'U\$ 32,00'),
-                      ],
-                    ),
+                  SizePizzaView(
+                    sizeDevice: sizeDevice,
                   ),
-                  Column(
-                    children: [
-                      Container(
-                        child: Text('teste2'),
-                      ),
-                    ],
+                  CheesePizzaView(
+                    sizeDevice: sizeDevice,
                   ),
                 ],
               ),
             ),
-            AnimatedAlign(
-              duration: const Duration(seconds: 1),
-              curve: Curves.fastOutSlowIn,
-              heightFactor: currentPageValue == 0 ? 2.h : 5.5.h,
-              alignment: const Alignment(0, 0),
-              child: GestureDetector(
-                onTap: () {
-                  MakePizzaPage.controller.nextPage(
-                    duration: const Duration(seconds: 1),
-                    curve: Curves.ease,
-                  );
-                },
-                child: Container(
-                  height: sizeDevice.height * 0.27,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: const DecorationImage(
-                      fit: BoxFit.fitHeight,
-                      opacity: 0.4,
-                      image: AssetImage("assets/images/bg.png"),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color:
-                            const Color.fromARGB(255, 0, 0, 0).withOpacity(0.2),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset:
-                            const Offset(0, 3), // changes position of shadow
-                      ),
-                    ],
-                    color: context.primaryColor,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: currentPageValue == 0
-                        ? MainAxisAlignment.center
-                        : MainAxisAlignment.start,
-                    children: [
-                      Visibility(
-                        visible: currentPageValue == 0,
-                        child: Column(
-                          children: [
-                            Text(
-                              'START',
-                              style: TextStyle(
-                                fontSize: 30.sp,
-                                fontWeight: FontWeight.w900,
-                                color: Colors.black,
-                              ),
-                            ),
-                            Icon(
-                              Icons.arrow_right_outlined,
-                              size: 40.h,
-                              color: Colors.black,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Visibility(
-                        visible: currentPageValue == 1,
-                        child: Container(
-                          width: sizeDevice.width * .35,
-                          padding: EdgeInsets.only(top: 20.h),
-                          child: Column(
-                            children: [
-                              Text(
-                                "let's go to the sauce",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 15.sp,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              Icon(
-                                Icons.arrow_right_outlined,
-                                size: 40.h,
-                                color: Colors.black,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+            BottomStartWidget(
+              currentPageValue: currentPageValue,
+              sizeDevice: sizeDevice,
             ),
           ],
         ),
