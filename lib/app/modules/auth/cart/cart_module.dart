@@ -1,8 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'order_page.dart';
+import 'cart_page.dart';
 
-class OrderModule extends Module {
+class CartModule extends Module {
   @override
   final List<Bind> binds = [];
 
@@ -10,7 +10,7 @@ class OrderModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(
       Modular.initialRoute,
-      child: (_, __) => const OrderPage(),
+      child: (_, __) => const CartPage(),
     ),
   ];
 }

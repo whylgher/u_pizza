@@ -1,7 +1,7 @@
-part of '../order_page.dart';
+part of '../cart_page.dart';
 
-class OrderAppBar extends PreferredSize {
-  OrderAppBar({super.key})
+class CartAppBar extends PreferredSize {
+  CartAppBar({super.key})
       : super(
           preferredSize: Size.fromHeight(80.h),
           child: Stack(

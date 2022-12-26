@@ -1,4 +1,4 @@
-part of '../order_page.dart';
+part of '../cart_page.dart';
 
 class AddressPaymenCouponWidget extends StatelessWidget {
   const AddressPaymenCouponWidget({Key? key}) : super(key: key);

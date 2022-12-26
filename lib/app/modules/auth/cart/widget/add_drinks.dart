@@ -1,4 +1,4 @@
-part of '../order_page.dart';
+part of '../cart_page.dart';
 
 class AddDrinks extends StatelessWidget {
   const AddDrinks({Key? key}) : super(key: key);
