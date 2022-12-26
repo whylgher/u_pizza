@@ -16,11 +16,12 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sizedDevice = MediaQuery.of(context).size;
+    final sizeDevice = MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: context.primaryColorDark,
       appBar: AppBarDefaultWidget(
+        label: 'U Pizza',
         action: '/home',
       ),
       bottomNavigationBar: const BottomNavigationBarWidget(),
@@ -37,8 +38,8 @@ class ProductPage extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
                 ),
-                width: sizedDevice.width * .9,
-                height: sizedDevice.height * .65,
+                width: sizeDevice.width * .9,
+                height: sizeDevice.height * .65,
                 child: SingleChildScrollView(
                   child: Column(
                     children: [

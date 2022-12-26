@@ -148,32 +148,36 @@ class TitleAddItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sizeDevide = MediaQuery.of(context).size;
     return Align(
       alignment: Alignment.bottomLeft,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: 'Montserrat',
+          SizedBox(
+            width: sizeDevide.width * 0.5,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: 'Montserrat',
+                  ),
                 ),
-              ),
-              Text(
-                subTitle ?? '',
-                style: TextStyle(
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'Montserrat',
-                  color: Colors.red,
+                Text(
+                  subTitle ?? '',
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Montserrat',
+                    color: Colors.red,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           Container(
             decoration: BoxDecoration(

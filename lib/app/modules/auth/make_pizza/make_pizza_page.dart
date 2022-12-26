@@ -11,8 +11,10 @@ import '../product/product_page.dart';
 part 'view/cheese_pizza_view.dart';
 part 'view/protein_pizza_view.dart';
 part 'view/size_pizza_view.dart';
+part 'view/vegetables_and_cheeses_view.dart';
 part 'widget/bottom_start_widget.dart';
 part 'widget/drop_down_sauce_widget.dart';
+part 'widget/item_select_widget.dart';
 part 'widget/make_pizza_app_bar.dart';
 
 class MakePizzaPage extends StatefulWidget {
@@ -74,7 +76,10 @@ class _MakePizzaPageState extends State<MakePizzaPage> {
                   ),
                   ProteinPizzaView(
                     sizeDevice: sizeDevice,
-                  )
+                  ),
+                  VegetablesAndCheesesView(
+                    sizeDevice: sizeDevice,
+                  ),
                 ],
               ),
             ),

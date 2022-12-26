@@ -5,10 +5,15 @@ import '../../../core/ui/extensions/size_screen_extension.dart';
 import '../icons/u_pizza_icons.dart';
 
 class AppBarDefaultWidget extends PreferredSize {
+  final String label;
   final int fromHeight;
   final dynamic action;
 
-  AppBarDefaultWidget({required this.action, this.fromHeight = 100, super.key})
+  AppBarDefaultWidget(
+      {required this.label,
+      required this.action,
+      this.fromHeight = 100,
+      super.key})
       : super(
           preferredSize: Size.fromHeight(fromHeight.h),
           child: Stack(
@@ -53,7 +58,7 @@ class AppBarDefaultWidget extends PreferredSize {
                             ),
                           ),
                           Text(
-                            'U Pizza',
+                            label,
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 15.sp,
