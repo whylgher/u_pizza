@@ -138,12 +138,12 @@ class PizzaAddedItens extends StatelessWidget {
 class TitleAddItems extends StatelessWidget {
   final String title;
   final String? subTitle;
-  final bool required;
+  final bool? required;
   const TitleAddItems({
     Key? key,
     required this.title,
     this.subTitle,
-    required this.required,
+    this.required = false,
   }) : super(key: key);
 
   @override
@@ -182,7 +182,7 @@ class TitleAddItems extends StatelessWidget {
             ),
             padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 2.h),
             child: Text(
-              required ? 'REQUIRED' : 'OPTIONAL',
+              required! ? 'REQUIRED' : 'OPTIONAL',
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
