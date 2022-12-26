@@ -11,6 +11,7 @@ class MakePizzaAppBar extends PreferredSize {
                 visible: !appBar,
                 child: AppBarDefaultWidget(
                   label: 'U Pizza',
+                  visibleIcon: true,
                   action: () {
                     MakePizzaPage.controller.previousPage(
                       duration: const Duration(seconds: 1),
