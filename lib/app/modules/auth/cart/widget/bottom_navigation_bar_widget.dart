@@ -1,4 +1,4 @@
-part of '../order_page.dart';
+part of '../cart_page.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
   const BottomNavigationBarWidget({Key? key}) : super(key: key);

@@ -10,11 +10,11 @@ import '../../home/home_page.dart';
 part 'widget/add_drinks.dart';
 part 'widget/address_paymen_coupon_widget.dart';
 part 'widget/bottom_navigation_bar_widget.dart';
+part 'widget/cart_app_bar.dart';
 part 'widget/itens_widget.dart';
-part 'widget/order_app_bar.dart';
 
-class OrderPage extends StatelessWidget {
-  const OrderPage({Key? key}) : super(key: key);
+class CartPage extends StatelessWidget {
+  const CartPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

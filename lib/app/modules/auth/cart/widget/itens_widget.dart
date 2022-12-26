@@ -1,4 +1,4 @@
-part of '../order_page.dart';
+part of '../cart_page.dart';
 
 class ItensWidget extends StatelessWidget {
   static final pizzaData = ListViewPizzasWidget.pizza.toMap();
