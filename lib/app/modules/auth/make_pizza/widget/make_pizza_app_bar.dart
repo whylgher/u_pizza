@@ -10,7 +10,10 @@ class MakePizzaAppBar extends PreferredSize {
               Visibility(
                 visible: !appBar,
                 child: AppBarDefaultWidget(
-                  navigate: '/home',
+                  action: () {
+                    MakePizzaPage.controller.previousPage(
+                        duration: Duration(seconds: 1), curve: Curves.ease);
+                  },
                 ),
               ),
               Visibility(
