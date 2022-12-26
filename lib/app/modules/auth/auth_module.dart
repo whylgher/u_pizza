@@ -28,5 +28,6 @@ class AuthModule extends Module {
     ModuleRoute('/order_page', module: CartModule()),
     ModuleRoute('/payment', module: PaymentMethodsModule()),
     ModuleRoute('/make_pizza', module: MakePizzaModule()),
+    ModuleRoute('/make_pizza', module: MakePizzaModule()),
   ];
 }
