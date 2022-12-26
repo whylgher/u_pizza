@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../core/ui/extensions/size_screen_extension.dart';
 import '../../../core/ui/icons/u_pizza_icons.dart';
+import '../../../core/ui/widgets/app_bar_default_widget.dart';
 import '../../home/home_page.dart';
 
 part 'widget/add_drinks.dart';
@@ -19,7 +20,13 @@ class OrderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF7F8FA),
-      appBar: OrderAppBar(),
+      // appBar: OrderAppBar(),
+      appBar: AppBarDefaultWidget(
+        label: 'Cart',
+        action: () {
+          Modular.to.navigate('/auth/product_page');
+        },
+      ),
       bottomNavigationBar: const BottomNavigationBarWidget(),
       body: SafeArea(
         child: SingleChildScrollView(

@@ -1,7 +1,7 @@
 part of '../make_pizza_page.dart';
 
 class SizePizzaView extends StatelessWidget {
-  final dynamic sizeDevice;
+  final Size sizeDevice;
   const SizePizzaView({
     Key? key,
     required this.sizeDevice,

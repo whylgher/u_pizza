@@ -2,7 +2,7 @@ part of '../make_pizza_page.dart';
 
 class BottomStartWidget extends StatelessWidget {
   final double currentPageValue;
-  final dynamic sizeDevice;
+  final Size sizeDevice;
 
   const BottomStartWidget({
     Key? key,
@@ -19,10 +19,14 @@ class BottomStartWidget extends StatelessWidget {
       alignment: const Alignment(0, 0),
       child: GestureDetector(
         onTap: () {
-          MakePizzaPage.controller.nextPage(
-            duration: const Duration(seconds: 1),
-            curve: Curves.ease,
-          );
+          if (currentPageValue != 4) {
+            MakePizzaPage.controller.nextPage(
+              duration: const Duration(seconds: 1),
+              curve: Curves.ease,
+            );
+          } else {
+            Modular.to.navigate('/auth/order_page');
+          }
         },
         child: Container(
           height: sizeDevice.height * 0.30,
@@ -106,13 +110,26 @@ class BottomStartWidget extends StatelessWidget {
                             ),
                             Visibility(
                               visible: currentPageValue == 3,
-                              child: Expanded(
+                              child: Text(
+                                "Vegetables and others cheeses",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                            Visibility(
+                              visible: currentPageValue == 4,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8),
                                 child: Text(
-                                  "Vegetables and others cheeses",
+                                  "Make U Pizza",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    fontSize: 16.sp,
-                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.w900,
                                     color: Colors.black,
                                   ),
                                 ),
