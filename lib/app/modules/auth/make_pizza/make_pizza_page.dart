@@ -3,11 +3,13 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/ui/extensions/theme_extension.dart';
+import '../../../core/ui/icons/u_pizza_icons.dart';
 import '../../../core/ui/widgets/app_bar_default_widget.dart';
 import '../../../core/ui/widgets/button_make_pizza.dart';
 import '../product/product_page.dart';
 
 part 'view/cheese_pizza_view.dart';
+part 'view/protein_pizza_view.dart';
 part 'view/size_pizza_view.dart';
 part 'widget/bottom_start_widget.dart';
 part 'widget/drop_down_sauce_widget.dart';
@@ -49,8 +51,8 @@ class _MakePizzaPageState extends State<MakePizzaPage> {
             AnimatedContainer(
               duration: const Duration(seconds: 1),
               curve: Curves.fastOutSlowIn,
-              padding: EdgeInsets.all(20),
-              margin: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               width: double.infinity,
               height: sizeDevice.height * .65,
               decoration: BoxDecoration(
@@ -70,6 +72,9 @@ class _MakePizzaPageState extends State<MakePizzaPage> {
                   CheesePizzaView(
                     sizeDevice: sizeDevice,
                   ),
+                  ProteinPizzaView(
+                    sizeDevice: sizeDevice,
+                  )
                 ],
               ),
             ),

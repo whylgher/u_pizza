@@ -15,7 +15,7 @@ class BottomStartWidget extends StatelessWidget {
     return AnimatedAlign(
       duration: const Duration(seconds: 1),
       curve: Curves.fastOutSlowIn,
-      heightFactor: currentPageValue == 0 ? 2.h : 5.5.h,
+      heightFactor: currentPageValue == 0 ? 2.h : 5.1.h,
       alignment: const Alignment(0, 0),
       child: GestureDetector(
         onTap: () {
@@ -25,7 +25,7 @@ class BottomStartWidget extends StatelessWidget {
           );
         },
         child: Container(
-          height: sizeDevice.height * 0.27,
+          height: sizeDevice.height * 0.30,
           width: double.infinity,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
@@ -83,10 +83,10 @@ class BottomStartWidget extends StatelessWidget {
                             Visibility(
                               visible: currentPageValue == 1,
                               child: Text(
-                                "let's go to the sauce",
+                                "Let's go to the sauce",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  fontSize: 15.sp,
+                                  fontSize: 16.sp,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black,
                                 ),
@@ -98,9 +98,23 @@ class BottomStartWidget extends StatelessWidget {
                                 "And now the protein",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  fontSize: 15.sp,
+                                  fontSize: 16.sp,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black,
+                                ),
+                              ),
+                            ),
+                            Visibility(
+                              visible: currentPageValue == 3,
+                              child: Expanded(
+                                child: Text(
+                                  "Vegetables and others cheeses",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
                                 ),
                               ),
                             ),
@@ -108,7 +122,7 @@ class BottomStartWidget extends StatelessWidget {
                         ),
                       ),
                       Icon(
-                        Icons.arrow_right_outlined,
+                        Icons.arrow_right_alt_rounded,
                         size: 40.h,
                         color: Colors.black,
                       ),
