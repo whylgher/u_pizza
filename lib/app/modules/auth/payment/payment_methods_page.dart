@@ -3,8 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:u_pizzas/app/core/ui/extensions/size_screen_extension.dart';
 
 import '../../../core/ui/icons/u_pizza_icons.dart';
-
-part 'widget/payment_app_bar.dart';
+import '../../../core/ui/widgets/app_bar_default_widget.dart';
 
 class PaymentMethodsPage extends StatelessWidget {
   const PaymentMethodsPage({Key? key}) : super(key: key);
@@ -13,7 +12,11 @@ class PaymentMethodsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF7F8FA),
-      appBar: PaymentAppBar(),
+      appBar: AppBarDefaultWidget(
+          label: 'Avaliable payment methods',
+          action: () {
+            Modular.to.navigate('/auth/order_page');
+          }),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
