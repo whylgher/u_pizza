@@ -31,10 +31,13 @@ class MenuPage extends StatelessWidget {
                     Modular.to.navigate('/auth/order');
                   },
                 ),
-                const CardWidget(
-                  iconLeading: Icon(Icons.chat_outlined),
+                CardWidget(
+                  iconLeading: const Icon(Icons.chat_outlined),
                   title: 'Chat',
                   titleSize: 15,
+                  action: () {
+                    Modular.to.navigate('/auth/chat');
+                  },
                 ),
                 const CardWidget(
                   iconLeading: Icon(Icons.notifications_outlined),
