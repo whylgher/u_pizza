@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../core/ui/extensions/size_screen_extension.dart';
 import 'widgets/app_bar_menu_widget.dart';
@@ -21,38 +22,41 @@ class MenuPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             height: sizeDevide.height * .4.h,
             child: Column(
-              children: const [
+              children: [
                 CardWidget(
-                  iconLeading: Icon(Icons.list_alt_outlined),
+                  iconLeading: const Icon(Icons.list_alt_outlined),
                   title: 'Orders',
                   titleSize: 15,
+                  action: () {
+                    Modular.to.navigate('/auth/order');
+                  },
                 ),
-                CardWidget(
+                const CardWidget(
                   iconLeading: Icon(Icons.chat_outlined),
                   title: 'Chat',
                   titleSize: 15,
                 ),
-                CardWidget(
+                const CardWidget(
                   iconLeading: Icon(Icons.notifications_outlined),
                   title: 'Notification',
                   titleSize: 15,
                 ),
-                CardWidget(
+                const CardWidget(
                   iconLeading: Icon(Icons.payments_outlined),
                   title: 'Payments',
                   titleSize: 15,
                 ),
-                CardWidget(
+                const CardWidget(
                   iconLeading: Icon(Icons.location_on_outlined),
                   title: 'Address',
                   titleSize: 15,
                 ),
-                CardWidget(
+                const CardWidget(
                   iconLeading: Icon(Icons.account_box_outlined),
                   title: 'Account',
                   titleSize: 15,
                 ),
-                CardWidget(
+                const CardWidget(
                   iconLeading: Icon(Icons.logout_outlined),
                   title: 'Logout',
                   titleSize: 15,

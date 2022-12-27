@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 class CardWidget extends StatelessWidget {
@@ -6,13 +7,15 @@ class CardWidget extends StatelessWidget {
   final Color? titleColor;
   final Icon iconLeading;
   final double? iconLeadingSize;
+  final dynamic action;
 
   const CardWidget({
     Key? key,
     required this.title,
+    required this.iconLeading,
+    this.action,
     this.titleSize = 15,
     this.titleColor,
-    required this.iconLeading,
     this.iconLeadingSize,
   }) : super(key: key);
 
@@ -20,6 +23,7 @@ class CardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: iconLeading,
+      onTap: action,
       title: Text(
         title,
         style: TextStyle(
@@ -27,7 +31,6 @@ class CardWidget extends StatelessWidget {
           color: titleColor,
         ),
       ),
-      onTap: () {},
     );
   }
 }
