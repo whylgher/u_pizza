@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'cart/cart_module.dart';
+import 'chat/chat_module.dart';
 import 'home/auth_home_page.dart';
 import 'login/login_module.dart';
 import 'make_pizza/make_pizza_module.dart';
@@ -30,5 +31,6 @@ class AuthModule extends Module {
     ModuleRoute('/payment', module: PaymentMethodsModule()),
     ModuleRoute('/make_pizza', module: MakePizzaModule()),
     ModuleRoute('/order', module: OrderModule()),
+    ModuleRoute('/chat', module: ChatModule()),
   ];
 }

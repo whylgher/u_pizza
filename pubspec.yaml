@@ -47,14 +47,10 @@ flutter:
     - assets/images/
     - assets/icons/
     - .env
-  #   - images/a_dot_ham.jpeg
-  # example:
   fonts:
     - family: UPizzaIcons
       fonts:
         - asset: assets/fonts/UPizza.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
     - family: Inter
       fonts:
         - asset:  assets/fonts/inter/Inter-Thin-BETA.otf
