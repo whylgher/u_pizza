@@ -17,7 +17,6 @@ class ItensWidget extends StatelessWidget {
             alignment: Alignment(1.2.w, 0.h),
             image: NetworkImage(pizzaData['url_img']),
           ),
-          borderRadius: BorderRadius.circular(20),
           color: Colors.white),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

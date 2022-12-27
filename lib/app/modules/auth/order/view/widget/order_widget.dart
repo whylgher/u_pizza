@@ -1,7 +1,7 @@
 part of '../order_view.dart';
 
-class AddressPaymenCouponWidget extends StatelessWidget {
-  const AddressPaymenCouponWidget({Key? key}) : super(key: key);
+class OrderWidget extends StatelessWidget {
+  const OrderWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
