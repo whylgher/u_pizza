@@ -111,4 +111,22 @@ class UPizzaIcons {
       height: height,
     );
   }
+
+  static Widget pizza({Color? color, double? width, double? height}) {
+    return SvgPicture.asset(
+      'assets/icons/pizza.svg',
+      color: color,
+      width: width,
+      height: height,
+    );
+  }
+
+  static Widget separator({Color? color, double? width, double? height}) {
+    return SvgPicture.asset(
+      'assets/icons/separator_pizza.svg',
+      color: color,
+      width: width,
+      height: height,
+    );
+  }
 }
