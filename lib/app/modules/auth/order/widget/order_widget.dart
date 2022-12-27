@@ -146,6 +146,9 @@ class OrderWidget extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
+                  onTap: () {
+                    Modular.to.navigate('/auth/order/order-view');
+                  },
                   child: SizedBox(
                     width: double.infinity,
                     child: Text(
