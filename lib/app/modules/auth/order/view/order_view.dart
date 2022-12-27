@@ -6,9 +6,9 @@ import '../../../../core/ui/icons/u_pizza_icons.dart';
 import '../../../../core/ui/widgets/app_bar_default_widget.dart';
 import '../../../home/home_page.dart';
 
-part 'widget/address_paymen_coupon_widget.dart';
 part 'widget/bottom_navigation_bar_widget.dart';
 part 'widget/itens_widget.dart';
+part 'widget/order_widget.dart';
 
 class OrderView extends StatelessWidget {
   const OrderView({Key? key}) : super(key: key);
@@ -43,12 +43,12 @@ class OrderView extends StatelessWidget {
           Modular.to.navigate('/auth/order');
         },
       ),
-      bottomNavigationBar: BottomNavigationBarWidget(),
+      bottomNavigationBar: const BottomNavigationBarWidget(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const AddressPaymenCouponWidget(),
+              const OrderWidget(),
               const ItensWidget(),
               SizedBox(
                 height: 20.h,
