@@ -5,18 +5,20 @@ import '../../../core/ui/extensions/size_screen_extension.dart';
 import '../icons/u_pizza_icons.dart';
 
 class AppBarDefaultWidget extends PreferredSize {
-  final String label;
+  final String? label;
   final bool? visibleIcon;
   final int fromHeight;
   final dynamic action;
+  final Widget? widgetBar;
 
-  AppBarDefaultWidget(
-      {required this.label,
-      this.visibleIcon = false,
-      required this.action,
-      this.fromHeight = 100,
-      super.key})
-      : super(
+  AppBarDefaultWidget({
+    required this.action,
+    this.label = '',
+    this.visibleIcon = false,
+    this.widgetBar,
+    this.fromHeight = 100,
+    super.key,
+  }) : super(
           preferredSize: Size.fromHeight(fromHeight.h),
           child: Stack(
             children: [
@@ -59,12 +61,24 @@ class AppBarDefaultWidget extends PreferredSize {
                               size: 15.h,
                             ),
                           ),
-                          Text(
-                            label,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 15.sp,
-                              fontWeight: FontWeight.w600,
+                          Visibility(
+                            visible: label != '',
+                            child: Text(
+                              label!,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 15.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          Visibility(
+                            visible: label == '',
+                            child: Expanded(
+                              child: Align(
+                                alignment: AlignmentDirectional.center,
+                                child: widgetBar ?? Container(),
+                              ),
                             ),
                           )
                         ],
