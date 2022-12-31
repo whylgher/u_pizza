@@ -1,5 +1,9 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../repositories/user/user_repository.dart';
+import '../../repositories/user/user_repository_impl.dart';
+import '../../service/user/user_service.dart';
+import '../../service/user/user_service_impl.dart';
 import 'cart/cart_module.dart';
 import 'chat/chat_module.dart';
 import 'home/auth_home_page.dart';
@@ -13,7 +17,20 @@ import 'register/register_module.dart';
 
 class AuthModule extends Module {
   @override
-  final List<Bind> binds = [];
+  final List<Bind> binds = [
+    Bind.lazySingleton<UserRepository>(
+      (i) => UserRepositoryImpl(
+          log: i(), // CoreModule
+          restClient: i() // CoreModule,
+          ),
+    ),
+    Bind.lazySingleton<UserService>(
+      (i) => UserServiceImpl(
+        log: i(), // CoreModule
+        userRepository: i(), // AuthModule
+      ),
+    ),
+  ];
 
   @override
   final List<ModularRoute> routes = [

@@ -32,6 +32,7 @@ dependencies:
   tab_indicator_styler: ^2.0.0
   dotted_border: ^2.0.0+3
   flutter_firebase_chat_core: ^1.6.4
+  validatorless: ^1.2.3
 
 dev_dependencies:
   flutter_test:

@@ -6,14 +6,14 @@ class UPizzaTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final FormFieldValidator<String>? validator;
 
-  final String label;
+  final String? label;
   final bool obscureText;
   final ValueNotifier<bool> _obscureTextVn;
   final bool? focused;
 
   UPizzaTextFormField({
     Key? key,
-    required this.label,
+    this.label,
     this.obscureText = false,
     this.controller,
     this.focused = false,
