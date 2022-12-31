@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:validatorless/validatorless.dart';
 
 import '../../../core/ui/extensions/size_screen_extension.dart';
 import '../../../core/ui/extensions/theme_extension.dart';
 import '../../../core/ui/widgets/u_pizza_text_form_field.dart';
+import 'controller/register_controller.dart';
 
 part 'widgets/register_form.dart';
 part 'widgets/smooth_page_register_indicator_widget.dart';
@@ -243,15 +245,37 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      RegisterPage.controller.nextPage(
-                        duration: const Duration(seconds: 1),
-                        curve: Curves.ease,
-                      );
-                      if (RegisterPage.controller.page! < 3.0) {
-                        setState(() => turns += 1.0 / 8.0);
-                      }
-                      if (RegisterPage.controller.page! >= 2) {
-                        setState(() => labelBotton = 'Confirm');
+                      final formKey =
+                          _RegisterForm.formKey.currentState?.validate() ??
+                              false;
+
+                      if (formKey) {
+                        if (RegisterPage.controller.page != 3.0) {
+                          setState(() => turns += 1.0 / 8.0);
+                          RegisterPage.controller.nextPage(
+                            duration: const Duration(seconds: 1),
+                            curve: Curves.ease,
+                          );
+                        }
+
+                        if (RegisterPage.controller.page! >= 2) {
+                          setState(() => labelBotton = 'Confirm');
+                        }
+
+                        if (RegisterPage.controller.page! == 3) {
+                          // _RegisterForm.controller.register(
+                          //   name: 'whyl',
+                          //   password: '123123',
+                          //   phone: '397569768',
+                          //   email: 'registersformm@teste1.text',
+                          // );
+                          _RegisterForm.controller.register(
+                            name: _RegisterForm.nameEC.text,
+                            password: _RegisterForm.passwordEC.text,
+                            phone: _RegisterForm.phoneEC.text,
+                            email: _RegisterForm.emailEC.text,
+                          );
+                        }
                       }
                     },
                     child: Stack(
@@ -313,106 +337,8 @@ class _RegisterPageState extends State<RegisterPage> {
               ],
             ),
           ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 230),
-            width: double.infinity.w,
-            height: double.infinity.h,
-            child: PageView(
-              scrollDirection: Axis.vertical,
-              physics: const NeverScrollableScrollPhysics(),
-              controller: RegisterPage.controller,
-              children: [
-                Column(
-                  children: [
-                    SizedBox(
-                      width: sizeDevice.width * .7,
-                      height: sizeDevice.width * .15,
-                      child: const Text(
-                        'Your name is important, we need it so that we can identify you.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    UPizzaTextFormField(
-                      label: 'name',
-                      focused: false,
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    SizedBox(
-                      width: sizeDevice.width * .7,
-                      height: sizeDevice.width * .2,
-                      child: const Text(
-                        'And your phone, we will let you know about your order and also for our delivery agent communicate with you.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    UPizzaTextFormField(
-                      label: 'phone',
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    SizedBox(
-                      width: sizeDevice.width * .7,
-                      height: sizeDevice.width * .15,
-                      child: const Text(
-                        "For you to access, we need your email, don't worry, we won't send you spam.",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    UPizzaTextFormField(
-                      label: 'email',
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    SizedBox(
-                      width: sizeDevice.width * .7,
-                      height: sizeDevice.width * .15,
-                      child: const Text(
-                        'Now the most important thing, enter a strong and secure password.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    UPizzaTextFormField(
-                      label: 'Senha',
-                      obscureText: true,
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    UPizzaTextFormField(
-                      label: 'Confirmar Senha',
-                      obscureText: true,
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+          // Forms
+          const _RegisterForm(),
         ],
       ),
     );
