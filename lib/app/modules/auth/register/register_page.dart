@@ -263,11 +263,17 @@ class _RegisterPageState extends State<RegisterPage> {
                         }
 
                         if (RegisterPage.controller.page! == 3) {
+                          // _RegisterForm.controller.register(
+                          //   name: _RegisterForm.nameEC.text,
+                          //   password: _RegisterForm.passwordEC.text,
+                          //   phone: _RegisterForm.phoneEC.text,
+                          //   email: _RegisterForm.emailEC.text,
+                          // );
                           _RegisterForm.controller.register(
-                            name: _RegisterForm.nameEC.text,
-                            password: _RegisterForm.passwordEC.text,
-                            phone: _RegisterForm.phoneEC.text,
-                            email: _RegisterForm.emailEC.text,
+                            name: 'whyll',
+                            password: '123123',
+                            phone: '12345789',
+                            email: 'teste1@teste.teste',
                           );
                         }
                       }
