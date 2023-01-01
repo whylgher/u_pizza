@@ -263,12 +263,6 @@ class _RegisterPageState extends State<RegisterPage> {
                         }
 
                         if (RegisterPage.controller.page! == 3) {
-                          // _RegisterForm.controller.register(
-                          //   name: 'whyl',
-                          //   password: '123123',
-                          //   phone: '397569768',
-                          //   email: 'registersformm@teste1.text',
-                          // );
                           _RegisterForm.controller.register(
                             name: _RegisterForm.nameEC.text,
                             password: _RegisterForm.passwordEC.text,
