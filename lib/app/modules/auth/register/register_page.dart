@@ -27,8 +27,6 @@ class _RegisterPageState extends State<RegisterPage> {
   double turns = 0.0;
   @override
   Widget build(BuildContext context) {
-    final sizeDevice = MediaQuery.of(context).size;
-
     Widget bigCircle = Container(
       width: 250.0.w,
       height: 250.0.h,
@@ -249,7 +247,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           _RegisterForm.formKey.currentState?.validate() ??
                               false;
 
-                      if (formKey) {
+                      if (!formKey) {
                         if (RegisterPage.controller.page != 3.0) {
                           setState(() => turns += 1.0 / 8.0);
                           RegisterPage.controller.nextPage(
@@ -272,8 +270,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           _RegisterForm.controller.register(
                             name: 'whyll',
                             password: '123123',
-                            phone: '12345789',
-                            email: 'teste1@teste.teste',
+                            phone: '927569756',
+                            email: 'whylgher@gmail.com',
                           );
                         }
                       }

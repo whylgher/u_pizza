@@ -1,18 +1,25 @@
+import 'package:u_pizzas/app/models/user_model.dart';
+
 import './user_repository.dart';
 import '../../core/exception/failure.dart';
 import '../../core/exception/user_exists_exception.dart';
+import '../../core/helpers/constants.dart';
+import '../../core/local_storage/local_storage.dart';
 import '../../core/logger/app_logger.dart';
 import '../../core/rest_client/rest_client.dart';
 import '../../core/rest_client/rest_client_exception.dart';
 
 class UserRepositoryImpl implements UserRepository {
   final RestClient _restClient;
+  final LocalStorage _localStorage;
   final AppLogger _log;
 
-  UserRepositoryImpl({
-    required RestClient restClient,
-    required AppLogger log,
-  })  : _restClient = restClient,
+  UserRepositoryImpl(
+      {required RestClient restClient,
+      required AppLogger log,
+      required LocalStorage localStorage})
+      : _restClient = restClient,
+        _localStorage = localStorage,
         _log = log;
 
   @override
@@ -51,7 +58,7 @@ class UserRepositoryImpl implements UserRepository {
         'email': email,
       });
 
-      return result.data['access_token'];
+      return result.data['authorisation']['token'];
     } on RestClientException catch (e, s) {
       if (e.statusCode == 403) {
         throw Failure(
@@ -60,13 +67,34 @@ class UserRepositoryImpl implements UserRepository {
       }
       if (e.statusCode == 302) {
         _log.error(e);
-        throw Failure(message: 'Informar suporte.');
+        throw Failure(
+            message: 'Caso o erro persistir entre em contato com suporte.');
       }
 
       _log.error('Erro ao realizar login', e, s);
 
       throw Failure(
           message: 'Erro ao realizar login, tente novamente mais tarde.');
+    }
+  }
+
+  @override
+  Future<UserModel> getUserLogged() async {
+    try {
+      final result = await _restClient.get(
+        '/api/user',
+        headers: {
+          'Authorization':
+              'Bearer ${await _localStorage.read<String>(Constants.LOCAL_STORAGE_ACCESS_TOKEN_KEY)}',
+        },
+      );
+      print("result.data['img_url']");
+      print(result.data['img_url']);
+      print(result.data);
+      return UserModel.fromMap(result.data);
+    } on RestClientException catch (e, s) {
+      _log.error('Erro ao buscar dados do usuário logado', e, s);
+      throw Failure(message: 'Erro ao buscar dados do usuário logado');
     }
   }
 }
