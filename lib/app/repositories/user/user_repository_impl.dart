@@ -3,7 +3,6 @@ import 'package:u_pizzas/app/models/user_model.dart';
 import './user_repository.dart';
 import '../../core/exception/failure.dart';
 import '../../core/exception/user_exists_exception.dart';
-import '../../core/helpers/constants.dart';
 import '../../core/local_storage/local_storage.dart';
 import '../../core/logger/app_logger.dart';
 import '../../core/rest_client/rest_client.dart';
@@ -11,7 +10,6 @@ import '../../core/rest_client/rest_client_exception.dart';
 
 class UserRepositoryImpl implements UserRepository {
   final RestClient _restClient;
-  final LocalStorage _localStorage;
   final AppLogger _log;
 
   UserRepositoryImpl(
@@ -19,7 +17,6 @@ class UserRepositoryImpl implements UserRepository {
       required AppLogger log,
       required LocalStorage localStorage})
       : _restClient = restClient,
-        _localStorage = localStorage,
         _log = log;
 
   @override
@@ -81,16 +78,9 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<UserModel> getUserLogged() async {
     try {
-      final result = await _restClient.get(
-        '/api/user',
-        headers: {
-          'Authorization':
-              'Bearer ${await _localStorage.read<String>(Constants.LOCAL_STORAGE_ACCESS_TOKEN_KEY)}',
-        },
-      );
-      print("result.data['img_url']");
-      print(result.data['img_url']);
-      print(result.data);
+      final result = await _restClient.auth().get(
+            '/api/user',
+          );
       return UserModel.fromMap(result.data);
     } on RestClientException catch (e, s) {
       _log.error('Erro ao buscar dados do usuário logado', e, s);

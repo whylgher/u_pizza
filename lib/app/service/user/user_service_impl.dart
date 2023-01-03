@@ -92,8 +92,9 @@ class UserServiceImpl implements UserService {
     throw UnimplementedError();
   }
 
-  Future<void> _saveAccessToken(String accessToken) => _localStorage
-      .write<String>(Constants.LOCAL_STORAGE_ACCESS_TOKEN_KEY, accessToken);
+  Future<void> _saveAccessToken(String accessToken) =>
+      _localStorage.write<String>(
+          Constants.LOCAL_STORAGE_ACCESS_TOKEN_KEY, 'Bearer $accessToken');
 
   Future<void> _getUserData() async {
     final userModel = await _userRepository.getUserLogged();
