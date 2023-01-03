@@ -75,7 +75,7 @@ class UserServiceImpl implements UserService {
 
         await _saveAccessToken(accessToken);
         // await _confirmLogin();
-        await _getUserData();
+        await _getUserData(accessToken);
       } else {
         throw Failure(
             message:
@@ -95,8 +95,8 @@ class UserServiceImpl implements UserService {
   Future<void> _saveAccessToken(String accessToken) => _localStorage
       .write<String>(Constants.LOCAL_STORAGE_ACCESS_TOKEN_KEY, accessToken);
 
-  Future<void> _getUserData() async {
-    final userModel = await _userRepository.getUserLogged();
+  Future<void> _getUserData(accessToken) async {
+    final userModel = await _userRepository.getUserLogged(accessToken);
     await _localStorage.write<String>(
       Constants.LOCAL_STORAGE_USER_LOGGED_DATA,
       userModel.toJson(),

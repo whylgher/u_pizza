@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -52,10 +53,13 @@ class MenuPage extends StatelessWidget {
                   title: 'Account',
                   titleSize: 15,
                 ),
-                const CardWidget(
-                  iconLeading: Icon(Icons.logout_outlined),
+                CardWidget(
+                  iconLeading: const Icon(Icons.logout_outlined),
                   title: 'Logout',
                   titleSize: 15,
+                  action: () {
+                    FirebaseAuth.instance.signOut();
+                  },
                 ),
               ],
             ),

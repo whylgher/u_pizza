@@ -79,8 +79,11 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<UserModel> getUserLogged() async {
+  Future<UserModel> getUserLogged(accessToken) async {
     try {
+      print('LOCAL_STORAGE_ACCESS_TOKEN_KEY');
+      print(await _localStorage
+          .read<String>(Constants.LOCAL_STORAGE_ACCESS_TOKEN_KEY));
       final result = await _restClient.get(
         '/api/user',
         headers: {
@@ -88,9 +91,6 @@ class UserRepositoryImpl implements UserRepository {
               'Bearer ${await _localStorage.read<String>(Constants.LOCAL_STORAGE_ACCESS_TOKEN_KEY)}',
         },
       );
-      print("result.data['img_url']");
-      print(result.data['img_url']);
-      print(result.data);
       return UserModel.fromMap(result.data);
     } on RestClientException catch (e, s) {
       _log.error('Erro ao buscar dados do usuário logado', e, s);
