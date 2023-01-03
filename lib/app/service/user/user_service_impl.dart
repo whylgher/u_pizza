@@ -4,17 +4,22 @@ import './user_service.dart';
 import '../../core/exception/failure.dart';
 import '../../core/exception/user_exists_exception.dart';
 import '../../core/exception/user_not_exists_exception.dart';
+import '../../core/helpers/constants.dart';
+import '../../core/local_storage/local_storage.dart';
 import '../../core/logger/app_logger.dart';
 import '../../repositories/user/user_repository.dart';
 
 class UserServiceImpl implements UserService {
   final UserRepository _userRepository;
   final AppLogger _log;
+  final LocalStorage _localStorage;
 
   UserServiceImpl({
     required UserRepository userRepository,
     required AppLogger log,
+    required LocalStorage localStorage,
   })  : _userRepository = userRepository,
+        _localStorage = localStorage,
         _log = log;
 
   @override
@@ -68,9 +73,9 @@ class UserServiceImpl implements UserService {
         }
         final accessToken = await _userRepository.login(email, password);
 
-        // await _saveAccessToken(accessToken);
+        await _saveAccessToken(accessToken);
         // await _confirmLogin();
-        // await _getUserData();
+        await _getUserData();
       } else {
         throw Failure(
             message:
@@ -84,7 +89,17 @@ class UserServiceImpl implements UserService {
 
   @override
   Future<void> socialLogin(socialLoginType) {
-    // TODO: implement socialLogin
     throw UnimplementedError();
+  }
+
+  Future<void> _saveAccessToken(String accessToken) => _localStorage
+      .write<String>(Constants.LOCAL_STORAGE_ACCESS_TOKEN_KEY, accessToken);
+
+  Future<void> _getUserData() async {
+    final userModel = await _userRepository.getUserLogged();
+    await _localStorage.write<String>(
+      Constants.LOCAL_STORAGE_USER_LOGGED_DATA,
+      userModel.toJson(),
+    );
   }
 }

@@ -20,14 +20,16 @@ class AuthModule extends Module {
   final List<Bind> binds = [
     Bind.lazySingleton<UserRepository>(
       (i) => UserRepositoryImpl(
-          log: i(), // CoreModule
-          restClient: i() // CoreModule,
-          ),
+        log: i(), // CoreModule
+        restClient: i(), // CoreModule
+        localStorage: i(),
+      ),
     ),
     Bind.lazySingleton<UserService>(
       (i) => UserServiceImpl(
         log: i(), // CoreModule
         userRepository: i(), // AuthModule
+        localStorage: i(),
       ),
     ),
   ];
