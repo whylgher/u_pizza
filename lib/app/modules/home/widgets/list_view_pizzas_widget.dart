@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 part of '../home_page.dart';
 
 final Map<String, dynamic> entriess = {
@@ -139,7 +141,6 @@ dynamic c = entriess.values.toList();
 dynamic d = entriess.keys.toList();
 
 class ListViewPizzasWidget extends PreferredSize {
-  // ignore: prefer_typing_uninitialized_variables
   static var pizza;
   ListViewPizzasWidget({super.key})
       : super(
