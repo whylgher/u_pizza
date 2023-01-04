@@ -247,7 +247,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           _RegisterForm.formKey.currentState?.validate() ??
                               false;
 
-                      if (!formKey) {
+                      if (formKey) {
                         if (RegisterPage.controller.page != 3.0) {
                           setState(() => turns += 1.0 / 8.0);
                           RegisterPage.controller.nextPage(
@@ -261,17 +261,11 @@ class _RegisterPageState extends State<RegisterPage> {
                         }
 
                         if (RegisterPage.controller.page! == 3) {
-                          // _RegisterForm.controller.register(
-                          //   name: _RegisterForm.nameEC.text,
-                          //   password: _RegisterForm.passwordEC.text,
-                          //   phone: _RegisterForm.phoneEC.text,
-                          //   email: _RegisterForm.emailEC.text,
-                          // );
                           _RegisterForm.controller.register(
-                            name: 'whyll',
-                            password: '123123',
-                            phone: '927569756',
-                            email: 'whylgher@gmail.com',
+                            name: _RegisterForm.nameEC.text,
+                            password: _RegisterForm.passwordEC.text,
+                            phone: _RegisterForm.phoneEC.text,
+                            email: _RegisterForm.emailEC.text,
                           );
                         }
                       }

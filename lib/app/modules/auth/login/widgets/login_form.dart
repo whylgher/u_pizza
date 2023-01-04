@@ -58,9 +58,8 @@ class _LoginFormState extends State<_LoginForm> {
             height: 70.h,
             onPressed: () async {
               final formValid = _formKey.currentState?.validate() ?? false;
-              if (!formValid) {
-                // await _controller.login(_loginEC.text, _passwordEC.text);
-                await _controller.login('whylgher@gmail.com', '123123');
+              if (formValid) {
+                await _controller.login(_loginEC.text, _passwordEC.text);
               }
             },
           ),

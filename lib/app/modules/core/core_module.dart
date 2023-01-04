@@ -7,6 +7,10 @@ import '../../core/logger/app_logger.dart';
 import '../../core/logger/app_logger_impl.dart';
 import '../../core/rest_client/dio/dio_rest_client.dart';
 import '../../core/rest_client/rest_client.dart';
+import '../../repositories/pizza/pizza_repository.dart';
+import '../../repositories/pizza/pizza_repository_impl.dart';
+import '../../service/pizza/pizza_service.dart';
+import '../../service/pizza/pizza_service_impl.dart';
 import 'auth/auth_store.dart';
 
 class CoreModule extends Module {
@@ -24,12 +28,25 @@ class CoreModule extends Module {
             ),
         export: true),
     Bind.lazySingleton<RestClient>(
-        (i) => DioRestClient(
-              localStorage: i(),
-              log: i(),
-              authStore: i(),
-              localSecureStorage: i(),
-            ),
-        export: true),
+      (i) => DioRestClient(
+        localStorage: i(),
+        log: i(),
+        authStore: i(),
+        localSecureStorage: i(),
+      ),
+      export: true,
+    ),
+    Bind.lazySingleton<PizzaRepository>(
+      (i) => PizzaRepositoryImpl(
+        restClient: i(),
+      ),
+      export: true,
+    ),
+    Bind.lazySingleton<PizzaService>(
+      (i) => PizzaServiceImpl(
+        pizzaRepository: i(),
+      ),
+      export: true,
+    ),
   ];
 }
