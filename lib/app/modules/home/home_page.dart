@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
@@ -9,6 +10,7 @@ import '../../core/ui/extensions/theme_extension.dart';
 import '../../core/ui/icons/u_pizza_icons.dart';
 import '../../core/ui/widgets/button_make_pizza.dart';
 import '../../models/pizzas_model.dart';
+import 'controller/home_controller.dart';
 
 part 'widgets/app_bar/app_bar_tab_widget.dart';
 part 'widgets/app_bar/app_bar_widget.dart';
@@ -28,6 +30,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var currentPageValue = 0.0;
+
+  final _controller = Modular.get<HomeController>();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _controller.getPizzas();
+      Future.delayed(const Duration(seconds: 3));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

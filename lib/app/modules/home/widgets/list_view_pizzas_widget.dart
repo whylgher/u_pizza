@@ -1,267 +1,140 @@
-// ignore_for_file: prefer_typing_uninitialized_variables
+// ignore_for_file: prefer_typing_uninitialized_variables, no_leading_underscores_for_local_identifiers
 
 part of '../home_page.dart';
-
-final Map<String, dynamic> entriess = {
-  'pizzas1': {
-    'id': '1',
-    'name': 'Vegetarian',
-    'subtitle':
-        '18” XLarge | Olives, onion, pepper, cheese, tomato puree18” XLarge | Olives, onion, pepper, cheese, tomato puree',
-    'url_img': 'https://quemservicos.com.br/u_pizzas/imgs/pizza1.png',
-    'size_price': {
-      'regular': {
-        'standard': 'FREE',
-        'price': '12.95',
-      },
-      'double': '25.47',
-      'large': '28.79',
-      'x_large': '32.99',
-    },
-    'sale': 'regular',
-  },
-  'pizzas2': {
-    'id': '2',
-    'name': 'Magherita',
-    'subtitle': '18” XLarge | Cheese, tomato puree, pepperoni, Basil',
-    'url_img': 'https://quemservicos.com.br/u_pizzas/imgs/pizza2.png',
-    'size_price': {
-      'regular': {
-        'standard': 'FREE',
-        'price': '21.47',
-      },
-      'double': '28.15',
-      'large': '30.33',
-      'x_large': '34.45',
-    },
-    'sale': 'regular',
-  },
-  'pizzas3': {
-    'id': '4',
-    'name': 'Classic Supreme',
-    'subtitle':
-        '18” XLarge | Tomato, onion, basil, cheese, pepperoni, mushroom',
-    'url_img': 'https://quemservicos.com.br/u_pizzas/imgs/pizza3.png',
-    'size_price': {
-      'regular': {
-        'standard': 'FREE',
-        'price': '12.11',
-      },
-      'double': '23.09',
-      'large': '25.87',
-      'x_large': '30.33',
-    },
-    'sale': 'regular',
-  },
-  'pizzas4': {
-    'id': '4',
-    'name': 'Garden Supreme',
-    'subtitle': '15” Large | Olives, onion, pepper, mushroom, cheese',
-    'url_img': 'https://quemservicos.com.br/u_pizzas/imgs/pizza4.png',
-    'size_price': {
-      'regular': {
-        'standard': 'FREE',
-        'price': '16.11',
-      },
-      'double': '27.17',
-      'large': '31.23',
-      'x_large': '36.54',
-    },
-    'sale': 'regular',
-  },
-  'pizzas5': {
-    'id': '5',
-    'name': 'Vegetarian',
-    'subtitle':
-        '18” XLarge | Olives, onion, pepper, cheese, tomato puree18” XLarge | Olives, onion, pepper, cheese, tomato puree',
-    'url_img': 'https://quemservicos.com.br/u_pizzas/imgs/pizza1.png',
-    'size_price': {
-      'regular': {
-        'standard': 'FREE',
-        'price': '12.95',
-      },
-      'double': '25.47',
-      'large': '28.79',
-      'x_large': '32.99',
-    },
-    'sale': 'regular',
-  },
-  'pizzas6': {
-    'id': '6',
-    'name': 'Magherita',
-    'subtitle': '18” XLarge | Cheese, tomato puree, pepperoni, Basil',
-    'url_img': 'https://quemservicos.com.br/u_pizzas/imgs/pizza2.png',
-    'size_price': {
-      'regular': {
-        'standard': 'FREE',
-        'price': '21.47',
-      },
-      'double': '28.15',
-      'large': '30.33',
-      'x_large': '34.45',
-    },
-    'sale': 'regular',
-  },
-  'pizzas7': {
-    'id': '7',
-    'name': 'Classic Supreme',
-    'subtitle':
-        '18” XLarge | Tomato, onion, basil, cheese, pepperoni, mushroom',
-    'url_img': 'https://quemservicos.com.br/u_pizzas/imgs/pizza3.png',
-    'size_price': {
-      'regular': {
-        'standard': 'FREE',
-        'price': '12,11',
-      },
-      'double': '23,09',
-      'large': '25,87',
-      'x_large': '30,33',
-    },
-    'sale': 'regular',
-  },
-  'pizzas8': {
-    'id': '8',
-    'name': 'Garden Supreme',
-    'subtitle': '15” Large | Olives, onion, pepper, mushroom, cheese',
-    'url_img': 'https://quemservicos.com.br/u_pizzas/imgs/pizza4.png',
-    'size_price': {
-      'regular': {
-        'standard': 'FREE',
-        'price': '16.11',
-      },
-      'double': '27.17',
-      'large': '31.23',
-      'x_large': '36.54',
-    },
-    'sale': 'regular',
-  },
-};
-
-dynamic c = entriess.values.toList();
-dynamic d = entriess.keys.toList();
 
 class ListViewPizzasWidget extends PreferredSize {
   static var pizza;
   ListViewPizzasWidget({super.key})
       : super(
-          preferredSize: const Size.fromHeight(0),
-          child: ListView.separated(
-            physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.all(8),
-            itemCount: entriess.keys.length,
-            itemBuilder: (BuildContext context, int index) {
-              final sizeDevice = MediaQuery.of(context).size;
+          preferredSize: Size.fromHeight(110.h),
+          child: Observer(
+            builder: (_) {
+              final _controller = Modular.get<HomeController>();
+              return ListView.separated(
+                physics: const BouncingScrollPhysics(),
+                padding: const EdgeInsets.all(8),
+                itemCount: _controller.pizzasList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final sizeDevice = MediaQuery.of(context).size;
 
-              return GestureDetector(
-                onTap: () {
-                  pizza = PizzasModel.fromMap(c[index]);
-                  Modular.to.navigate('/auth/product_page');
-                },
-                child: Container(
-                  width: sizeDevice.width * .1,
-                  padding: const EdgeInsets.symmetric(vertical: 7),
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                        scale: .5,
-                        alignment: Alignment(-1.2.w, 0.h),
-                        image: NetworkImage(c[index]['url_img']),
-                      ),
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.white),
-                  child: Stack(children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(left: 95),
-                          child: Text(
-                            '${c[index]['name']}',
-                            style: TextStyle(
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Montserrat',
-                            ),
+                  return GestureDetector(
+                    onTap: () {
+                      pizza =
+                          PizzasModel.fromMap(_controller.pizzasList[index]);
+                      // print(_controller.pizzasList[index]);
+                      // Modular.to.navigate('/auth/product_page');
+                    },
+                    child: Container(
+                      constraints: BoxConstraints(minHeight: 110.h),
+                      width: sizeDevice.width * .1,
+                      padding: const EdgeInsets.symmetric(vertical: 7),
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                            alignment: Alignment(-1.2.w, 0.h),
+                            image: NetworkImage(
+                                _controller.pizzasList[index]['image']),
                           ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.only(top: 5, right: 10),
-                          margin: const EdgeInsets.only(left: 105),
-                          width: sizeDevice.width * .6,
-                          child: Text(
-                            '${c[index]['subtitle']}',
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                              fontFamily: 'Montserrat',
-                            ),
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 90.w, top: 5.h),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: context.primaryColor,
-                                ),
-                                padding: const EdgeInsets.all(5),
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(left: 95),
                                 child: Text(
-                                  '${c[index]['sale'].toUpperCase()}',
-                                  style: const TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: context.primaryColorDark,
-                              ),
-                              padding: const EdgeInsets.all(5),
-                              child: const Text(
-                                'SALE',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 50.w,
-                            ),
-                            Align(
-                              alignment: Alignment.bottomRight,
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 5, right: 15),
-                                child: Text(
-                                  'U\$${c[index]['size_price']['regular']['price']}',
+                                  '${_controller.pizzasList[index]['name']}',
                                   style: TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 16.sp,
+                                    fontSize: 18.sp,
                                     fontWeight: FontWeight.bold,
+                                    fontFamily: 'Montserrat',
                                   ),
                                 ),
                               ),
+                              Container(
+                                padding:
+                                    const EdgeInsets.only(top: 5, right: 10),
+                                margin: const EdgeInsets.only(left: 105),
+                                width: sizeDevice.width * .6,
+                                child: Text(
+                                  '${_controller.pizzasList[index]['description']}',
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontSize: 12.sp,
+                                    fontFamily: 'Montserrat',
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Align(
+                            alignment: FractionalOffset.bottomRight,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                // Padding(
+                                // padding: EdgeInsets.only(left: 90.w, top: 5.h),
+                                // child: Container(
+                                //   decoration: BoxDecoration(
+                                //     borderRadius: BorderRadius.circular(5),
+                                //     color: context.primaryColor,
+                                //   ),
+                                //   padding: const EdgeInsets.all(5),
+                                //   child: Text(
+                                //     '${HomePage.pizzas[index]['sale'].toUpperCase()}',
+                                //     style: const TextStyle(
+                                //       color: Colors.black,
+                                //       fontWeight: FontWeight.bold,
+                                //       fontSize: 12,
+                                //     ),
+                                //   ),
+                                // ),
+                                // ),
+                                // Container(
+                                // decoration: BoxDecoration(
+                                //   borderRadius: BorderRadius.circular(5),
+                                //   color: context.primaryColorDark,
+                                // ),
+                                // padding: const EdgeInsets.all(5),
+                                // child: const Text(
+                                //   'SALE',
+                                //   style: TextStyle(
+                                //     color: Colors.white,
+                                //     fontWeight: FontWeight.bold,
+                                //     fontSize: 12,
+                                //   ),
+                                // ),
+                                // ),
+                                SizedBox(
+                                  width: 50.w,
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 5, right: 15),
+                                  child: Text(
+                                    'U\$ ${_controller.pizzasList[index]['regular']}',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontSize: 16.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ]),
-                ),
+                  );
+                },
+                separatorBuilder: (BuildContext context, int index) =>
+                    const Divider(),
               );
             },
-            separatorBuilder: (BuildContext context, int index) =>
-                const Divider(),
           ),
         );
 }
