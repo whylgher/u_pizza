@@ -9,7 +9,9 @@ import '../../core/ui/extensions/size_screen_extension.dart';
 import '../../core/ui/extensions/theme_extension.dart';
 import '../../core/ui/icons/u_pizza_icons.dart';
 import '../../core/ui/widgets/button_make_pizza.dart';
+import '../../core/ui/widgets/loader.dart';
 import '../../models/pizzas_model.dart';
+import '../auth/product/controller/product_controller.dart';
 import 'controller/home_controller.dart';
 
 part 'widgets/app_bar/app_bar_tab_widget.dart';

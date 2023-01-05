@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../auth/product/controller/product_controller.dart';
 import 'controller/home_controller.dart';
 import 'home_page.dart';
 
@@ -9,6 +10,11 @@ class HomeModule extends Module {
     Bind.lazySingleton(
       (i) => HomeController(
         pizzaService: i(),
+      ),
+    ),
+    Bind.lazySingleton(
+      (i) => ProductController(
+        productService: i(),
       ),
     ),
   ];

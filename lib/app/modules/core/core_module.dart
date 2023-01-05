@@ -9,8 +9,12 @@ import '../../core/rest_client/dio/dio_rest_client.dart';
 import '../../core/rest_client/rest_client.dart';
 import '../../repositories/pizza/pizza_repository.dart';
 import '../../repositories/pizza/pizza_repository_impl.dart';
+import '../../repositories/product/product_repository.dart';
+import '../../repositories/product/product_repository_impl.dart';
 import '../../service/pizza/pizza_service.dart';
 import '../../service/pizza/pizza_service_impl.dart';
+import '../../service/product/product_service.dart';
+import '../../service/product/product_service_impl.dart';
 import 'auth/auth_store.dart';
 
 class CoreModule extends Module {
@@ -45,6 +49,18 @@ class CoreModule extends Module {
     Bind.lazySingleton<PizzaService>(
       (i) => PizzaServiceImpl(
         pizzaRepository: i(),
+      ),
+      export: true,
+    ),
+    Bind.lazySingleton<ProductRepository>(
+      (i) => ProductRepositoryImpl(
+        restClient: i(),
+      ),
+      export: true,
+    ),
+    Bind.lazySingleton<ProductService>(
+      (i) => ProductServiceImpl(
+        productRespository: i(),
       ),
       export: true,
     ),

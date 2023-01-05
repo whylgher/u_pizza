@@ -1,1 +1,3 @@
-abstract class ProductRepository {}
+abstract class ProductRepository {
+  Future<Map<String, dynamic>> getPizza(int id);
+}

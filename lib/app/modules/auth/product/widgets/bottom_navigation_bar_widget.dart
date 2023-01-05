@@ -11,7 +11,7 @@ class BottomNavigationBarWidget extends StatefulWidget {
 class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   int unity = 1;
 
-  var finalyPrice = ProductPage.pizzaData['size_price']['regular']['price'];
+  var finalyPrice = '12';
   @override
   Widget build(BuildContext context) {
     return Container(
