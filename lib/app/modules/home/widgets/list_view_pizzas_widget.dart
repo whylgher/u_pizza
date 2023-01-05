@@ -4,12 +4,14 @@ part of '../home_page.dart';
 
 class ListViewPizzasWidget extends PreferredSize {
   static var pizza;
+  static final controllerPizza = Modular.get<ProductController>();
   ListViewPizzasWidget({super.key})
       : super(
           preferredSize: Size.fromHeight(110.h),
           child: Observer(
             builder: (_) {
               final _controller = Modular.get<HomeController>();
+
               return ListView.separated(
                 physics: const BouncingScrollPhysics(),
                 padding: const EdgeInsets.all(8),
@@ -19,10 +21,13 @@ class ListViewPizzasWidget extends PreferredSize {
 
                   return GestureDetector(
                     onTap: () {
-                      pizza =
-                          PizzasModel.fromMap(_controller.pizzasList[index]);
-                      // print(_controller.pizzasList[index]);
-                      // Modular.to.navigate('/auth/product_page');
+                      final pizzId = _controller.pizzasList[index];
+                      pizza = PizzasModel.fromMap(pizzId);
+                      controllerPizza.getPizza(pizzId['pizza_id']);
+                      Future.delayed(const Duration(seconds: 2)).then((value) {
+                        Loader.hide();
+                        Modular.to.navigate('/auth/product_page');
+                      });
                     },
                     child: Container(
                       constraints: BoxConstraints(minHeight: 110.h),

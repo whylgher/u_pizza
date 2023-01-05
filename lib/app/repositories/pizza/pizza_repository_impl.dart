@@ -7,6 +7,7 @@ class PizzaRepositoryImpl implements PizzaRepository {
   PizzaRepositoryImpl({
     required RestClient restClient,
   }) : _restClient = restClient;
+
   @override
   Future<dynamic> getPizzas() async {
     final result = await _restClient.unAuth().get('/api/pizzas');

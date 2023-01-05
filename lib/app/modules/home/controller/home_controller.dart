@@ -1,6 +1,5 @@
 import 'package:mobx/mobx.dart';
 
-import '../../../core/ui/widgets/loader.dart';
 import '../../../service/pizza/pizza_service.dart';
 
 part 'home_controller.g.dart';
@@ -19,11 +18,9 @@ abstract class HomeControllerBase with Store {
 
   @action
   Future<void> getPizzas() async {
-    Loader.show();
     List<dynamic> pizzas = await _pizzasService.getPizzas();
     for (var pizza in pizzas) {
       pizzasList.add(pizza);
     }
-    Loader.hide();
   }
 }
