@@ -46,7 +46,7 @@ class ProductPage extends StatelessWidget {
                   child: Observer(builder: (_) {
                     var data = ListViewPizzasWidget.controllerPizza;
                     data.set();
-                    var dataPizza = data.pizza;
+                    var dataPizza = data.pizza[0]['pizza'];
 
                     return Stack(
                       children: [
@@ -57,7 +57,7 @@ class ProductPage extends StatelessWidget {
                               SizedBox(
                                 height: 250.h,
                                 child: Image.network(
-                                  dataPizza[0]['image'][0]['image'].toString(),
+                                  dataPizza['image'][0]['image'].toString(),
                                   filterQuality: FilterQuality.high,
                                   scale: .6,
                                 ),
@@ -68,7 +68,7 @@ class ProductPage extends StatelessWidget {
                               Align(
                                 alignment: Alignment.bottomLeft,
                                 child: Text(
-                                  '${dataPizza[0]['name']}',
+                                  '${dataPizza['name']}',
                                   style: TextStyle(
                                     fontSize: 20.sp,
                                     fontWeight: FontWeight.bold,
@@ -82,7 +82,7 @@ class ProductPage extends StatelessWidget {
                               Align(
                                 alignment: Alignment.bottomLeft,
                                 child: Text(
-                                  '${dataPizza[0]['description']}',
+                                  '${dataPizza['description']}',
                                   style: TextStyle(
                                     fontSize: 12.sp,
                                     fontFamily: 'Montserrat',
@@ -127,30 +127,30 @@ class ProductPage extends StatelessWidget {
                                 onTap: () {
                                   controller.sizePizzaRegular();
                                   controller.price =
-                                      dataPizza[0]['prices'][0]['regular'];
+                                      dataPizza['prices'][0]['regular'];
                                   ListViewPizzasWidget.controllerPizza.price =
-                                      dataPizza[0]['prices'][0]['regular'];
+                                      dataPizza['prices'][0]['regular'];
                                 },
                                 child: PizzaAddedItens(
                                   label: '12" (Regular)',
                                   selected: controller.regular,
                                   price:
-                                      'U\$ ${dataPizza[0]['prices'][0]['regular']}',
+                                      'U\$ ${dataPizza['prices'][0]['regular']}',
                                 ),
                               ),
                               GestureDetector(
                                 onTap: () {
                                   controller.sizePizzaLarge();
                                   controller.price =
-                                      dataPizza[0]['prices'][0]['large'];
+                                      dataPizza['prices'][0]['large'];
                                   ListViewPizzasWidget.controllerPizza.price =
-                                      dataPizza[0]['prices'][0]['large'];
+                                      dataPizza['prices'][0]['large'];
                                 },
                                 child: PizzaAddedItens(
                                   label: '15" (Large)',
                                   selected: controller.large,
                                   price:
-                                      'U\$ ${dataPizza[0]['prices'][0]['large']}',
+                                      'U\$ ${dataPizza['prices'][0]['large']}',
                                 ),
                               ),
                               SizedBox(
