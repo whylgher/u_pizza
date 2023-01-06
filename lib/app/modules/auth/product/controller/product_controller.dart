@@ -43,6 +43,32 @@ abstract class ProductControllerBase with Store {
     }
   }
 
+  @observable
+  bool cutInPizza = true;
+  bool notCutPizza = false;
+
+  @action
+  void cutPizza() {
+    cutInPizza = !cutInPizza;
+    notCutPizza = !notCutPizza;
+  }
+
+  @observable
+  bool regular = true;
+  bool large = false;
+
+  @action
+  void sizePizza() {
+    regular = !regular;
+    large = !large;
+  }
+
+  @action
+  void set() {
+    item = 1;
+    priceTotaly = price;
+  }
+
   @action
   Future<void> getPizza(int id) async {
     var data = await _productService.getPizza(id);

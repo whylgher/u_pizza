@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of '../product_page.dart';
 
 class PizzaAddedItens extends StatelessWidget {
@@ -7,13 +6,14 @@ class PizzaAddedItens extends StatelessWidget {
   final bool? item;
   final bool? selected;
   final int? countInt;
+
   const PizzaAddedItens({
     Key? key,
     required this.label,
     this.price = '',
     this.item = true,
-    this.countInt = 0,
     this.selected = false,
+    this.countInt = 0,
   }) : super(key: key);
 
   @override

@@ -16,6 +16,7 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Modular.get<ProductController>();
     final sizeDevice = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -43,7 +44,10 @@ class ProductPage extends StatelessWidget {
                 height: sizeDevice.height * .65,
                 child: SingleChildScrollView(
                   child: Observer(builder: (_) {
-                    var dataPizza = ListViewPizzasWidget.controllerPizza.pizza;
+                    var data = ListViewPizzasWidget.controllerPizza;
+                    data.set();
+                    var dataPizza = data.pizza;
+
                     return Stack(
                       children: [
                         Visibility(
@@ -94,50 +98,80 @@ class ProductPage extends StatelessWidget {
                               SizedBox(
                                 height: 10.h,
                               ),
-                              const PizzaAddedItens(
-                                label: 'CUT IN HALF',
-                                selected: true,
+                              GestureDetector(
+                                onTap: () {
+                                  controller.cutPizza();
+                                },
+                                child: PizzaAddedItens(
+                                  label: 'CUT IN HALF',
+                                  selected: controller.cutInPizza,
+                                ),
                               ),
-                              const PizzaAddedItens(
-                                label: 'DO NOT CUT',
+                              GestureDetector(
+                                onTap: () {
+                                  controller.cutPizza();
+                                },
+                                child: PizzaAddedItens(
+                                  label: 'DO NOT CUT',
+                                  selected: controller.notCutPizza,
+                                ),
                               ),
                               SizedBox(
                                 height: 20.h,
                               ),
                               const TitleAddItems(
                                   title: 'Choose your size', required: true),
-                              PizzaAddedItens(
-                                label: '12" (Regular)',
-                                selected: true,
-                                price:
-                                    'U\$ ${dataPizza[0]['prices'][0]['regular']}',
+                              GestureDetector(
+                                onTap: () {
+                                  controller.sizePizza();
+                                  controller.price =
+                                      dataPizza[0]['prices'][0]['regular'];
+                                  ListViewPizzasWidget.controllerPizza.price =
+                                      dataPizza[0]['prices'][0]['regular'];
+                                },
+                                child: PizzaAddedItens(
+                                  label: '12" (Regular)',
+                                  selected: controller.regular,
+                                  price:
+                                      'U\$ ${dataPizza[0]['prices'][0]['regular']}',
+                                ),
                               ),
-                              PizzaAddedItens(
-                                label: '15" (Large)',
-                                price:
-                                    'U\$ ${dataPizza[0]['prices'][0]['large']}',
+                              GestureDetector(
+                                onTap: () {
+                                  controller.sizePizza();
+                                  controller.price =
+                                      dataPizza[0]['prices'][0]['large'];
+                                  ListViewPizzasWidget.controllerPizza.price =
+                                      dataPizza[0]['prices'][0]['large'];
+                                },
+                                child: PizzaAddedItens(
+                                  label: '15" (Large)',
+                                  selected: controller.large,
+                                  price:
+                                      'U\$ ${dataPizza[0]['prices'][0]['large']}',
+                                ),
                               ),
                               SizedBox(
                                 height: 20.h,
                               ),
                               const TitleAddItems(
                                   title: 'Additional', required: false),
-                              const PizzaAddedItens(
+                              PizzaAddedItens(
                                 label: 'Olive',
                                 price: 'U\$ 2,00',
                                 item: false,
                               ),
-                              const PizzaAddedItens(
+                              PizzaAddedItens(
                                 label: 'Mozzarela',
                                 price: 'U\$ 2,00',
                                 item: false,
                               ),
-                              const PizzaAddedItens(
+                              PizzaAddedItens(
                                 label: 'Pepperoni',
                                 price: 'U\$ 2,00',
                                 item: false,
                               ),
-                              const PizzaAddedItens(
+                              PizzaAddedItens(
                                 label: 'Bacon',
                                 price: 'U\$ 2,00',
                                 item: false,
@@ -147,11 +181,10 @@ class ProductPage extends StatelessWidget {
                               ),
                               const TitleAddItems(
                                   title: 'Border', required: true),
-                              const PizzaAddedItens(
+                              PizzaAddedItens(
                                 label: 'Simple',
-                                selected: true,
                               ),
-                              const PizzaAddedItens(
+                              PizzaAddedItens(
                                 label: 'Cheese',
                                 price: 'U\$ 5,00',
                               ),

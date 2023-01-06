@@ -5,7 +5,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ProductController _controller = Modular.get<ProductController>();
+    final ProductController controller = ListViewPizzasWidget.controllerPizza;
 
     return Container(
       height: 110.h,
@@ -19,8 +19,6 @@ class BottomNavigationBarWidget extends StatelessWidget {
       child: SafeArea(
         child: Observer(
           builder: (context) {
-            var dataPizza = ListViewPizzasWidget.controllerPizza.pizza;
-            _controller.price = dataPizza[0]['prices'][0]['regular'];
             return Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -32,9 +30,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          _controller.increment();
-                          print(
-                              dataPizza[0]['prices'][0]['regular'].runtimeType);
+                          controller.increment();
                         },
                         child: Container(
                           height: 25.h,
@@ -52,7 +48,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 8.w),
                         child: Text(
-                          _controller.item.toString(),
+                          controller.item.toString(),
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -62,7 +58,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          _controller.decrement();
+                          controller.decrement();
                         },
                         child: Container(
                           height: 25.h,
@@ -111,7 +107,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'U\$ ${_controller.priceTotaly.toStringAsFixed(2)}',
+                          'U\$ ${controller.priceTotaly.toStringAsFixed(2)}',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,

@@ -73,6 +73,38 @@ mixin _$ProductController on ProductControllerBase, Store {
     });
   }
 
+  late final _$cutInPizzaAtom =
+      Atom(name: 'ProductControllerBase.cutInPizza', context: context);
+
+  @override
+  bool get cutInPizza {
+    _$cutInPizzaAtom.reportRead();
+    return super.cutInPizza;
+  }
+
+  @override
+  set cutInPizza(bool value) {
+    _$cutInPizzaAtom.reportWrite(value, super.cutInPizza, () {
+      super.cutInPizza = value;
+    });
+  }
+
+  late final _$regularAtom =
+      Atom(name: 'ProductControllerBase.regular', context: context);
+
+  @override
+  bool get regular {
+    _$regularAtom.reportRead();
+    return super.regular;
+  }
+
+  @override
+  set regular(bool value) {
+    _$regularAtom.reportWrite(value, super.regular, () {
+      super.regular = value;
+    });
+  }
+
   late final _$getPizzaAsyncAction =
       AsyncAction('ProductControllerBase.getPizza', context: context);
 
@@ -107,12 +139,47 @@ mixin _$ProductController on ProductControllerBase, Store {
   }
 
   @override
+  void cutPizza() {
+    final _$actionInfo = _$ProductControllerBaseActionController.startAction(
+        name: 'ProductControllerBase.cutPizza');
+    try {
+      return super.cutPizza();
+    } finally {
+      _$ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void sizePizza() {
+    final _$actionInfo = _$ProductControllerBaseActionController.startAction(
+        name: 'ProductControllerBase.sizePizza');
+    try {
+      return super.sizePizza();
+    } finally {
+      _$ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void set() {
+    final _$actionInfo = _$ProductControllerBaseActionController.startAction(
+        name: 'ProductControllerBase.set');
+    try {
+      return super.set();
+    } finally {
+      _$ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 pizza: ${pizza},
 price: ${price},
 priceTotaly: ${priceTotaly},
-item: ${item}
+item: ${item},
+cutInPizza: ${cutInPizza},
+regular: ${regular}
     ''';
   }
 }

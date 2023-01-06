@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await _controller.getPizzas();
-      Future.delayed(const Duration(seconds: 3));
+      Future.delayed(const Duration(seconds: 1));
     });
   }
 
