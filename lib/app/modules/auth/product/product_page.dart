@@ -100,30 +100,32 @@ class ProductPage extends StatelessWidget {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  controller.cutPizza();
+                                  controller.cutInHalf();
                                 },
                                 child: PizzaAddedItens(
                                   label: 'CUT IN HALF',
-                                  selected: controller.cutInPizza,
+                                  selected: controller.cutPizza,
                                 ),
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  controller.cutPizza();
+                                  controller.notCutPizza();
                                 },
                                 child: PizzaAddedItens(
                                   label: 'DO NOT CUT',
-                                  selected: controller.notCutPizza,
+                                  selected: !controller.cutPizza,
                                 ),
                               ),
                               SizedBox(
                                 height: 20.h,
                               ),
                               const TitleAddItems(
-                                  title: 'Choose your size', required: true),
+                                title: 'Choose your size',
+                                required: true,
+                              ),
                               GestureDetector(
                                 onTap: () {
-                                  controller.sizePizza();
+                                  controller.sizePizzaRegular();
                                   controller.price =
                                       dataPizza[0]['prices'][0]['regular'];
                                   ListViewPizzasWidget.controllerPizza.price =
@@ -138,7 +140,7 @@ class ProductPage extends StatelessWidget {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  controller.sizePizza();
+                                  controller.sizePizzaLarge();
                                   controller.price =
                                       dataPizza[0]['prices'][0]['large'];
                                   ListViewPizzasWidget.controllerPizza.price =

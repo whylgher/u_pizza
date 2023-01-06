@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 
-import '../../../modules/core/auth/auth_store.dart';
-import '../../helpers/constants.dart';
-import '../../local_storage/local_storage.dart';
+import '../../../../modules/core/auth/auth_store.dart';
+import '../../../helpers/constants.dart';
+import '../../../local_storage/local_storage.dart';
 
 class AuthInterceptor extends Interceptor {
   final LocalStorage _localStorage;

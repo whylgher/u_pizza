@@ -44,13 +44,16 @@ abstract class ProductControllerBase with Store {
   }
 
   @observable
-  bool cutInPizza = true;
-  bool notCutPizza = false;
+  bool cutPizza = true;
 
   @action
-  void cutPizza() {
-    cutInPizza = !cutInPizza;
-    notCutPizza = !notCutPizza;
+  void cutInHalf() {
+    cutPizza = true;
+  }
+
+  @action
+  void notCutPizza() {
+    cutPizza = false;
   }
 
   @observable
@@ -58,9 +61,15 @@ abstract class ProductControllerBase with Store {
   bool large = false;
 
   @action
-  void sizePizza() {
-    regular = !regular;
-    large = !large;
+  void sizePizzaLarge() {
+    regular = false;
+    large = true;
+  }
+
+  @action
+  void sizePizzaRegular() {
+    regular = true;
+    large = false;
   }
 
   @action
