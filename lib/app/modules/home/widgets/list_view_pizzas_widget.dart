@@ -24,7 +24,9 @@ class ListViewPizzasWidget extends PreferredSize {
                       final pizzId = _controller.pizzasList[index];
                       pizza = PizzasModel.fromMap(pizzId);
                       controllerPizza.getPizza(pizzId['pizza_id']);
-                      Future.delayed(const Duration(seconds: 2)).then((value) {
+                      Future.delayed(const Duration(seconds: 1)).then((value) {
+                        controllerPizza.price =
+                            controllerPizza.pizza[0]['prices'][0]['regular'];
                         Loader.hide();
                         Modular.to.navigate('/auth/product_page');
                       });
