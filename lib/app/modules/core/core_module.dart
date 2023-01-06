@@ -55,6 +55,7 @@ class CoreModule extends Module {
     Bind.lazySingleton<ProductRepository>(
       (i) => ProductRepositoryImpl(
         restClient: i(),
+        log: i(),
       ),
       export: true,
     ),
