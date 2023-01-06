@@ -73,19 +73,19 @@ mixin _$ProductController on ProductControllerBase, Store {
     });
   }
 
-  late final _$cutInPizzaAtom =
-      Atom(name: 'ProductControllerBase.cutInPizza', context: context);
+  late final _$cutPizzaAtom =
+      Atom(name: 'ProductControllerBase.cutPizza', context: context);
 
   @override
-  bool get cutInPizza {
-    _$cutInPizzaAtom.reportRead();
-    return super.cutInPizza;
+  bool get cutPizza {
+    _$cutPizzaAtom.reportRead();
+    return super.cutPizza;
   }
 
   @override
-  set cutInPizza(bool value) {
-    _$cutInPizzaAtom.reportWrite(value, super.cutInPizza, () {
-      super.cutInPizza = value;
+  set cutPizza(bool value) {
+    _$cutPizzaAtom.reportWrite(value, super.cutPizza, () {
+      super.cutPizza = value;
     });
   }
 
@@ -139,22 +139,44 @@ mixin _$ProductController on ProductControllerBase, Store {
   }
 
   @override
-  void cutPizza() {
+  void cutInHalf() {
     final _$actionInfo = _$ProductControllerBaseActionController.startAction(
-        name: 'ProductControllerBase.cutPizza');
+        name: 'ProductControllerBase.cutInHalf');
     try {
-      return super.cutPizza();
+      return super.cutInHalf();
     } finally {
       _$ProductControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void sizePizza() {
+  void notCutPizza() {
     final _$actionInfo = _$ProductControllerBaseActionController.startAction(
-        name: 'ProductControllerBase.sizePizza');
+        name: 'ProductControllerBase.notCutPizza');
     try {
-      return super.sizePizza();
+      return super.notCutPizza();
+    } finally {
+      _$ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void sizePizzaLarge() {
+    final _$actionInfo = _$ProductControllerBaseActionController.startAction(
+        name: 'ProductControllerBase.sizePizzaLarge');
+    try {
+      return super.sizePizzaLarge();
+    } finally {
+      _$ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void sizePizzaRegular() {
+    final _$actionInfo = _$ProductControllerBaseActionController.startAction(
+        name: 'ProductControllerBase.sizePizzaRegular');
+    try {
+      return super.sizePizzaRegular();
     } finally {
       _$ProductControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -178,7 +200,7 @@ pizza: ${pizza},
 price: ${price},
 priceTotaly: ${priceTotaly},
 item: ${item},
-cutInPizza: ${cutInPizza},
+cutPizza: ${cutPizza},
 regular: ${regular}
     ''';
   }
