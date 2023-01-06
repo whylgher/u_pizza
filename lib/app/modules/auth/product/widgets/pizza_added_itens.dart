@@ -5,13 +5,15 @@ class PizzaAddedItens extends StatelessWidget {
   final String label;
   final String? price;
   final bool? item;
+  final bool? selected;
   final int? countInt;
   const PizzaAddedItens({
     Key? key,
     required this.label,
     this.price = '',
     this.item = true,
-    this.countInt = 1,
+    this.countInt = 0,
+    this.selected = false,
   }) : super(key: key);
 
   @override
@@ -36,7 +38,7 @@ class PizzaAddedItens extends StatelessWidget {
                           shape: BoxShape.circle,
                           border: Border.all(
                             color: context.primaryColorDark,
-                            width: 2,
+                            width: selected! ? 5 : 2,
                           ),
                         ),
                       ),

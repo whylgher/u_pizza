@@ -25,6 +25,54 @@ mixin _$ProductController on ProductControllerBase, Store {
     });
   }
 
+  late final _$priceAtom =
+      Atom(name: 'ProductControllerBase.price', context: context);
+
+  @override
+  double get price {
+    _$priceAtom.reportRead();
+    return super.price;
+  }
+
+  @override
+  set price(double value) {
+    _$priceAtom.reportWrite(value, super.price, () {
+      super.price = value;
+    });
+  }
+
+  late final _$priceTotalyAtom =
+      Atom(name: 'ProductControllerBase.priceTotaly', context: context);
+
+  @override
+  double get priceTotaly {
+    _$priceTotalyAtom.reportRead();
+    return super.priceTotaly;
+  }
+
+  @override
+  set priceTotaly(double value) {
+    _$priceTotalyAtom.reportWrite(value, super.priceTotaly, () {
+      super.priceTotaly = value;
+    });
+  }
+
+  late final _$itemAtom =
+      Atom(name: 'ProductControllerBase.item', context: context);
+
+  @override
+  int get item {
+    _$itemAtom.reportRead();
+    return super.item;
+  }
+
+  @override
+  set item(int value) {
+    _$itemAtom.reportWrite(value, super.item, () {
+      super.item = value;
+    });
+  }
+
   late final _$getPizzaAsyncAction =
       AsyncAction('ProductControllerBase.getPizza', context: context);
 
@@ -33,10 +81,38 @@ mixin _$ProductController on ProductControllerBase, Store {
     return _$getPizzaAsyncAction.run(() => super.getPizza(id));
   }
 
+  late final _$ProductControllerBaseActionController =
+      ActionController(name: 'ProductControllerBase', context: context);
+
+  @override
+  void increment() {
+    final _$actionInfo = _$ProductControllerBaseActionController.startAction(
+        name: 'ProductControllerBase.increment');
+    try {
+      return super.increment();
+    } finally {
+      _$ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void decrement() {
+    final _$actionInfo = _$ProductControllerBaseActionController.startAction(
+        name: 'ProductControllerBase.decrement');
+    try {
+      return super.decrement();
+    } finally {
+      _$ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
-pizza: ${pizza}
+pizza: ${pizza},
+price: ${price},
+priceTotaly: ${priceTotaly},
+item: ${item}
     ''';
   }
 }
