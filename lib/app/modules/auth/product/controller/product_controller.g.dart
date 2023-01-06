@@ -25,6 +25,54 @@ mixin _$ProductController on ProductControllerBase, Store {
     });
   }
 
+  late final _$priceTotalyAtom =
+      Atom(name: 'ProductControllerBase.priceTotaly', context: context);
+
+  @override
+  double get priceTotaly {
+    _$priceTotalyAtom.reportRead();
+    return super.priceTotaly;
+  }
+
+  @override
+  set priceTotaly(double value) {
+    _$priceTotalyAtom.reportWrite(value, super.priceTotaly, () {
+      super.priceTotaly = value;
+    });
+  }
+
+  late final _$pricefinallyAtom =
+      Atom(name: 'ProductControllerBase.pricefinally', context: context);
+
+  @override
+  double get pricefinally {
+    _$pricefinallyAtom.reportRead();
+    return super.pricefinally;
+  }
+
+  @override
+  set pricefinally(double value) {
+    _$pricefinallyAtom.reportWrite(value, super.pricefinally, () {
+      super.pricefinally = value;
+    });
+  }
+
+  late final _$valueAtom =
+      Atom(name: 'ProductControllerBase.value', context: context);
+
+  @override
+  int get value {
+    _$valueAtom.reportRead();
+    return super.value;
+  }
+
+  @override
+  set value(int value) {
+    _$valueAtom.reportWrite(value, super.value, () {
+      super.value = value;
+    });
+  }
+
   late final _$getPizzaAsyncAction =
       AsyncAction('ProductControllerBase.getPizza', context: context);
 
@@ -33,10 +81,60 @@ mixin _$ProductController on ProductControllerBase, Store {
     return _$getPizzaAsyncAction.run(() => super.getPizza(id));
   }
 
+  late final _$ProductControllerBaseActionController =
+      ActionController(name: 'ProductControllerBase', context: context);
+
+  @override
+  void increment() {
+    final _$actionInfo = _$ProductControllerBaseActionController.startAction(
+        name: 'ProductControllerBase.increment');
+    try {
+      return super.increment();
+    } finally {
+      _$ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void decrement() {
+    final _$actionInfo = _$ProductControllerBaseActionController.startAction(
+        name: 'ProductControllerBase.decrement');
+    try {
+      return super.decrement();
+    } finally {
+      _$ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  double setPrice(double value) {
+    final _$actionInfo = _$ProductControllerBaseActionController.startAction(
+        name: 'ProductControllerBase.setPrice');
+    try {
+      return super.setPrice(value);
+    } finally {
+      _$ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void icrement() {
+    final _$actionInfo = _$ProductControllerBaseActionController.startAction(
+        name: 'ProductControllerBase.icrement');
+    try {
+      return super.icrement();
+    } finally {
+      _$ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
-pizza: ${pizza}
+pizza: ${pizza},
+priceTotaly: ${priceTotaly},
+pricefinally: ${pricefinally},
+value: ${value}
     ''';
   }
 }

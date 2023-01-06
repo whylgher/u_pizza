@@ -17,7 +17,7 @@ class ProductModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(
       Modular.initialRoute,
-      child: (_, __) => ProductPage(),
+      child: (_, __) => const ProductPage(),
     ),
   ];
 }

@@ -18,6 +18,40 @@ abstract class ProductControllerBase with Store {
   @observable
   ObservableList<dynamic> pizza = ObservableList<dynamic>.of([]);
 
+  @observable
+  double priceTotaly = 0;
+
+  @observable
+  late double pricefinally = priceTotaly;
+
+  @observable
+  int value = 1;
+
+  @action
+  void increment() {
+    if (value < 5) {
+      value++;
+    }
+  }
+
+  @action
+  void decrement() {
+    if (value != 1) {
+      value--;
+    }
+  }
+
+  @action
+  double setPrice(double value) {
+    priceTotaly = value;
+    return priceTotaly;
+  }
+
+  @action
+  void icrement() {
+    priceTotaly = priceTotaly++;
+  }
+
   @action
   Future<void> getPizza(int id) async {
     var data = await _productService.getPizza(id);

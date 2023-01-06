@@ -1,4 +1,3 @@
-import 'package:asuka/asuka.dart' as asuka;
 import 'package:flutter/material.dart';
 
 class Loader {
@@ -8,24 +7,24 @@ class Loader {
   Loader._();
 
   static void show() {
-    _entry ??= OverlayEntry(
-      builder: (context) {
-        return Container(
-          color: Colors.black54,
-          child: const Center(
-            child: CircularProgressIndicator(),
-          ),
-        );
-      },
-    );
+    // _entry ??= OverlayEntry(
+    //   builder: (context) {
+    //     return Container(
+    //       color: Colors.black54,
+    //       child: const Center(
+    //         child: CircularProgressIndicator(),
+    //       ),
+    //     );
+    //   },
+    // );
 
-    if (!_open) {
-      asuka.Asuka.addOverlay(_entry!);
-    }
+    // if (!_open) {
+    //   asuka.Asuka.addOverlay(_entry!);
+    // }
   }
 
   static void hide() {
-    _open = false;
-    _entry?.remove();
+    // _open = false;
+    // _entry?.remove();
   }
 }
