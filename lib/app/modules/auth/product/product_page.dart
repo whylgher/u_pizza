@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:u_pizzas/app/modules/auth/product/controller/product_controller.dart';
 
 import '../../../core/ui/extensions/size_screen_extension.dart';
 import '../../../core/ui/extensions/theme_extension.dart';
@@ -11,7 +12,7 @@ part 'widgets/bottom_navigation_bar_widget.dart';
 part 'widgets/pizza_added_itens.dart';
 
 class ProductPage extends StatelessWidget {
-  ProductPage({Key? key}) : super(key: key);
+  const ProductPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -95,6 +96,7 @@ class ProductPage extends StatelessWidget {
                               ),
                               const PizzaAddedItens(
                                 label: 'CUT IN HALF',
+                                selected: true,
                               ),
                               const PizzaAddedItens(
                                 label: 'DO NOT CUT',
@@ -104,21 +106,16 @@ class ProductPage extends StatelessWidget {
                               ),
                               const TitleAddItems(
                                   title: 'Choose your size', required: true),
-                              const PizzaAddedItens(
-                                label: '9" (Regular)',
-                                price: 'FREE',
+                              PizzaAddedItens(
+                                label: '12" (Regular)',
+                                selected: true,
+                                price:
+                                    'U\$ ${dataPizza[0]['prices'][0]['regular']}',
                               ),
-                              const PizzaAddedItens(
-                                label: '12" (Double)',
-                                price: 'U\$ 25,00',
-                              ),
-                              const PizzaAddedItens(
+                              PizzaAddedItens(
                                 label: '15" (Large)',
-                                price: 'U\$ 28,00',
-                              ),
-                              const PizzaAddedItens(
-                                label: '18" (XLarge)',
-                                price: 'U\$ 32,00',
+                                price:
+                                    'U\$ ${dataPizza[0]['prices'][0]['large']}',
                               ),
                               SizedBox(
                                 height: 20.h,
@@ -152,6 +149,7 @@ class ProductPage extends StatelessWidget {
                                   title: 'Border', required: true),
                               const PizzaAddedItens(
                                 label: 'Simple',
+                                selected: true,
                               ),
                               const PizzaAddedItens(
                                 label: 'Cheese',
