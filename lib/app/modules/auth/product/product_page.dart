@@ -6,7 +6,6 @@ import 'package:u_pizzas/app/modules/auth/product/controller/product_controller.
 import '../../../core/ui/extensions/size_screen_extension.dart';
 import '../../../core/ui/extensions/theme_extension.dart';
 import '../../../core/ui/widgets/app_bar_default_widget.dart';
-import '../../home/home_page.dart';
 
 part 'widgets/bottom_navigation_bar_widget.dart';
 part 'widgets/pizza_added_itens.dart';
@@ -16,7 +15,7 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Modular.get<ProductController>();
+    final controllerPizza = Modular.get<ProductController>();
     final sizeDevice = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -44,9 +43,11 @@ class ProductPage extends StatelessWidget {
                 height: sizeDevice.height * .65,
                 child: SingleChildScrollView(
                   child: Observer(builder: (_) {
-                    var data = ListViewPizzasWidget.controllerPizza;
-                    data.set();
-                    var dataPizza = data.pizza[0]['pizza'];
+                    var dataPizza = controllerPizza.pizza[0]['pizza'];
+                    List<dynamic> additional =
+                        controllerPizza.pizza[0]['additionals'];
+                    List<dynamic> borders = controllerPizza.pizza[0]['borders'];
+                    controllerPizza.set();
 
                     return Stack(
                       children: [
@@ -100,20 +101,20 @@ class ProductPage extends StatelessWidget {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  controller.cutInHalf();
+                                  controllerPizza.cutInHalf();
                                 },
                                 child: PizzaAddedItens(
                                   label: 'CUT IN HALF',
-                                  selected: controller.cutPizza,
+                                  selected: controllerPizza.cutPizza,
                                 ),
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  controller.notCutPizza();
+                                  controllerPizza.notCutPizza();
                                 },
                                 child: PizzaAddedItens(
                                   label: 'DO NOT CUT',
-                                  selected: !controller.cutPizza,
+                                  selected: !controllerPizza.cutPizza,
                                 ),
                               ),
                               SizedBox(
@@ -125,30 +126,30 @@ class ProductPage extends StatelessWidget {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  controller.sizePizzaRegular();
-                                  controller.price =
+                                  controllerPizza.sizePizzaRegular();
+                                  controllerPizza.price =
                                       dataPizza['prices'][0]['regular'];
-                                  ListViewPizzasWidget.controllerPizza.price =
+                                  controllerPizza.price =
                                       dataPizza['prices'][0]['regular'];
                                 },
                                 child: PizzaAddedItens(
                                   label: '12" (Regular)',
-                                  selected: controller.regular,
+                                  selected: controllerPizza.regular,
                                   price:
                                       'U\$ ${dataPizza['prices'][0]['regular']}',
                                 ),
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  controller.sizePizzaLarge();
-                                  controller.price =
+                                  controllerPizza.sizePizzaLarge();
+                                  controllerPizza.price =
                                       dataPizza['prices'][0]['large'];
-                                  ListViewPizzasWidget.controllerPizza.price =
+                                  controllerPizza.price =
                                       dataPizza['prices'][0]['large'];
                                 },
                                 child: PizzaAddedItens(
                                   label: '15" (Large)',
-                                  selected: controller.large,
+                                  selected: controllerPizza.large,
                                   price:
                                       'U\$ ${dataPizza['prices'][0]['large']}',
                                 ),
@@ -158,37 +159,39 @@ class ProductPage extends StatelessWidget {
                               ),
                               const TitleAddItems(
                                   title: 'Additional', required: false),
-                              PizzaAddedItens(
-                                label: 'Olive',
-                                price: 'U\$ 2,00',
-                                item: false,
-                              ),
-                              PizzaAddedItens(
-                                label: 'Mozzarela',
-                                price: 'U\$ 2,00',
-                                item: false,
-                              ),
-                              PizzaAddedItens(
-                                label: 'Pepperoni',
-                                price: 'U\$ 2,00',
-                                item: false,
-                              ),
-                              PizzaAddedItens(
-                                label: 'Bacon',
-                                price: 'U\$ 2,00',
-                                item: false,
+                              ListView.separated(
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: additional.length,
+                                separatorBuilder: (_, __) =>
+                                    const Divider(height: 0),
+                                itemBuilder: (context, index) {
+                                  return PizzaAddedItens(
+                                    label: additional[index]['name'],
+                                    item: false,
+                                    price:
+                                        '${additional[index]['price'] == 0 ? '' : "U\$ ${additional[index]['price']}"}',
+                                  );
+                                },
                               ),
                               SizedBox(
                                 height: 20.h,
                               ),
                               const TitleAddItems(
                                   title: 'Border', required: true),
-                              PizzaAddedItens(
-                                label: 'Simple',
-                              ),
-                              PizzaAddedItens(
-                                label: 'Cheese',
-                                price: 'U\$ 5,00',
+                              ListView.separated(
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: borders.length,
+                                separatorBuilder: (_, __) =>
+                                    const Divider(height: 0),
+                                itemBuilder: (context, index) {
+                                  return PizzaAddedItens(
+                                    label: borders[index]['name'],
+                                    price:
+                                        '${borders[index]['price'] == 0 ? '' : "U\$ ${borders[index]['price']}"}',
+                                  );
+                                },
                               ),
                               SizedBox(
                                 height: 20.h,
