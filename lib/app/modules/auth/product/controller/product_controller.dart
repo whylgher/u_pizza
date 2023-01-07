@@ -73,8 +73,7 @@ abstract class ProductControllerBase with Store {
 
   @action
   void set() {
-    item = 1;
-    priceTotaly = price;
+    priceTotaly = price * item;
   }
 
   @action
