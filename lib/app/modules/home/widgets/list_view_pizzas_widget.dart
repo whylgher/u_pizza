@@ -2,34 +2,37 @@
 
 part of '../home_page.dart';
 
+final controller = Modular.get<HomeController>();
+final controllerPizza = Modular.get<ProductController>();
+
 class ListViewPizzasWidget extends PreferredSize {
-  static var pizza;
-  static final controllerPizza = Modular.get<ProductController>();
   ListViewPizzasWidget({super.key})
       : super(
           preferredSize: Size.fromHeight(110.h),
           child: Observer(
             builder: (_) {
-              final _controller = Modular.get<HomeController>();
-
               return ListView.separated(
+                shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
                 padding: const EdgeInsets.all(8),
-                itemCount: _controller.pizzasList.length,
+                itemCount: controller.pizzasList.length,
                 itemBuilder: (BuildContext context, int index) {
                   final sizeDevice = MediaQuery.of(context).size;
 
                   return GestureDetector(
-                    onTap: () {
-                      final pizzId = _controller.pizzasList[index];
-                      pizza = PizzasModel.fromMap(pizzId);
-                      controllerPizza.getPizza(pizzId['pizza_id']);
-                      Future.delayed(const Duration(seconds: 1)).then((value) {
-                        controllerPizza.price = controllerPizza.pizza[0]
-                            ['pizza']['prices'][0]['regular'];
-                        // Loader.hide();
-                        Modular.to.navigate('/auth/product_page');
-                      });
+                    onTap: () async {
+                      final pizzId = controller.pizzasList[index];
+                      //  var pizza = PizzasModel.fromMap(pizzId);
+                      await controllerPizza.getPizza(pizzId['pizza_id']);
+                      Future.delayed(const Duration(seconds: 1)).then(
+                        (value) {
+                          controllerPizza.price = controllerPizza.pizza[0]
+                              ['pizza']['prices'][0]['regular'];
+                          // Loader.hide();
+
+                          Modular.to.navigate('/auth/product_page');
+                        },
+                      );
                     },
                     child: Container(
                       constraints: BoxConstraints(minHeight: 110.h),
@@ -39,7 +42,7 @@ class ListViewPizzasWidget extends PreferredSize {
                           image: DecorationImage(
                             alignment: Alignment(-1.2.w, 0.h),
                             image: NetworkImage(
-                                _controller.pizzasList[index]['image']),
+                                controller.pizzasList[index]['image']),
                           ),
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white),
@@ -52,7 +55,7 @@ class ListViewPizzasWidget extends PreferredSize {
                               Container(
                                 margin: const EdgeInsets.only(left: 95),
                                 child: Text(
-                                  '${_controller.pizzasList[index]['name']}',
+                                  '${controller.pizzasList[index]['name']}',
                                   style: TextStyle(
                                     fontSize: 18.sp,
                                     fontWeight: FontWeight.bold,
@@ -66,7 +69,7 @@ class ListViewPizzasWidget extends PreferredSize {
                                 margin: const EdgeInsets.only(left: 105),
                                 width: sizeDevice.width * .6,
                                 child: Text(
-                                  '${_controller.pizzasList[index]['description']}',
+                                  '${controller.pizzasList[index]['description']}',
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -122,7 +125,7 @@ class ListViewPizzasWidget extends PreferredSize {
                                   padding:
                                       const EdgeInsets.only(top: 5, right: 15),
                                   child: Text(
-                                    'U\$ ${_controller.pizzasList[index]['regular']}',
+                                    'U\$ ${controller.pizzasList[index]['regular']}',
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontSize: 16.sp,

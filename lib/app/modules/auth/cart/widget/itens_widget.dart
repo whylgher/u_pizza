@@ -1,7 +1,7 @@
 part of '../cart_page.dart';
 
 class ItensWidget extends StatelessWidget {
-  static final pizzaData = ListViewPizzasWidget.pizza.toMap();
+  // static final pizzaData = ListViewPizzasWidget.pizza.toMap();
 
   const ItensWidget({Key? key}) : super(key: key);
 
@@ -15,7 +15,7 @@ class ItensWidget extends StatelessWidget {
           image: DecorationImage(
             scale: .5,
             alignment: Alignment(1.2.w, 0.h),
-            image: NetworkImage(pizzaData['url_img']),
+            image: NetworkImage('url_img'),
           ),
           borderRadius: BorderRadius.circular(20),
           color: Colors.white),
@@ -46,7 +46,7 @@ class ItensWidget extends StatelessWidget {
                 width: 10.w,
               ),
               Text(
-                '${pizzaData['name']}',
+                'name',
                 style: TextStyle(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.bold,
@@ -62,7 +62,7 @@ class ItensWidget extends StatelessWidget {
             padding: const EdgeInsets.only(top: 5),
             width: sizeDevice.width * .65,
             child: Text(
-              '${pizzaData['subtitle']}',
+              'subtitle',
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -90,7 +90,7 @@ class ItensWidget extends StatelessWidget {
             padding: const EdgeInsets.only(top: 5),
             width: sizeDevice.width * .7,
             child: Text(
-              'U\$ ${pizzaData['size_price']['regular']['price']}',
+              'U\$ 12',
               style: TextStyle(
                 fontSize: 12.sp,
                 fontWeight: FontWeight.bold,

@@ -5,7 +5,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ProductController controller = ListViewPizzasWidget.controllerPizza;
+    final ProductController controller = Modular.get<ProductController>();
 
     return Container(
       height: 110.h,

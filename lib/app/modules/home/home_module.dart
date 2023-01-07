@@ -1,6 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../auth/product/controller/product_controller.dart';
 import 'controller/home_controller.dart';
 import 'home_page.dart';
 
@@ -12,11 +11,6 @@ class HomeModule extends Module {
         pizzaService: i(),
       ),
     ),
-    Bind.lazySingleton(
-      (i) => ProductController(
-        productService: i(),
-      ),
-    ),
   ];
 
   @override
@@ -24,6 +18,6 @@ class HomeModule extends Module {
     ChildRoute(
       Modular.initialRoute,
       child: (_, __) => const HomePage(),
-    )
+    ),
   ];
 }
