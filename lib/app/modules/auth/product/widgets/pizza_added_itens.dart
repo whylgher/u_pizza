@@ -7,8 +7,6 @@ class PizzaAddedItens extends StatelessWidget {
   final bool? item;
   final bool? selected;
   final int? countInt;
-  final dynamic actionAdd;
-  final dynamic actionRemove;
 
   const PizzaAddedItens({
     Key? key,
@@ -18,8 +16,6 @@ class PizzaAddedItens extends StatelessWidget {
     this.item = true,
     this.selected = false,
     this.countInt = 0,
-    this.actionAdd,
-    this.actionRemove,
   }) : super(key: key);
 
   @override
@@ -83,11 +79,6 @@ class PizzaAddedItens extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               controller.addAdditional(index!);
-                              if (controller.regular == true) {
-                                controller.sizePizzaRegular();
-                              } else {
-                                controller.sizePizzaLarge();
-                              }
                             },
                             child: Container(
                               height: 15.h,

@@ -2,6 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../models/additional_model.dart';
+import '../../../../models/border_model.dart';
 import '../../../../models/pizza_model.dart';
 import '../../../../service/product/product_service.dart';
 
@@ -45,6 +46,29 @@ abstract class ProductControllerBase with Store {
   @observable
   ObservableList<AdditionalModel> additionalList =
       ObservableList<AdditionalModel>.of([]);
+  @observable
+  ObservableList<BorderModel> bordersList = ObservableList<BorderModel>.of([]);
+
+  @action
+  void selectBorder(int index) {
+    bordersList.forEach(
+      (border) {
+        border.select = false;
+      },
+    );
+    bordersList[index].select = true;
+    priceBorder = bordersList[index].price;
+    updatePage();
+  }
+
+  @action
+  void updatePage() {
+    if (regular == true) {
+      sizePizzaRegular();
+    } else {
+      sizePizzaLarge();
+    }
+  }
 
   @action
   Future<void> addAdditional(int index) async {
@@ -52,6 +76,7 @@ abstract class ProductControllerBase with Store {
       additionalList[index].count++;
       priceAdditional = priceAdditional + additionalList[index].price;
       additionalList[index] = additionalList[index];
+      updatePage();
     }
   }
 
@@ -61,6 +86,7 @@ abstract class ProductControllerBase with Store {
       additionalList[index].count--;
       priceAdditional = priceAdditional - additionalList[index].price;
       additionalList[index] = additionalList[index];
+      updatePage();
     }
   }
 
@@ -141,6 +167,13 @@ abstract class ProductControllerBase with Store {
     for (var additional in pizzaModel.additionals) {
       AdditionalModel c = AdditionalModel.fromMap(additional);
       additionalList.add(c);
+    }
+    for (var border in pizzaModel.borders) {
+      BorderModel c = BorderModel.fromMap(border);
+      bordersList.add(c);
+      if (c.name.toLowerCase() == 'simple') {
+        c.select = true;
+      }
     }
     Modular.to.navigate('/auth/product_page');
     // Loader.show();
