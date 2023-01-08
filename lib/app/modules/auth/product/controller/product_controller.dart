@@ -21,6 +21,15 @@ abstract class ProductControllerBase with Store {
   double price = 0;
 
   @observable
+  double priceAdditional = 0;
+
+  @observable
+  double priceBorder = 0;
+
+  @observable
+  int itemAdditional = 0;
+
+  @observable
   late double priceTotaly = price;
 
   @observable
@@ -42,6 +51,16 @@ abstract class ProductControllerBase with Store {
     }
   }
 
+  @action
+  void incrementAdditional(double value) {
+    priceAdditional = priceAdditional + value;
+  }
+
+  @action
+  void decrementAdditional(double value) {
+    priceAdditional = priceAdditional - value;
+  }
+
   @observable
   bool cutPizza = true;
 
@@ -57,6 +76,7 @@ abstract class ProductControllerBase with Store {
 
   @observable
   bool regular = true;
+  @observable
   bool large = false;
 
   @action
@@ -73,6 +93,9 @@ abstract class ProductControllerBase with Store {
 
   @action
   void set() {
+    priceAdditional = 0;
+    priceBorder = 0;
+    itemAdditional = 0;
     priceTotaly = price * item;
   }
 

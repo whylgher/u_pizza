@@ -107,7 +107,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'U\$ ${controller.priceTotaly.toStringAsFixed(2)}',
+                          'U\$ ${(controller.priceTotaly + controller.priceAdditional + controller.priceBorder).toStringAsFixed(2)}',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,

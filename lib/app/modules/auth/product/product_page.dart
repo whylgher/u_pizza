@@ -6,9 +6,11 @@ import 'package:u_pizzas/app/modules/auth/product/controller/product_controller.
 import '../../../core/ui/extensions/size_screen_extension.dart';
 import '../../../core/ui/extensions/theme_extension.dart';
 import '../../../core/ui/widgets/app_bar_default_widget.dart';
+import '../../../models/additional_model.dart';
 
 part 'widgets/bottom_navigation_bar_widget.dart';
 part 'widgets/pizza_added_itens.dart';
+part 'widgets/title_add_items.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({Key? key}) : super(key: key);
@@ -43,11 +45,11 @@ class ProductPage extends StatelessWidget {
                 height: sizeDevice.height * .65,
                 child: SingleChildScrollView(
                   child: Observer(builder: (_) {
-                    var dataPizza = controllerPizza.pizza[0]['pizza'];
+                    Map dataPizza = controllerPizza.pizza[0]['pizza'];
+
                     List<dynamic> additional =
                         controllerPizza.pizza[0]['additionals'];
                     List<dynamic> borders = controllerPizza.pizza[0]['borders'];
-                    controllerPizza.set();
 
                     return Stack(
                       children: [
@@ -129,8 +131,7 @@ class ProductPage extends StatelessWidget {
                                   controllerPizza.sizePizzaRegular();
                                   controllerPizza.price =
                                       dataPizza['prices'][0]['regular'];
-                                  controllerPizza.price =
-                                      dataPizza['prices'][0]['regular'];
+                                  controllerPizza.set();
                                 },
                                 child: PizzaAddedItens(
                                   label: '12" (Regular)',
@@ -144,8 +145,7 @@ class ProductPage extends StatelessWidget {
                                   controllerPizza.sizePizzaLarge();
                                   controllerPizza.price =
                                       dataPizza['prices'][0]['large'];
-                                  controllerPizza.price =
-                                      dataPizza['prices'][0]['large'];
+                                  controllerPizza.set();
                                 },
                                 child: PizzaAddedItens(
                                   label: '15" (Large)',
@@ -166,11 +166,30 @@ class ProductPage extends StatelessWidget {
                                 separatorBuilder: (_, __) =>
                                     const Divider(height: 0),
                                 itemBuilder: (context, index) {
+                                  AdditionalModel additionalModel =
+                                      AdditionalModel.fromMap(
+                                          additional[index]);
                                   return PizzaAddedItens(
-                                    label: additional[index]['name'],
+                                    label: additionalModel.name,
                                     item: false,
-                                    price:
-                                        '${additional[index]['price'] == 0 ? '' : "U\$ ${additional[index]['price']}"}',
+                                    labelAdditional: additionalModel.count,
+                                    actionAdd: () {
+                                      if (additionalModel.count < 5) {
+                                        additionalModel.count++;
+                                        controllerPizza.incrementAdditional(
+                                            additionalModel.price);
+                                      }
+                                    },
+                                    actionRemove: () {
+                                      if (additionalModel.count > 0) {
+                                        additionalModel.count--;
+                                        controllerPizza.decrementAdditional(
+                                            additionalModel.price);
+                                      }
+                                    },
+                                    price: additionalModel.price == 0
+                                        ? ''
+                                        : "U\$ ${additionalModel.price}",
                                   );
                                 },
                               ),
@@ -188,8 +207,9 @@ class ProductPage extends StatelessWidget {
                                 itemBuilder: (context, index) {
                                   return PizzaAddedItens(
                                     label: borders[index]['name'],
-                                    price:
-                                        '${borders[index]['price'] == 0 ? '' : "U\$ ${borders[index]['price']}"}',
+                                    price: borders[index]['price'] == 0
+                                        ? ''
+                                        : "U\$ ${borders[index]['price']}",
                                   );
                                 },
                               ),
