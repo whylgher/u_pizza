@@ -13,15 +13,47 @@ mixin _$ProductController on ProductControllerBase, Store {
       Atom(name: 'ProductControllerBase.pizza', context: context);
 
   @override
-  ObservableList<dynamic> get pizza {
+  Map<dynamic, dynamic> get pizza {
     _$pizzaAtom.reportRead();
     return super.pizza;
   }
 
   @override
-  set pizza(ObservableList<dynamic> value) {
+  set pizza(Map<dynamic, dynamic> value) {
     _$pizzaAtom.reportWrite(value, super.pizza, () {
       super.pizza = value;
+    });
+  }
+
+  late final _$bordersAtom =
+      Atom(name: 'ProductControllerBase.borders', context: context);
+
+  @override
+  List<dynamic> get borders {
+    _$bordersAtom.reportRead();
+    return super.borders;
+  }
+
+  @override
+  set borders(List<dynamic> value) {
+    _$bordersAtom.reportWrite(value, super.borders, () {
+      super.borders = value;
+    });
+  }
+
+  late final _$additionalsAtom =
+      Atom(name: 'ProductControllerBase.additionals', context: context);
+
+  @override
+  List<dynamic> get additionals {
+    _$additionalsAtom.reportRead();
+    return super.additionals;
+  }
+
+  @override
+  set additionals(List<dynamic> value) {
+    _$additionalsAtom.reportWrite(value, super.additionals, () {
+      super.additionals = value;
     });
   }
 
@@ -283,6 +315,8 @@ mixin _$ProductController on ProductControllerBase, Store {
   String toString() {
     return '''
 pizza: ${pizza},
+borders: ${borders},
+additionals: ${additionals},
 price: ${price},
 priceAdditional: ${priceAdditional},
 priceBorder: ${priceBorder},

@@ -45,22 +45,17 @@ class ProductPage extends StatelessWidget {
                 height: sizeDevice.height * .65,
                 child: SingleChildScrollView(
                   child: Observer(builder: (_) {
-                    Map dataPizza = controllerPizza.pizza[0]['pizza'];
-
-                    List<dynamic> additional =
-                        controllerPizza.pizza[0]['additionals'];
-                    List<dynamic> borders = controllerPizza.pizza[0]['borders'];
-
                     return Stack(
                       children: [
                         Visibility(
-                          visible: dataPizza.isNotEmpty,
+                          visible: controllerPizza.pizza.isNotEmpty,
                           child: Column(
                             children: [
                               SizedBox(
                                 height: 250.h,
                                 child: Image.network(
-                                  dataPizza['image'][0]['image'].toString(),
+                                  controllerPizza.pizza['image'][0]['image']
+                                      .toString(),
                                   filterQuality: FilterQuality.high,
                                   scale: .6,
                                 ),
@@ -71,7 +66,7 @@ class ProductPage extends StatelessWidget {
                               Align(
                                 alignment: Alignment.bottomLeft,
                                 child: Text(
-                                  '${dataPizza['name']}',
+                                  '${controllerPizza.pizza['name']}',
                                   style: TextStyle(
                                     fontSize: 20.sp,
                                     fontWeight: FontWeight.bold,
@@ -85,7 +80,7 @@ class ProductPage extends StatelessWidget {
                               Align(
                                 alignment: Alignment.bottomLeft,
                                 child: Text(
-                                  '${dataPizza['description']}',
+                                  '${controllerPizza.pizza['description']}',
                                   style: TextStyle(
                                     fontSize: 12.sp,
                                     fontFamily: 'Montserrat',
@@ -129,29 +124,29 @@ class ProductPage extends StatelessWidget {
                               GestureDetector(
                                 onTap: () {
                                   controllerPizza.sizePizzaRegular();
-                                  controllerPizza.price =
-                                      dataPizza['prices'][0]['regular'];
+                                  controllerPizza.price = controllerPizza
+                                      .pizza['prices'][0]['regular'];
                                   controllerPizza.set();
                                 },
                                 child: PizzaAddedItens(
                                   label: '12" (Regular)',
                                   selected: controllerPizza.regular,
                                   price:
-                                      'U\$ ${dataPizza['prices'][0]['regular']}',
+                                      'U\$ ${controllerPizza.pizza['prices'][0]['regular']}',
                                 ),
                               ),
                               GestureDetector(
                                 onTap: () {
                                   controllerPizza.sizePizzaLarge();
-                                  controllerPizza.price =
-                                      dataPizza['prices'][0]['large'];
+                                  controllerPizza.price = controllerPizza
+                                      .pizza['prices'][0]['large'];
                                   controllerPizza.set();
                                 },
                                 child: PizzaAddedItens(
                                   label: '15" (Large)',
                                   selected: controllerPizza.large,
                                   price:
-                                      'U\$ ${dataPizza['prices'][0]['large']}',
+                                      'U\$ ${controllerPizza.pizza['prices'][0]['large']}',
                                 ),
                               ),
                               SizedBox(
@@ -162,13 +157,13 @@ class ProductPage extends StatelessWidget {
                               ListView.separated(
                                 physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
-                                itemCount: additional.length,
+                                itemCount: controllerPizza.additionals.length,
                                 separatorBuilder: (_, __) =>
                                     const Divider(height: 0),
                                 itemBuilder: (context, index) {
                                   AdditionalModel additionalModel =
                                       AdditionalModel.fromMap(
-                                          additional[index]);
+                                          controllerPizza.additionals[index]);
                                   return PizzaAddedItens(
                                     label: additionalModel.name,
                                     item: false,
@@ -201,15 +196,18 @@ class ProductPage extends StatelessWidget {
                               ListView.separated(
                                 physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
-                                itemCount: borders.length,
+                                itemCount: controllerPizza.borders.length,
                                 separatorBuilder: (_, __) =>
                                     const Divider(height: 0),
                                 itemBuilder: (context, index) {
                                   return PizzaAddedItens(
-                                    label: borders[index]['name'],
-                                    price: borders[index]['price'] == 0
+                                    label: controllerPizza.borders[index]
+                                        ['name'],
+                                    price: controllerPizza.borders[index]
+                                                ['price'] ==
+                                            0
                                         ? ''
-                                        : "U\$ ${borders[index]['price']}",
+                                        : "U\$ ${controllerPizza.borders[index]['price']}",
                                   );
                                 },
                               ),
