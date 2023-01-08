@@ -6,7 +6,6 @@ import 'package:u_pizzas/app/modules/auth/product/controller/product_controller.
 import '../../../core/ui/extensions/size_screen_extension.dart';
 import '../../../core/ui/extensions/theme_extension.dart';
 import '../../../core/ui/widgets/app_bar_default_widget.dart';
-import '../../../models/additional_model.dart';
 
 part 'widgets/bottom_navigation_bar_widget.dart';
 part 'widgets/pizza_added_itens.dart';
@@ -157,34 +156,21 @@ class ProductPage extends StatelessWidget {
                               ListView.separated(
                                 physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
-                                itemCount: controllerPizza.additionals.length,
+                                itemCount:
+                                    controllerPizza.additionalList.length,
                                 separatorBuilder: (_, __) =>
                                     const Divider(height: 0),
                                 itemBuilder: (context, index) {
-                                  AdditionalModel additionalModel =
-                                      AdditionalModel.fromMap(
-                                          controllerPizza.additionals[index]);
                                   return PizzaAddedItens(
-                                    label: additionalModel.name,
+                                    index: index,
+                                    label: controllerPizza
+                                        .additionalList[index].name,
                                     item: false,
-                                    labelAdditional: additionalModel.count,
-                                    actionAdd: () {
-                                      if (additionalModel.count < 5) {
-                                        additionalModel.count++;
-                                        controllerPizza.incrementAdditional(
-                                            additionalModel.price);
-                                      }
-                                    },
-                                    actionRemove: () {
-                                      if (additionalModel.count > 0) {
-                                        additionalModel.count--;
-                                        controllerPizza.decrementAdditional(
-                                            additionalModel.price);
-                                      }
-                                    },
-                                    price: additionalModel.price == 0
+                                    price: controllerPizza
+                                                .additionalList[index].price ==
+                                            0
                                         ? ''
-                                        : "U\$ ${additionalModel.price}",
+                                        : "U\$ ${controllerPizza.additionalList[index].price}",
                                   );
                                 },
                               ),

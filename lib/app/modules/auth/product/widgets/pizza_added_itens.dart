@@ -1,9 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of '../product_page.dart';
 
 class PizzaAddedItens extends StatelessWidget {
   final String label;
-  final int? labelAdditional;
+  final int? index;
   final String? price;
   final bool? item;
   final bool? selected;
@@ -14,7 +13,7 @@ class PizzaAddedItens extends StatelessWidget {
   const PizzaAddedItens({
     Key? key,
     required this.label,
-    this.labelAdditional,
+    this.index = 0,
     this.price = '',
     this.item = true,
     this.selected = false,
@@ -25,125 +24,144 @@ class PizzaAddedItens extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ProductController controller = Modular.get<ProductController>();
     return Align(
       alignment: Alignment.bottomLeft,
       child: Container(
         padding: EdgeInsets.only(top: 10.h),
-        child: Column(
-          children: [
-            Visibility(
-              visible: item!,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
+        child: Observer(
+          builder: (_) {
+            return Column(
+              children: [
+                Visibility(
+                  visible: item!,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        width: 20.w,
-                        height: 20.h,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: context.primaryColorDark,
-                            width: selected! ? 5 : 2,
+                      Row(
+                        children: [
+                          Container(
+                            width: 20.w,
+                            height: 20.h,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: context.primaryColorDark,
+                                width: selected! ? 5 : 2,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Text(
+                            label,
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              fontFamily: 'Montserrat',
+                            ),
+                          ),
+                        ],
                       ),
                       Text(
-                        label,
+                        price!,
                         style: TextStyle(
-                          fontSize: 12.sp,
+                          fontSize: 14.sp,
                           fontFamily: 'Montserrat',
                         ),
                       ),
                     ],
                   ),
-                  Text(
-                    price!,
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      fontFamily: 'Montserrat',
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Visibility(
-              visible: !item!,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
+                ),
+                Visibility(
+                  visible: !item!,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      GestureDetector(
-                        onTap: actionAdd,
-                        child: Container(
-                          height: 15.h,
-                          width: 15.w,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Color(0xFFF49134),
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              controller.addAdditional(index!);
+                              if (controller.regular == true) {
+                                controller.sizePizzaRegular();
+                              } else {
+                                controller.sizePizzaLarge();
+                              }
+                            },
+                            child: Container(
+                              height: 15.h,
+                              width: 15.w,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color(0xFFF49134),
+                              ),
+                              child: const Icon(
+                                Icons.add,
+                                color: Colors.black,
+                                size: 15,
+                              ),
+                            ),
                           ),
-                          child: const Icon(
-                            Icons.add,
-                            color: Colors.black,
-                            size: 15,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
+                            child: Text(
+                              '${controller.additionalList[index!].count}',
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
-                        child: Text(
-                          labelAdditional.toString(),
-                          style: TextStyle(
-                            fontSize: 12.sp,
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
+                          GestureDetector(
+                            onTap: () {
+                              controller.removeAdditional(index!);
+                              if (controller.regular == true) {
+                                controller.sizePizzaRegular();
+                              } else {
+                                controller.sizePizzaLarge();
+                              }
+                            },
+                            child: Container(
+                              height: 15.h,
+                              width: 15.w,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color(0xFFF49134),
+                              ),
+                              child: const Icon(
+                                Icons.remove,
+                                color: Colors.black,
+                                size: 15,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: actionRemove,
-                        child: Container(
-                          height: 15.h,
-                          width: 15.w,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Color(0xFFF49134),
+                          SizedBox(
+                            width: 10.w,
                           ),
-                          child: const Icon(
-                            Icons.remove,
-                            color: Colors.black,
-                            size: 15,
+                          Text(
+                            label,
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              fontFamily: 'Montserrat',
+                            ),
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
+                        ],
                       ),
                       Text(
-                        label,
+                        price!,
                         style: TextStyle(
-                          fontSize: 12.sp,
+                          fontSize: 14.sp,
                           fontFamily: 'Montserrat',
                         ),
                       ),
                     ],
                   ),
-                  Text(
-                    price!,
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      fontFamily: 'Montserrat',
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

@@ -25,6 +25,22 @@ mixin _$ProductController on ProductControllerBase, Store {
     });
   }
 
+  late final _$pizzaModelAtom =
+      Atom(name: 'ProductControllerBase.pizzaModel', context: context);
+
+  @override
+  dynamic get pizzaModel {
+    _$pizzaModelAtom.reportRead();
+    return super.pizzaModel;
+  }
+
+  @override
+  set pizzaModel(dynamic value) {
+    _$pizzaModelAtom.reportWrite(value, super.pizzaModel, () {
+      super.pizzaModel = value;
+    });
+  }
+
   late final _$bordersAtom =
       Atom(name: 'ProductControllerBase.borders', context: context);
 
@@ -109,13 +125,13 @@ mixin _$ProductController on ProductControllerBase, Store {
       Atom(name: 'ProductControllerBase.itemAdditional', context: context);
 
   @override
-  int get itemAdditional {
+  List<dynamic> get itemAdditional {
     _$itemAdditionalAtom.reportRead();
     return super.itemAdditional;
   }
 
   @override
-  set itemAdditional(int value) {
+  set itemAdditional(List<dynamic> value) {
     _$itemAdditionalAtom.reportWrite(value, super.itemAdditional, () {
       super.itemAdditional = value;
     });
@@ -199,6 +215,39 @@ mixin _$ProductController on ProductControllerBase, Store {
     _$largeAtom.reportWrite(value, super.large, () {
       super.large = value;
     });
+  }
+
+  late final _$additionalListAtom =
+      Atom(name: 'ProductControllerBase.additionalList', context: context);
+
+  @override
+  ObservableList<AdditionalModel> get additionalList {
+    _$additionalListAtom.reportRead();
+    return super.additionalList;
+  }
+
+  @override
+  set additionalList(ObservableList<AdditionalModel> value) {
+    _$additionalListAtom.reportWrite(value, super.additionalList, () {
+      super.additionalList = value;
+    });
+  }
+
+  late final _$addAdditionalAsyncAction =
+      AsyncAction('ProductControllerBase.addAdditional', context: context);
+
+  @override
+  Future<void> addAdditional(int index) {
+    return _$addAdditionalAsyncAction.run(() => super.addAdditional(index));
+  }
+
+  late final _$removeAdditionalAsyncAction =
+      AsyncAction('ProductControllerBase.removeAdditional', context: context);
+
+  @override
+  Future<void> removeAdditional(int index) {
+    return _$removeAdditionalAsyncAction
+        .run(() => super.removeAdditional(index));
   }
 
   late final _$getPizzaAsyncAction =
@@ -312,9 +361,21 @@ mixin _$ProductController on ProductControllerBase, Store {
   }
 
   @override
+  void setAll() {
+    final _$actionInfo = _$ProductControllerBaseActionController.startAction(
+        name: 'ProductControllerBase.setAll');
+    try {
+      return super.setAll();
+    } finally {
+      _$ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 pizza: ${pizza},
+pizzaModel: ${pizzaModel},
 borders: ${borders},
 additionals: ${additionals},
 price: ${price},
@@ -325,7 +386,8 @@ priceTotaly: ${priceTotaly},
 item: ${item},
 cutPizza: ${cutPizza},
 regular: ${regular},
-large: ${large}
+large: ${large},
+additionalList: ${additionalList}
     ''';
   }
 }
