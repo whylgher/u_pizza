@@ -15,7 +15,7 @@ class ItensWidget extends StatelessWidget {
           image: DecorationImage(
             scale: .5,
             alignment: Alignment(1.2.w, 0.h),
-            image: NetworkImage('url_img'),
+            image: const NetworkImage('url_img'),
           ),
           borderRadius: BorderRadius.circular(20),
           color: Colors.white),

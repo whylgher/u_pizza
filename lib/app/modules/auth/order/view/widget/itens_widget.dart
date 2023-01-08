@@ -13,7 +13,7 @@ class ItensWidget extends StatelessWidget {
           image: DecorationImage(
             scale: .5,
             alignment: Alignment(1.2.w, 0.h),
-            image: NetworkImage('url_img'),
+            image: const NetworkImage('url_img'),
           ),
           color: Colors.white),
       child: Column(

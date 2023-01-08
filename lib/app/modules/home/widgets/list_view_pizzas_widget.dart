@@ -13,6 +13,8 @@ class ListViewPizzasWidget extends PreferredSize {
             builder: (_) {
               return ListView.separated(
                 shrinkWrap: true,
+                separatorBuilder: (BuildContext context, int index) =>
+                    const Divider(),
                 physics: const BouncingScrollPhysics(),
                 padding: const EdgeInsets.all(8),
                 itemCount: controller.pizzasList.length,
@@ -29,6 +31,11 @@ class ListViewPizzasWidget extends PreferredSize {
                           controllerPizza.price = controllerPizza.pizza[0]
                               ['pizza']['prices'][0]['regular'];
                           // Loader.hide();
+                          controllerPizza.priceAdditional = 0;
+                          controllerPizza.priceBorder = 0;
+                          controllerPizza.set();
+                          controllerPizza.sizePizzaRegular();
+                          controllerPizza.item = 1;
 
                           Modular.to.navigate('/auth/product_page');
                         },
@@ -141,8 +148,6 @@ class ListViewPizzasWidget extends PreferredSize {
                     ),
                   );
                 },
-                separatorBuilder: (BuildContext context, int index) =>
-                    const Divider(),
               );
             },
           ),

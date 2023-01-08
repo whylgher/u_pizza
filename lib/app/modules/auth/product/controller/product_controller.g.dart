@@ -41,6 +41,54 @@ mixin _$ProductController on ProductControllerBase, Store {
     });
   }
 
+  late final _$priceAdditionalAtom =
+      Atom(name: 'ProductControllerBase.priceAdditional', context: context);
+
+  @override
+  double get priceAdditional {
+    _$priceAdditionalAtom.reportRead();
+    return super.priceAdditional;
+  }
+
+  @override
+  set priceAdditional(double value) {
+    _$priceAdditionalAtom.reportWrite(value, super.priceAdditional, () {
+      super.priceAdditional = value;
+    });
+  }
+
+  late final _$priceBorderAtom =
+      Atom(name: 'ProductControllerBase.priceBorder', context: context);
+
+  @override
+  double get priceBorder {
+    _$priceBorderAtom.reportRead();
+    return super.priceBorder;
+  }
+
+  @override
+  set priceBorder(double value) {
+    _$priceBorderAtom.reportWrite(value, super.priceBorder, () {
+      super.priceBorder = value;
+    });
+  }
+
+  late final _$itemAdditionalAtom =
+      Atom(name: 'ProductControllerBase.itemAdditional', context: context);
+
+  @override
+  int get itemAdditional {
+    _$itemAdditionalAtom.reportRead();
+    return super.itemAdditional;
+  }
+
+  @override
+  set itemAdditional(int value) {
+    _$itemAdditionalAtom.reportWrite(value, super.itemAdditional, () {
+      super.itemAdditional = value;
+    });
+  }
+
   late final _$priceTotalyAtom =
       Atom(name: 'ProductControllerBase.priceTotaly', context: context);
 
@@ -105,6 +153,22 @@ mixin _$ProductController on ProductControllerBase, Store {
     });
   }
 
+  late final _$largeAtom =
+      Atom(name: 'ProductControllerBase.large', context: context);
+
+  @override
+  bool get large {
+    _$largeAtom.reportRead();
+    return super.large;
+  }
+
+  @override
+  set large(bool value) {
+    _$largeAtom.reportWrite(value, super.large, () {
+      super.large = value;
+    });
+  }
+
   late final _$getPizzaAsyncAction =
       AsyncAction('ProductControllerBase.getPizza', context: context);
 
@@ -133,6 +197,28 @@ mixin _$ProductController on ProductControllerBase, Store {
         name: 'ProductControllerBase.decrement');
     try {
       return super.decrement();
+    } finally {
+      _$ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void incrementAdditional(double value) {
+    final _$actionInfo = _$ProductControllerBaseActionController.startAction(
+        name: 'ProductControllerBase.incrementAdditional');
+    try {
+      return super.incrementAdditional(value);
+    } finally {
+      _$ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void decrementAdditional(double value) {
+    final _$actionInfo = _$ProductControllerBaseActionController.startAction(
+        name: 'ProductControllerBase.decrementAdditional');
+    try {
+      return super.decrementAdditional(value);
     } finally {
       _$ProductControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -198,10 +284,14 @@ mixin _$ProductController on ProductControllerBase, Store {
     return '''
 pizza: ${pizza},
 price: ${price},
+priceAdditional: ${priceAdditional},
+priceBorder: ${priceBorder},
+itemAdditional: ${itemAdditional},
 priceTotaly: ${priceTotaly},
 item: ${item},
 cutPizza: ${cutPizza},
-regular: ${regular}
+regular: ${regular},
+large: ${large}
     ''';
   }
 }
