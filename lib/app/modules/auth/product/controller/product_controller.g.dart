@@ -233,6 +233,22 @@ mixin _$ProductController on ProductControllerBase, Store {
     });
   }
 
+  late final _$bordersListAtom =
+      Atom(name: 'ProductControllerBase.bordersList', context: context);
+
+  @override
+  ObservableList<BorderModel> get bordersList {
+    _$bordersListAtom.reportRead();
+    return super.bordersList;
+  }
+
+  @override
+  set bordersList(ObservableList<BorderModel> value) {
+    _$bordersListAtom.reportWrite(value, super.bordersList, () {
+      super.bordersList = value;
+    });
+  }
+
   late final _$addAdditionalAsyncAction =
       AsyncAction('ProductControllerBase.addAdditional', context: context);
 
@@ -260,6 +276,28 @@ mixin _$ProductController on ProductControllerBase, Store {
 
   late final _$ProductControllerBaseActionController =
       ActionController(name: 'ProductControllerBase', context: context);
+
+  @override
+  void selectBorder(int index) {
+    final _$actionInfo = _$ProductControllerBaseActionController.startAction(
+        name: 'ProductControllerBase.selectBorder');
+    try {
+      return super.selectBorder(index);
+    } finally {
+      _$ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void updatePage() {
+    final _$actionInfo = _$ProductControllerBaseActionController.startAction(
+        name: 'ProductControllerBase.updatePage');
+    try {
+      return super.updatePage();
+    } finally {
+      _$ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void increment() {
@@ -387,7 +425,8 @@ item: ${item},
 cutPizza: ${cutPizza},
 regular: ${regular},
 large: ${large},
-additionalList: ${additionalList}
+additionalList: ${additionalList},
+bordersList: ${bordersList}
     ''';
   }
 }

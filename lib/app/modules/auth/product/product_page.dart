@@ -182,18 +182,25 @@ class ProductPage extends StatelessWidget {
                               ListView.separated(
                                 physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
-                                itemCount: controllerPizza.borders.length,
+                                itemCount: controllerPizza.bordersList.length,
                                 separatorBuilder: (_, __) =>
                                     const Divider(height: 0),
                                 itemBuilder: (context, index) {
-                                  return PizzaAddedItens(
-                                    label: controllerPizza.borders[index]
-                                        ['name'],
-                                    price: controllerPizza.borders[index]
-                                                ['price'] ==
-                                            0
-                                        ? ''
-                                        : "U\$ ${controllerPizza.borders[index]['price']}",
+                                  return GestureDetector(
+                                    onTap: () {
+                                      controllerPizza.selectBorder(index);
+                                    },
+                                    child: PizzaAddedItens(
+                                      selected: controllerPizza
+                                          .bordersList[index].select,
+                                      label: controllerPizza
+                                          .bordersList[index].name,
+                                      price: controllerPizza
+                                                  .bordersList[index].price ==
+                                              0.0
+                                          ? ''
+                                          : "U\$ ${controllerPizza.bordersList[index].price}",
+                                    ),
                                   );
                                 },
                               ),
