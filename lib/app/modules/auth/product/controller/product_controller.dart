@@ -1,6 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
+import '../../../../models/additional_model.dart';
+import '../../../../models/pizza_model.dart';
 import '../../../../service/product/product_service.dart';
 
 part 'product_controller.g.dart';
@@ -17,6 +19,8 @@ abstract class ProductControllerBase with Store {
   @observable
   Map pizza = {};
   @observable
+  late dynamic pizzaModel = [];
+  @observable
   List<dynamic> borders = [];
   @observable
   List<dynamic> additionals = [];
@@ -27,7 +31,7 @@ abstract class ProductControllerBase with Store {
   @observable
   double priceBorder = 0;
   @observable
-  int itemAdditional = 0;
+  List<dynamic> itemAdditional = [];
   @observable
   late double priceTotaly = price;
   @observable
@@ -38,6 +42,27 @@ abstract class ProductControllerBase with Store {
   bool regular = true;
   @observable
   bool large = false;
+  @observable
+  ObservableList<AdditionalModel> additionalList =
+      ObservableList<AdditionalModel>.of([]);
+
+  @action
+  Future<void> addAdditional(int index) async {
+    if (additionalList[index].count < 5) {
+      additionalList[index].count++;
+      priceAdditional = priceAdditional + additionalList[index].price;
+      additionalList[index] = additionalList[index];
+    }
+  }
+
+  @action
+  Future<void> removeAdditional(int index) async {
+    if (additionalList[index].count > 0) {
+      additionalList[index].count--;
+      priceAdditional = priceAdditional - additionalList[index].price;
+      additionalList[index] = additionalList[index];
+    }
+  }
 
   @action
   void increment() {
@@ -89,11 +114,19 @@ abstract class ProductControllerBase with Store {
 
   @action
   void set() {
+    priceTotaly = price * item;
+  }
+
+  @action
+  void setAll() {
     priceAdditional = 0;
     priceBorder = 0;
-    itemAdditional = 0;
+    itemAdditional = [];
+    sizePizzaRegular();
+
     item = 1;
     priceTotaly = price * item;
+    additionalList = ObservableList<AdditionalModel>.of([]);
   }
 
   @action
@@ -102,6 +135,14 @@ abstract class ProductControllerBase with Store {
     pizza = data['pizza'];
     additionals = data['additionals'];
     borders = data['borders'];
+    PizzaModel pizzaModel = PizzaModel.fromMap(data);
+    price = pizzaModel.prices[0]['regular'];
+    set();
+    for (var additional in pizzaModel.additionals) {
+      AdditionalModel c = AdditionalModel.fromMap(additional);
+      additionalList.add(c);
+    }
+    Modular.to.navigate('/auth/product_page');
     // Loader.show();
   }
 }

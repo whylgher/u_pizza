@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_typing_uninitialized_variables, no_leading_underscores_for_local_identifiers
-
 part of '../home_page.dart';
 
 final controller = Modular.get<HomeController>();
@@ -24,19 +22,8 @@ class ListViewPizzasWidget extends PreferredSize {
                   return GestureDetector(
                     onTap: () async {
                       final pizzId = controller.pizzasList[index];
-                      //  var pizza = PizzasModel.fromMap(pizzId);
+                      controllerPizza.setAll();
                       await controllerPizza.getPizza(pizzId['pizza_id']);
-                      Future.delayed(const Duration(seconds: 1)).then(
-                        (value) async {
-                          controllerPizza.price =
-                              controllerPizza.pizza['prices'][0]['regular'];
-                          // Loader.hide();
-                          controllerPizza.set();
-                          controllerPizza.sizePizzaRegular();
-
-                          Modular.to.navigate('/auth/product_page');
-                        },
-                      );
                     },
                     child: Container(
                       constraints: BoxConstraints(minHeight: 110.h),

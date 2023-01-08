@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_null_comparison
-
 import 'package:dio/dio.dart';
 
 import '../../../../modules/core/auth/auth_store.dart';
@@ -68,6 +66,7 @@ class AuthRefreshTokenInterceptor extends Interceptor {
     final refreshToken =
         _localSecureStorage.read(Constants.LOCAL_STORAGE_REFRESH_TOKEN_KEY);
 
+    // ignore: unnecessary_null_comparison
     if (refreshToken == null) {
       throw ExpireTokenException();
     }

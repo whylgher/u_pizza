@@ -19,10 +19,10 @@ class AdditionalModel {
     };
   }
 
-  factory AdditionalModel.fromMap(Map<String, dynamic> map) {
+  factory AdditionalModel.fromMap(Map map) {
     return AdditionalModel(
-      name: map['name'] as String,
-      price: map['price'] as double,
+      name: map['name'],
+      price: map['price'],
     );
   }
 
@@ -30,4 +30,8 @@ class AdditionalModel {
 
   factory AdditionalModel.fromJson(String source) =>
       AdditionalModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  String toString() =>
+      'AdditionalModel(name: $name, count: $count, price: $price)';
 }
