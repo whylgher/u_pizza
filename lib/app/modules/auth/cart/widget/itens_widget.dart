@@ -1,9 +1,24 @@
+// ignore_for_file: must_be_immutable
+
 part of '../cart_page.dart';
 
 class ItensWidget extends StatelessWidget {
-  // static final pizzaData = ListViewPizzasWidget.pizza.toMap();
+  String name;
+  String description;
+  String item;
+  int unitys;
+  String image;
+  double total;
 
-  const ItensWidget({Key? key}) : super(key: key);
+  ItensWidget({
+    Key? key,
+    required this.name,
+    required this.description,
+    required this.item,
+    required this.unitys,
+    required this.image,
+    required this.total,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,13 +27,13 @@ class ItensWidget extends StatelessWidget {
       width: sizeDevice.width,
       padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 20.w),
       decoration: BoxDecoration(
-          image: DecorationImage(
-            scale: .5,
-            alignment: Alignment(1.2.w, 0.h),
-            image: const NetworkImage('url_img'),
-          ),
-          borderRadius: BorderRadius.circular(20),
-          color: Colors.white),
+        image: DecorationImage(
+          scale: .5,
+          alignment: Alignment(1.2.w, 0.h),
+          image: NetworkImage(image),
+        ),
+        color: Colors.white,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -37,7 +52,7 @@ class ItensWidget extends StatelessWidget {
                   color: const Color(0xFFF7F8FA),
                 ),
                 child: Text(
-                  '1',
+                  item,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 10.sp, color: Colors.black),
                 ),
@@ -46,7 +61,7 @@ class ItensWidget extends StatelessWidget {
                 width: 10.w,
               ),
               Text(
-                'name',
+                name,
                 style: TextStyle(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.bold,
@@ -62,7 +77,7 @@ class ItensWidget extends StatelessWidget {
             padding: const EdgeInsets.only(top: 5),
             width: sizeDevice.width * .65,
             child: Text(
-              'subtitle',
+              description,
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -76,7 +91,7 @@ class ItensWidget extends StatelessWidget {
           Container(
             padding: const EdgeInsets.only(top: 5),
             child: Text(
-              '3 unit(s)',
+              '$unitys unit(s)',
               style: TextStyle(
                 fontSize: 10.sp,
                 fontWeight: FontWeight.bold,
@@ -90,7 +105,7 @@ class ItensWidget extends StatelessWidget {
             padding: const EdgeInsets.only(top: 5),
             width: sizeDevice.width * .7,
             child: Text(
-              'U\$ 12',
+              'U\$ $total',
               style: TextStyle(
                 fontSize: 12.sp,
                 fontWeight: FontWeight.bold,
