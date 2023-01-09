@@ -21,8 +21,9 @@ class ListViewPizzasWidget extends PreferredSize {
 
                   return GestureDetector(
                     onTap: () async {
+                      Loader.show();
                       final pizzId = controller.pizzasList[index];
-                      controllerPizza.setAll();
+                      controllerPizza.resetAll();
                       await controllerPizza.getPizza(pizzId['pizza_id']);
                     },
                     child: Container(

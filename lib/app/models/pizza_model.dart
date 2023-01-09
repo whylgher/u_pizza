@@ -3,10 +3,11 @@ import 'dart:convert';
 class PizzaModel {
   int id;
   String name;
+  String image;
   String description;
   String category;
-  List prices;
-  List image;
+  double regular;
+  double large;
   List borders;
   List additionals;
   int countAdditionals;
@@ -16,7 +17,8 @@ class PizzaModel {
     required this.name,
     required this.description,
     required this.category,
-    required this.prices,
+    required this.regular,
+    required this.large,
     required this.image,
     required this.borders,
     required this.additionals,
@@ -29,7 +31,8 @@ class PizzaModel {
       'name': name,
       'description': description,
       'category': category,
-      'prices': prices,
+      'regular': regular,
+      'large': large,
       'image': image,
       'borders': borders,
       'additionals': additionals,
@@ -42,8 +45,9 @@ class PizzaModel {
       name: map['pizza']['name'] as String,
       description: map['pizza']['description'] as String,
       category: map['pizza']['category'] as String,
-      prices: map['pizza']['prices'],
-      image: map['pizza']['image'],
+      regular: map['pizza']['prices']['regular'],
+      large: map['pizza']['prices']['large'],
+      image: map['pizza']['image']['image'],
       borders: map['borders'],
       additionals: map['additionals'],
       countAdditionals: 0,
@@ -57,6 +61,6 @@ class PizzaModel {
 
   @override
   String toString() {
-    return 'PizzaModel(id: $id, name: $name, description: $description, category: $category, prices: $prices, image: $image, borders: $borders, additionals: $additionals, countAdditionals: $countAdditionals)';
+    return 'PizzaModel(id: $id, name: $name, description: $description, category: $category, regular: $regular, large: $large, image: $image, borders: $borders, additionals: $additionals, countAdditionals: $countAdditionals)';
   }
 }
