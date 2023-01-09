@@ -105,7 +105,7 @@ class ItensWidget extends StatelessWidget {
             padding: const EdgeInsets.only(top: 5),
             width: sizeDevice.width * .7,
             child: Text(
-              'U\$ $total',
+              'U\$ ${total.toStringAsFixed(2)}',
               style: TextStyle(
                 fontSize: 12.sp,
                 fontWeight: FontWeight.bold,

@@ -6,6 +6,7 @@ import 'package:u_pizzas/app/modules/auth/product/controller/product_controller.
 import '../../../core/ui/extensions/size_screen_extension.dart';
 import '../../../core/ui/extensions/theme_extension.dart';
 import '../../../core/ui/widgets/app_bar_default_widget.dart';
+import '../cart/controller/cart_controller.dart';
 
 part 'widgets/bottom_navigation_bar_widget.dart';
 part 'widgets/pizza_added_itens.dart';

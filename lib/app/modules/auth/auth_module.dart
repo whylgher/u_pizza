@@ -5,6 +5,7 @@ import '../../repositories/user/user_repository_impl.dart';
 import '../../service/user/user_service.dart';
 import '../../service/user/user_service_impl.dart';
 import 'cart/cart_module.dart';
+import 'cart/controller/cart_controller.dart';
 import 'chat/chat_module.dart';
 import 'home/auth_home_page.dart';
 import 'login/login_module.dart';
@@ -31,6 +32,9 @@ class AuthModule extends Module {
         userRepository: i(), // AuthModule
         localStorage: i(), // CoreModule
       ),
+    ),
+    Bind.lazySingleton(
+      (i) => CartController(),
     ),
   ];
 
