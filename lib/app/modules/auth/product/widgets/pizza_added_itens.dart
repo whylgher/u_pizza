@@ -79,6 +79,7 @@ class PizzaAddedItens extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               controller.addAdditional(index!);
+                              controller.updatePage();
                             },
                             child: Container(
                               height: 15.h,
@@ -108,11 +109,7 @@ class PizzaAddedItens extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               controller.removeAdditional(index!);
-                              if (controller.regular == true) {
-                                controller.sizePizzaRegular();
-                              } else {
-                                controller.sizePizzaLarge();
-                              }
+                              controller.updatePage();
                             },
                             child: Container(
                               height: 15.h,

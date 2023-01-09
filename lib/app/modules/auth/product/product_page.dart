@@ -46,169 +46,164 @@ class ProductPage extends StatelessWidget {
                   child: Observer(builder: (_) {
                     return Stack(
                       children: [
-                        Visibility(
-                          visible: controllerPizza.pizza.isNotEmpty,
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: 250.h,
-                                child: Image.network(
-                                  controllerPizza.pizza['image']['image']
-                                      .toString(),
-                                  filterQuality: FilterQuality.high,
-                                  scale: .6,
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: 250.h,
+                              child: Image.network(
+                                controllerPizza.pizzaModel.image.toString(),
+                                filterQuality: FilterQuality.high,
+                                scale: .6,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 30.h,
+                            ),
+                            Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Text(
+                                controllerPizza.pizzaModel.name,
+                                style: TextStyle(
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Montserrat',
                                 ),
                               ),
-                              SizedBox(
-                                height: 30.h,
-                              ),
-                              Align(
-                                alignment: Alignment.bottomLeft,
-                                child: Text(
-                                  '${controllerPizza.pizza['name']}',
-                                  style: TextStyle(
-                                    fontSize: 20.sp,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Montserrat',
-                                  ),
+                            ),
+                            SizedBox(
+                              height: 5.h,
+                            ),
+                            Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Text(
+                                controllerPizza.pizzaModel.description,
+                                style: TextStyle(
+                                  fontSize: 12.sp,
+                                  fontFamily: 'Montserrat',
                                 ),
                               ),
-                              SizedBox(
-                                height: 5.h,
+                            ),
+                            SizedBox(
+                              height: 40.h,
+                            ),
+                            const TitleAddItems(
+                                title: 'Do you want to cut the pizza?',
+                                required: true),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                controllerPizza.cutInHalf();
+                              },
+                              child: PizzaAddedItens(
+                                label: 'CUT IN HALF',
+                                selected: controllerPizza.cutPizza,
                               ),
-                              Align(
-                                alignment: Alignment.bottomLeft,
-                                child: Text(
-                                  '${controllerPizza.pizza['description']}',
-                                  style: TextStyle(
-                                    fontSize: 12.sp,
-                                    fontFamily: 'Montserrat',
-                                  ),
-                                ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                controllerPizza.notCutPizza();
+                              },
+                              child: PizzaAddedItens(
+                                label: 'DO NOT CUT',
+                                selected: !controllerPizza.cutPizza,
                               ),
-                              SizedBox(
-                                height: 40.h,
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            const TitleAddItems(
+                              title: 'Choose your size',
+                              required: true,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                controllerPizza.sizePizzaRegular();
+                                controllerPizza.price =
+                                    controllerPizza.pizzaModel.regular;
+                                controllerPizza.set();
+                              },
+                              child: PizzaAddedItens(
+                                label: '12" (Regular)',
+                                selected: controllerPizza.regular,
+                                price:
+                                    'U\$ ${controllerPizza.pizzaModel.regular}',
                               ),
-                              const TitleAddItems(
-                                  title: 'Do you want to cut the pizza?',
-                                  required: true),
-                              SizedBox(
-                                height: 10.h,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                controllerPizza.sizePizzaLarge();
+                                controllerPizza.price =
+                                    controllerPizza.pizzaModel.large;
+                                controllerPizza.set();
+                              },
+                              child: PizzaAddedItens(
+                                label: '15" (Large)',
+                                selected: controllerPizza.large,
+                                price:
+                                    'U\$ ${controllerPizza.pizzaModel.large}',
                               ),
-                              GestureDetector(
-                                onTap: () {
-                                  controllerPizza.cutInHalf();
-                                },
-                                child: PizzaAddedItens(
-                                  label: 'CUT IN HALF',
-                                  selected: controllerPizza.cutPizza,
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  controllerPizza.notCutPizza();
-                                },
-                                child: PizzaAddedItens(
-                                  label: 'DO NOT CUT',
-                                  selected: !controllerPizza.cutPizza,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              const TitleAddItems(
-                                title: 'Choose your size',
-                                required: true,
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  controllerPizza.sizePizzaRegular();
-                                  controllerPizza.price = controllerPizza
-                                      .pizza['prices']['regular'];
-                                  controllerPizza.set();
-                                },
-                                child: PizzaAddedItens(
-                                  label: '12" (Regular)',
-                                  selected: controllerPizza.regular,
-                                  price:
-                                      'U\$ ${controllerPizza.pizza['prices']['regular']}',
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  controllerPizza.sizePizzaLarge();
-                                  controllerPizza.price =
-                                      controllerPizza.pizza['prices']['large'];
-                                  controllerPizza.set();
-                                },
-                                child: PizzaAddedItens(
-                                  label: '15" (Large)',
-                                  selected: controllerPizza.large,
-                                  price:
-                                      'U\$ ${controllerPizza.pizza['prices']['large']}',
-                                ),
-                              ),
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              const TitleAddItems(
-                                  title: 'Additional', required: false),
-                              ListView.separated(
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount:
-                                    controllerPizza.additionalList.length,
-                                separatorBuilder: (_, __) =>
-                                    const Divider(height: 0),
-                                itemBuilder: (context, index) {
-                                  return PizzaAddedItens(
-                                    index: index,
-                                    label: controllerPizza
-                                        .additionalList[index].name,
-                                    item: false,
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            const TitleAddItems(
+                                title: 'Additional', required: false),
+                            ListView.separated(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: controllerPizza.additionalList.length,
+                              separatorBuilder: (_, __) =>
+                                  const Divider(height: 0),
+                              itemBuilder: (context, index) {
+                                return PizzaAddedItens(
+                                  index: index,
+                                  label: controllerPizza
+                                      .additionalList[index].name,
+                                  item: false,
+                                  price: controllerPizza
+                                              .additionalList[index].price ==
+                                          0
+                                      ? ''
+                                      : "U\$ ${controllerPizza.additionalList[index].price}",
+                                );
+                              },
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            const TitleAddItems(
+                                title: 'Border', required: true),
+                            ListView.separated(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: controllerPizza.bordersList.length,
+                              separatorBuilder: (_, __) =>
+                                  const Divider(height: 0),
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    controllerPizza.selectBorder(index);
+                                  },
+                                  child: PizzaAddedItens(
+                                    selected: controllerPizza
+                                        .bordersList[index].select,
+                                    label:
+                                        controllerPizza.bordersList[index].name,
                                     price: controllerPizza
-                                                .additionalList[index].price ==
-                                            0
+                                                .bordersList[index].price ==
+                                            0.0
                                         ? ''
-                                        : "U\$ ${controllerPizza.additionalList[index].price}",
-                                  );
-                                },
-                              ),
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              const TitleAddItems(
-                                  title: 'Border', required: true),
-                              ListView.separated(
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: controllerPizza.bordersList.length,
-                                separatorBuilder: (_, __) =>
-                                    const Divider(height: 0),
-                                itemBuilder: (context, index) {
-                                  return GestureDetector(
-                                    onTap: () {
-                                      controllerPizza.selectBorder(index);
-                                    },
-                                    child: PizzaAddedItens(
-                                      selected: controllerPizza
-                                          .bordersList[index].select,
-                                      label: controllerPizza
-                                          .bordersList[index].name,
-                                      price: controllerPizza
-                                                  .bordersList[index].price ==
-                                              0.0
-                                          ? ''
-                                          : "U\$ ${controllerPizza.bordersList[index].price}",
-                                    ),
-                                  );
-                                },
-                              ),
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                            ],
-                          ),
+                                        : "U\$ ${controllerPizza.bordersList[index].price}",
+                                  ),
+                                );
+                              },
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                          ],
                         ),
                       ],
                     );
