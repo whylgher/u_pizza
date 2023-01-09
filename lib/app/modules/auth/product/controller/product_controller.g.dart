@@ -399,11 +399,11 @@ mixin _$ProductController on ProductControllerBase, Store {
   }
 
   @override
-  void setAll() {
+  void resetAll() {
     final _$actionInfo = _$ProductControllerBaseActionController.startAction(
-        name: 'ProductControllerBase.setAll');
+        name: 'ProductControllerBase.resetAll');
     try {
-      return super.setAll();
+      return super.resetAll();
     } finally {
       _$ProductControllerBaseActionController.endAction(_$actionInfo);
     }

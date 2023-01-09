@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
+import '../../../../core/ui/widgets/loader.dart';
 import '../../../../models/additional_model.dart';
 import '../../../../models/border_model.dart';
 import '../../../../models/pizza_model.dart';
@@ -144,10 +145,11 @@ abstract class ProductControllerBase with Store {
   }
 
   @action
-  void setAll() {
+  void resetAll() {
     priceAdditional = 0;
     priceBorder = 0;
     itemAdditional = [];
+    bordersList = ObservableList<BorderModel>.of([]);
     sizePizzaRegular();
 
     item = 1;
@@ -158,11 +160,11 @@ abstract class ProductControllerBase with Store {
   @action
   Future<void> getPizza(int id) async {
     var data = await _productService.getPizza(id);
+    PizzaModel pizzaModel = PizzaModel.fromMap(data);
     pizza = data['pizza'];
     additionals = data['additionals'];
     borders = data['borders'];
-    PizzaModel pizzaModel = PizzaModel.fromMap(data);
-    price = pizzaModel.prices[0]['regular'];
+    price = pizzaModel.regular;
     set();
     for (var additional in pizzaModel.additionals) {
       AdditionalModel c = AdditionalModel.fromMap(additional);
@@ -175,7 +177,7 @@ abstract class ProductControllerBase with Store {
         c.select = true;
       }
     }
+    Loader.hide();
     Modular.to.navigate('/auth/product_page');
-    // Loader.show();
   }
 }

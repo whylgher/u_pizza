@@ -53,7 +53,7 @@ class ProductPage extends StatelessWidget {
                               SizedBox(
                                 height: 250.h,
                                 child: Image.network(
-                                  controllerPizza.pizza['image'][0]['image']
+                                  controllerPizza.pizza['image']['image']
                                       .toString(),
                                   filterQuality: FilterQuality.high,
                                   scale: .6,
@@ -124,28 +124,28 @@ class ProductPage extends StatelessWidget {
                                 onTap: () {
                                   controllerPizza.sizePizzaRegular();
                                   controllerPizza.price = controllerPizza
-                                      .pizza['prices'][0]['regular'];
+                                      .pizza['prices']['regular'];
                                   controllerPizza.set();
                                 },
                                 child: PizzaAddedItens(
                                   label: '12" (Regular)',
                                   selected: controllerPizza.regular,
                                   price:
-                                      'U\$ ${controllerPizza.pizza['prices'][0]['regular']}',
+                                      'U\$ ${controllerPizza.pizza['prices']['regular']}',
                                 ),
                               ),
                               GestureDetector(
                                 onTap: () {
                                   controllerPizza.sizePizzaLarge();
-                                  controllerPizza.price = controllerPizza
-                                      .pizza['prices'][0]['large'];
+                                  controllerPizza.price =
+                                      controllerPizza.pizza['prices']['large'];
                                   controllerPizza.set();
                                 },
                                 child: PizzaAddedItens(
                                   label: '15" (Large)',
                                   selected: controllerPizza.large,
                                   price:
-                                      'U\$ ${controllerPizza.pizza['prices'][0]['large']}',
+                                      'U\$ ${controllerPizza.pizza['prices']['large']}',
                                 ),
                               ),
                               SizedBox(
