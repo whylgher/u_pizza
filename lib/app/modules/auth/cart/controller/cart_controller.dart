@@ -1,5 +1,6 @@
 import 'package:mobx/mobx.dart';
 
+import '../../../../models/drink_model.dart';
 import '../../../../service/drink/drink_service.dart';
 
 part 'cart_controller.g.dart';
@@ -15,20 +16,21 @@ abstract class CartControllerBase with Store {
   @observable
   double total = 0;
   @observable
-  ObservableList drinks = ObservableList.of([]);
+  ObservableList<DrinkModel> drinks = ObservableList.of([]);
 
   @action
   void sumTotal(List items) {
-    items.forEach((item) {
+    for (var item in items) {
       total = total + item.amount;
-    });
+    }
   }
 
   @action
   Future<void> getDrinks() async {
     List<dynamic> allDrinks = await _drinkService.getDrinks();
-    allDrinks.forEach((drink) {
-      drinks.add(drink);
-    });
+    for (var drink in allDrinks) {
+      DrinkModel drinkModel = DrinkModel.fromMap(drink);
+      drinks.add(drinkModel);
+    }
   }
 }

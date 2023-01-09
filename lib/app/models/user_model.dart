@@ -1,27 +1,25 @@
-// ignore_for_file: non_constant_identifier_names
-
 import 'dart:convert';
 
 class UserModel {
   final String email;
-  final String img_url;
+  final String image;
   final Map data;
 
   UserModel({
     required this.email,
-    required this.img_url,
+    required this.image,
     required this.data,
   });
 
   UserModel.empty()
       : email = '',
-        img_url = '',
+        image = '',
         data = {};
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'email': email,
-      'img_url': img_url,
+      'img_url': image,
       'data': data,
     };
   }
@@ -29,7 +27,7 @@ class UserModel {
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       email: map['email'] as String,
-      img_url: map['img_url'] ?? '',
+      image: map['img_url'] ?? '',
       data: map['data'] as dynamic,
     );
   }
