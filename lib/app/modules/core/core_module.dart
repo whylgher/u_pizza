@@ -7,10 +7,14 @@ import '../../core/logger/app_logger.dart';
 import '../../core/logger/app_logger_impl.dart';
 import '../../core/rest_client/dio/dio_rest_client.dart';
 import '../../core/rest_client/rest_client.dart';
+import '../../repositories/drink/drink_repository.dart';
+import '../../repositories/drink/drink_repository_impl.dart';
 import '../../repositories/pizza/pizza_repository.dart';
 import '../../repositories/pizza/pizza_repository_impl.dart';
 import '../../repositories/product/product_repository.dart';
 import '../../repositories/product/product_repository_impl.dart';
+import '../../service/drink/drink_service.dart';
+import '../../service/drink/drink_service_impl.dart';
 import '../../service/pizza/pizza_service.dart';
 import '../../service/pizza/pizza_service_impl.dart';
 import '../../service/product/product_service.dart';
@@ -62,6 +66,18 @@ class CoreModule extends Module {
     Bind.lazySingleton<ProductService>(
       (i) => ProductServiceImpl(
         productRespository: i(),
+      ),
+      export: true,
+    ),
+    Bind.lazySingleton<DrinkRepository>(
+      (i) => DrinkRepositoryImpl(
+        restClient: i(),
+      ),
+      export: true,
+    ),
+    Bind.lazySingleton<DrinkService>(
+      (i) => DrinkServiceImpl(
+        drinkRepository: i(),
       ),
       export: true,
     ),
