@@ -5,6 +5,8 @@ import 'package:mobx/mobx.dart';
 import '../../../core/ui/extensions/size_screen_extension.dart';
 import '../../../models/user_model.dart';
 import '../../core/auth/auth_store.dart';
+import '../cart/controller/cart_controller.dart';
+import '../product/controller/product_controller.dart';
 
 class AuthHomePage extends StatefulWidget {
   final AuthStore _authStore;
@@ -35,8 +37,12 @@ class _AuthHomePageState extends State<AuthHomePage> {
     });
   }
 
+  final controller = Modular.get<CartController>();
+  final controllerProduct = Modular.get<ProductController>();
+
   @override
   Widget build(BuildContext context) {
+    controller.sumTotal(controllerProduct.cardList);
     return Scaffold(
       body: Center(
         child: Image.asset(

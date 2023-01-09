@@ -1,11 +1,13 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../core/ui/extensions/size_screen_extension.dart';
 import '../../../core/ui/icons/u_pizza_icons.dart';
 import '../../../core/ui/widgets/app_bar_default_widget.dart';
 import '../product/controller/product_controller.dart';
+import 'controller/cart_controller.dart';
 
 part 'widget/add_drinks.dart';
 part 'widget/address_paymen_coupon_widget.dart';
@@ -24,10 +26,10 @@ class CartPage extends StatelessWidget {
       appBar: AppBarDefaultWidget(
         label: 'Cart',
         action: () {
-          Modular.to.navigate('/auth/product_page');
+          Modular.to.navigate('/home');
         },
       ),
-      bottomNavigationBar: BottomNavigationBarWidget(),
+      bottomNavigationBar: const BottomNavigationBarWidget(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

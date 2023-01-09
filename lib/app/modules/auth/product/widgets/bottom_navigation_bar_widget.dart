@@ -79,6 +79,10 @@ class BottomNavigationBarWidget extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     if (controller.addToCard()) {
+                      final controller = Modular.get<CartController>();
+                      final controllerProduct =
+                          Modular.get<ProductController>();
+                      controller.sumTotal(controllerProduct.cardList);
                       Modular.to.navigate('/auth/order_page');
                     }
                   },

@@ -85,38 +85,38 @@ class AddressPaymenCouponWidget extends StatelessWidget {
           SizedBox(
             height: 15.w,
           ),
-          const Align(
-            alignment: Alignment.centerLeft,
-            child: Text('Coupon'),
-          ),
-          SizedBox(
-            height: 5.w,
-          ),
-          Container(
-            height: 55.h,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(7),
-              border: Border.all(
-                color: Colors.grey.shade300,
-              ),
-            ),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 15.w,
-                ),
-                Text(
-                  'Do you have a coupon?',
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14.sp,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          // const Align(
+          // alignment: Alignment.centerLeft,
+          // child: Text('Coupon'),
+          // ),
+          // SizedBox(
+          // height: 5.w,
+          // ),
+          // Container(
+          // height: 55.h,
+          // decoration: BoxDecoration(
+          //   color: Colors.white,
+          //   borderRadius: BorderRadius.circular(7),
+          //   border: Border.all(
+          //     color: Colors.grey.shade300,
+          //   ),
+          // ),
+          // child: Row(
+          //   children: [
+          //     SizedBox(
+          //       width: 15.w,
+          //     ),
+          //     Text(
+          //       'Do you have a coupon?',
+          //       style: TextStyle(
+          //         color: Colors.grey,
+          //         fontWeight: FontWeight.bold,
+          //         fontSize: 14.sp,
+          //       ),
+          //     ),
+          //   ],
+          // ),
+          // ),
           SizedBox(
             height: 15.h,
           ),

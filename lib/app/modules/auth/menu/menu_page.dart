@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../core/ui/extensions/size_screen_extension.dart';
+import '../cart/controller/cart_controller.dart';
+import '../product/controller/product_controller.dart';
 import 'widgets/app_bar_menu_widget.dart';
 import 'widgets/card_widget.dart';
 
@@ -30,6 +32,17 @@ class MenuPage extends StatelessWidget {
                   titleSize: 15,
                   action: () {
                     Modular.to.navigate('/auth/order');
+                  },
+                ),
+                CardWidget(
+                  iconLeading: const Icon(Icons.shopping_cart),
+                  title: 'Cart',
+                  titleSize: 15,
+                  action: () {
+                    final controller = Modular.get<CartController>();
+                    final controllerProduct = Modular.get<ProductController>();
+                    controller.sumTotal(controllerProduct.cardList);
+                    Modular.to.navigate('/auth/order_page');
                   },
                 ),
                 // CardWidget(iconLeading: const Icon(Icons.chat_outlined),title: 'Chat',titleSize: 15,action: () { Modular.to.navigate('/auth/chat'); },),
