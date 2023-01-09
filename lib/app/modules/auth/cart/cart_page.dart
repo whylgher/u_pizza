@@ -9,18 +9,20 @@ import '../../../core/ui/widgets/app_bar_default_widget.dart';
 import '../product/controller/product_controller.dart';
 import 'controller/cart_controller.dart';
 
-part 'widget/add_drinks.dart';
 part 'widget/address_paymen_coupon_widget.dart';
 part 'widget/bottom_navigation_bar_widget.dart';
 part 'widget/cart_app_bar.dart';
+part 'widget/drinks.dart';
 part 'widget/itens_widget.dart';
 
 class CartPage extends StatelessWidget {
-  const CartPage({Key? key}) : super(key: key);
+  CartPage({Key? key}) : super(key: key);
 
+  final controller = Modular.get<CartController>();
+
+  final controllerProduct = Modular.get<ProductController>();
   @override
   Widget build(BuildContext context) {
-    final controller = Modular.get<ProductController>();
     return Scaffold(
       backgroundColor: const Color(0xFFF7F8FA),
       appBar: AppBarDefaultWidget(
@@ -38,23 +40,35 @@ class CartPage extends StatelessWidget {
               ListView.separated(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: controller.cardList.length,
+                itemCount: controllerProduct.cardList.length,
                 separatorBuilder: (_, __) => Divider(height: 20.h),
                 itemBuilder: (context, index) {
                   return ItensWidget(
-                    name: controller.cardList[index].name,
-                    description: controller.cardList[index].description,
+                    name: controllerProduct.cardList[index].name,
+                    description: controllerProduct.cardList[index].description,
                     item: (index + 1).toString(),
-                    unitys: controller.cardList[index].amountPizzas,
-                    image: controller.cardList[index].img,
-                    total: controller.cardList[index].amount,
+                    unitys: controllerProduct.cardList[index].amountPizzas,
+                    image: controllerProduct.cardList[index].img,
+                    total: controllerProduct.cardList[index].amount,
                   );
                 },
               ),
               SizedBox(
                 height: 15.h,
               ),
-              const AddDrinks(),
+              Text(
+                'Want to add some drink?',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14.sp,
+                ),
+              ),
+              SizedBox(
+                height: 15.h,
+              ),
+              Drinks(),
               SizedBox(
                 height: 20.h,
               ),

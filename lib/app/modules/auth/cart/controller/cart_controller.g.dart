@@ -25,6 +25,30 @@ mixin _$CartController on CartControllerBase, Store {
     });
   }
 
+  late final _$drinksAtom =
+      Atom(name: 'CartControllerBase.drinks', context: context);
+
+  @override
+  ObservableList<dynamic> get drinks {
+    _$drinksAtom.reportRead();
+    return super.drinks;
+  }
+
+  @override
+  set drinks(ObservableList<dynamic> value) {
+    _$drinksAtom.reportWrite(value, super.drinks, () {
+      super.drinks = value;
+    });
+  }
+
+  late final _$getDrinksAsyncAction =
+      AsyncAction('CartControllerBase.getDrinks', context: context);
+
+  @override
+  Future<void> getDrinks() {
+    return _$getDrinksAsyncAction.run(() => super.getDrinks());
+  }
+
   late final _$CartControllerBaseActionController =
       ActionController(name: 'CartControllerBase', context: context);
 
@@ -42,7 +66,8 @@ mixin _$CartController on CartControllerBase, Store {
   @override
   String toString() {
     return '''
-total: ${total}
+total: ${total},
+drinks: ${drinks}
     ''';
   }
 }

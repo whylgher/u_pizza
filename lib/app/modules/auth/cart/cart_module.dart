@@ -10,7 +10,7 @@ class CartModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(
       Modular.initialRoute,
-      child: (_, __) => const CartPage(),
+      child: (_, __) => CartPage(),
     ),
   ];
 }

@@ -37,12 +37,13 @@ class _AuthHomePageState extends State<AuthHomePage> {
     });
   }
 
-  final controller = Modular.get<CartController>();
+  final controllerCart = Modular.get<CartController>();
   final controllerProduct = Modular.get<ProductController>();
 
   @override
   Widget build(BuildContext context) {
-    controller.sumTotal(controllerProduct.cardList);
+    controllerCart.getDrinks();
+    controllerCart.sumTotal(controllerProduct.cardList);
     return Scaffold(
       body: Center(
         child: Image.asset(
