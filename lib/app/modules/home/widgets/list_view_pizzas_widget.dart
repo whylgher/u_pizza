@@ -24,7 +24,9 @@ class ListViewPizzasWidget extends PreferredSize {
                       Loader.show();
                       final pizzId = controller.pizzasList[index];
                       controllerPizza.resetAll();
-                      await controllerPizza.getPizza(pizzId['pizza_id']);
+                      if (await controllerPizza.getPizza(pizzId['pizza_id'])) {
+                        Modular.to.navigate('/auth/product_page');
+                      }
                     },
                     child: Container(
                       constraints: BoxConstraints(minHeight: 110.h),

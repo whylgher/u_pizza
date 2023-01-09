@@ -9,33 +9,17 @@ part of 'product_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$ProductController on ProductControllerBase, Store {
-  late final _$pizzaAtom =
-      Atom(name: 'ProductControllerBase.pizza', context: context);
-
-  @override
-  Map<dynamic, dynamic> get pizza {
-    _$pizzaAtom.reportRead();
-    return super.pizza;
-  }
-
-  @override
-  set pizza(Map<dynamic, dynamic> value) {
-    _$pizzaAtom.reportWrite(value, super.pizza, () {
-      super.pizza = value;
-    });
-  }
-
   late final _$pizzaModelAtom =
       Atom(name: 'ProductControllerBase.pizzaModel', context: context);
 
   @override
-  dynamic get pizzaModel {
+  PizzaModel get pizzaModel {
     _$pizzaModelAtom.reportRead();
     return super.pizzaModel;
   }
 
   @override
-  set pizzaModel(dynamic value) {
+  set pizzaModel(PizzaModel value) {
     _$pizzaModelAtom.reportWrite(value, super.pizzaModel, () {
       super.pizzaModel = value;
     });
@@ -233,6 +217,22 @@ mixin _$ProductController on ProductControllerBase, Store {
     });
   }
 
+  late final _$cardListAtom =
+      Atom(name: 'ProductControllerBase.cardList', context: context);
+
+  @override
+  ObservableList<CartModel> get cardList {
+    _$cardListAtom.reportRead();
+    return super.cardList;
+  }
+
+  @override
+  set cardList(ObservableList<CartModel> value) {
+    _$cardListAtom.reportWrite(value, super.cardList, () {
+      super.cardList = value;
+    });
+  }
+
   late final _$bordersListAtom =
       Atom(name: 'ProductControllerBase.bordersList', context: context);
 
@@ -249,28 +249,11 @@ mixin _$ProductController on ProductControllerBase, Store {
     });
   }
 
-  late final _$addAdditionalAsyncAction =
-      AsyncAction('ProductControllerBase.addAdditional', context: context);
-
-  @override
-  Future<void> addAdditional(int index) {
-    return _$addAdditionalAsyncAction.run(() => super.addAdditional(index));
-  }
-
-  late final _$removeAdditionalAsyncAction =
-      AsyncAction('ProductControllerBase.removeAdditional', context: context);
-
-  @override
-  Future<void> removeAdditional(int index) {
-    return _$removeAdditionalAsyncAction
-        .run(() => super.removeAdditional(index));
-  }
-
   late final _$getPizzaAsyncAction =
       AsyncAction('ProductControllerBase.getPizza', context: context);
 
   @override
-  Future<void> getPizza(int id) {
+  Future<bool> getPizza(int id) {
     return _$getPizzaAsyncAction.run(() => super.getPizza(id));
   }
 
@@ -294,6 +277,28 @@ mixin _$ProductController on ProductControllerBase, Store {
         name: 'ProductControllerBase.updatePage');
     try {
       return super.updatePage();
+    } finally {
+      _$ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addAdditional(int index) {
+    final _$actionInfo = _$ProductControllerBaseActionController.startAction(
+        name: 'ProductControllerBase.addAdditional');
+    try {
+      return super.addAdditional(index);
+    } finally {
+      _$ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void removeAdditional(int index) {
+    final _$actionInfo = _$ProductControllerBaseActionController.startAction(
+        name: 'ProductControllerBase.removeAdditional');
+    try {
+      return super.removeAdditional(index);
     } finally {
       _$ProductControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -410,9 +415,30 @@ mixin _$ProductController on ProductControllerBase, Store {
   }
 
   @override
+  bool addToCard() {
+    final _$actionInfo = _$ProductControllerBaseActionController.startAction(
+        name: 'ProductControllerBase.addToCard');
+    try {
+      return super.addToCard();
+    } finally {
+      _$ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  Map<String, dynamic> generateMap() {
+    final _$actionInfo = _$ProductControllerBaseActionController.startAction(
+        name: 'ProductControllerBase.generateMap');
+    try {
+      return super.generateMap();
+    } finally {
+      _$ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-pizza: ${pizza},
 pizzaModel: ${pizzaModel},
 borders: ${borders},
 additionals: ${additionals},
@@ -426,6 +452,7 @@ cutPizza: ${cutPizza},
 regular: ${regular},
 large: ${large},
 additionalList: ${additionalList},
+cardList: ${cardList},
 bordersList: ${bordersList}
     ''';
   }

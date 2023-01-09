@@ -12,9 +12,9 @@ class Loader {
       builder: (context) {
         return Container(
           color: Colors.black54,
-          child: const Center(
-            child: CircularProgressIndicator(),
-          ),
+          // child: const Center(
+          //   child: CircularProgressIndicator(),
+          // ),
         );
       },
     );

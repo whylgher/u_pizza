@@ -1,9 +1,11 @@
-import 'package:flutter_modular/flutter_modular.dart';
+// ignore_for_file: avoid_print
+
 import 'package:mobx/mobx.dart';
 
 import '../../../../core/ui/widgets/loader.dart';
 import '../../../../models/additional_model.dart';
 import '../../../../models/border_model.dart';
+import '../../../../models/cart_model.dart';
 import '../../../../models/pizza_model.dart';
 import '../../../../service/product/product_service.dart';
 
@@ -19,9 +21,7 @@ abstract class ProductControllerBase with Store {
   }) : _productService = productService;
 
   @observable
-  Map pizza = {};
-  @observable
-  late dynamic pizzaModel = [];
+  late PizzaModel pizzaModel = PizzaModel.setNull();
   @observable
   List<dynamic> borders = [];
   @observable
@@ -48,15 +48,15 @@ abstract class ProductControllerBase with Store {
   ObservableList<AdditionalModel> additionalList =
       ObservableList<AdditionalModel>.of([]);
   @observable
+  ObservableList<CartModel> cardList = ObservableList<CartModel>.of([]);
+  @observable
   ObservableList<BorderModel> bordersList = ObservableList<BorderModel>.of([]);
 
   @action
   void selectBorder(int index) {
-    bordersList.forEach(
-      (border) {
-        border.select = false;
-      },
-    );
+    for (var border in bordersList) {
+      border.select = false;
+    }
     bordersList[index].select = true;
     priceBorder = bordersList[index].price;
     updatePage();
@@ -72,22 +72,20 @@ abstract class ProductControllerBase with Store {
   }
 
   @action
-  Future<void> addAdditional(int index) async {
+  void addAdditional(int index) {
     if (additionalList[index].count < 5) {
       additionalList[index].count++;
       priceAdditional = priceAdditional + additionalList[index].price;
       additionalList[index] = additionalList[index];
-      updatePage();
     }
   }
 
   @action
-  Future<void> removeAdditional(int index) async {
+  void removeAdditional(int index) {
     if (additionalList[index].count > 0) {
       additionalList[index].count--;
       priceAdditional = priceAdditional - additionalList[index].price;
       additionalList[index] = additionalList[index];
-      updatePage();
     }
   }
 
@@ -158,10 +156,40 @@ abstract class ProductControllerBase with Store {
   }
 
   @action
-  Future<void> getPizza(int id) async {
+  bool addToCard() {
+    CartModel c = CartModel.fromMap(generateMap());
+    cardList.add(c);
+    print('cardList');
+    print(cardList);
+    print('cardList');
+    return true;
+  }
+
+  @action
+  Map<String, dynamic> generateMap() {
+    var typeBorder;
+    for (var border in bordersList) {
+      if (border.select == true) {
+        typeBorder = border.name;
+      }
+    }
+    return {
+      'name': pizzaModel.name,
+      'description': pizzaModel.description,
+      'img': pizzaModel.image,
+      'cut': cutPizza,
+      'size': regular ? 'regular' : 'large',
+      'border': typeBorder,
+      'additional': additionalList,
+      'amountPizzas': item,
+      'amount': priceTotaly + priceAdditional + priceBorder,
+    };
+  }
+
+  @action
+  Future<bool> getPizza(int id) async {
     var data = await _productService.getPizza(id);
-    PizzaModel pizzaModel = PizzaModel.fromMap(data);
-    pizza = data['pizza'];
+    pizzaModel = PizzaModel.fromMap(data);
     additionals = data['additionals'];
     borders = data['borders'];
     price = pizzaModel.regular;
@@ -178,6 +206,6 @@ abstract class ProductControllerBase with Store {
       }
     }
     Loader.hide();
-    Modular.to.navigate('/auth/product_page');
+    return true;
   }
 }

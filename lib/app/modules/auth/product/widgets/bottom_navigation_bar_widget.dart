@@ -78,7 +78,9 @@ class BottomNavigationBarWidget extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Modular.to.navigate('/auth/order_page');
+                    if (controller.addToCard()) {
+                      Modular.to.navigate('/auth/order_page');
+                    }
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -92,7 +94,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text(
-                          'Add to card',
+                          'Add to cart',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,

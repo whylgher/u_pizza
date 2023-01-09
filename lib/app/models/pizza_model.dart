@@ -54,6 +54,20 @@ class PizzaModel {
     );
   }
 
+  factory PizzaModel.setNull() {
+    return PizzaModel(
+        id: 0,
+        name: '',
+        description: '',
+        category: '',
+        regular: 0,
+        large: 0,
+        image: '',
+        borders: [],
+        additionals: [],
+        countAdditionals: 0);
+  }
+
   String toJson() => json.encode(toMap());
 
   factory PizzaModel.fromJson(String source) =>
