@@ -40,14 +40,12 @@ class Drinks extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.only(bottom: 5.h),
                   height: 110.h,
-                  child: Image.network(
-                    'https://static.wixstatic.com/media/0adaee_284f45c0fe394abebadcfcd9c103b363~mv2.png/v1/fit/w_500,h_500,q_90/file.png',
-                  ),
+                  child: Image.network(controller.drinks[index].image),
                 ),
                 Container(
                   padding: const EdgeInsets.only(top: 5),
                   child: Text(
-                    'Coca Cola',
+                    controller.drinks[index].name,
                     style: TextStyle(
                       fontSize: 10.sp,
                     ),
@@ -60,7 +58,7 @@ class Drinks extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 5),
                   width: sizeDevice.width * .7,
                   child: Text(
-                    'U\$ 3,50',
+                    'U\$ ${controller.drinks[index].price.toStringAsFixed(2)}',
                     style: TextStyle(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.bold,

@@ -37,21 +37,46 @@ class CartPage extends StatelessWidget {
           child: Column(
             children: [
               const AddressPaymenCouponWidget(),
-              ListView.separated(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: controllerProduct.cardList.length,
-                separatorBuilder: (_, __) => Divider(height: 20.h),
-                itemBuilder: (context, index) {
-                  return ItensWidget(
-                    name: controllerProduct.cardList[index].name,
-                    description: controllerProduct.cardList[index].description,
-                    item: (index + 1).toString(),
-                    unitys: controllerProduct.cardList[index].amountPizzas,
-                    image: controllerProduct.cardList[index].img,
-                    total: controllerProduct.cardList[index].amount,
-                  );
-                },
+              Visibility(
+                visible: controllerProduct.cardList.isNotEmpty,
+                child: ListView.separated(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: controllerProduct.cardList.length,
+                  separatorBuilder: (_, __) => Divider(height: 20.h),
+                  itemBuilder: (context, index) {
+                    return ItensWidget(
+                      name: controllerProduct.cardList[index].name,
+                      description:
+                          controllerProduct.cardList[index].description,
+                      item: (index + 1).toString(),
+                      unitys: controllerProduct.cardList[index].amountPizzas,
+                      image: controllerProduct.cardList[index].img,
+                      total: controllerProduct.cardList[index].amount,
+                    );
+                  },
+                ),
+              ),
+              Visibility(
+                visible: !controllerProduct.cardList.isNotEmpty,
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.remove_shopping_cart_outlined,
+                      size: 80.w,
+                      color: Colors.grey.shade700,
+                    ),
+                    Text(
+                      'EMPTY CART',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14.sp,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 15.h,

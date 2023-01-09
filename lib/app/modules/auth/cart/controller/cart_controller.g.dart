@@ -29,13 +29,13 @@ mixin _$CartController on CartControllerBase, Store {
       Atom(name: 'CartControllerBase.drinks', context: context);
 
   @override
-  ObservableList<dynamic> get drinks {
+  ObservableList<DrinkModel> get drinks {
     _$drinksAtom.reportRead();
     return super.drinks;
   }
 
   @override
-  set drinks(ObservableList<dynamic> value) {
+  set drinks(ObservableList<DrinkModel> value) {
     _$drinksAtom.reportWrite(value, super.drinks, () {
       super.drinks = value;
     });
