@@ -27,6 +27,8 @@ class _RegisterPageState extends State<RegisterPage> {
   double turns = 0.0;
   @override
   Widget build(BuildContext context) {
+    final sizeDevice = MediaQuery.of(context).size;
+
     Widget bigCircle = Container(
       width: 250.0.w,
       height: 250.0.h,
@@ -99,33 +101,35 @@ class _RegisterPageState extends State<RegisterPage> {
         children: [
           SingleChildScrollView(
             physics: const NeverScrollableScrollPhysics(),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              heightFactor: 1.h,
-              child: FractionallySizedBox(
-                widthFactor: 2,
-                child: AnimatedRotation(
-                  turns: turns,
-                  duration: const Duration(seconds: 1),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: const DecorationImage(
-                        fit: BoxFit.fitHeight,
+            child: Container(
+              margin: EdgeInsets.only(top: 90.h),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: FractionallySizedBox(
+                  widthFactor: 2,
+                  child: AnimatedRotation(
+                    turns: turns,
+                    duration: const Duration(seconds: 1),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: const DecorationImage(
+                          fit: BoxFit.fitHeight,
+                          image: AssetImage("assets/images/bg.png"),
+                        ),
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            context.primaryColorDark,
+                            const Color.fromARGB(255, 47, 0, 0),
+                          ],
+                        ),
+                      ),
+                      child: const Image(
                         image: AssetImage("assets/images/bg.png"),
+                        opacity: AlwaysStoppedAnimation(0),
                       ),
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          context.primaryColorDark,
-                          const Color.fromARGB(255, 47, 0, 0),
-                        ],
-                      ),
-                    ),
-                    child: const Image(
-                      image: AssetImage("assets/images/bg.png"),
-                      opacity: AlwaysStoppedAnimation(0),
                     ),
                   ),
                 ),
@@ -136,11 +140,12 @@ class _RegisterPageState extends State<RegisterPage> {
             physics: const NeverScrollableScrollPhysics(),
             child: Align(
               alignment: Alignment.bottomCenter,
-              heightFactor: 3.2.h,
+              heightFactor: sizeDevice.height < 850 ? 4.1.h : 3.2.h,
               child: Stack(
                 children: [
                   GestureDetector(
                     onTap: () {
+                      print('next');
                       setState(() {
                         turns = 0.0;
                         currentPageValue = 0.0;
@@ -153,7 +158,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         Center(
                           child: Align(
                             alignment: Alignment.bottomRight,
-                            heightFactor: 1.1.h,
+                            heightFactor:
+                                sizeDevice.height < 850 ? 1.3.h : 1.1.h,
                             widthFactor: 4.w,
                             child: smallCircle,
                           ),
@@ -161,8 +167,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         Center(
                           child: Align(
                             alignment: Alignment.bottomRight,
-                            heightFactor: 4.h,
-                            widthFactor: 6.5.w,
+                            heightFactor: sizeDevice.height < 850 ? 4.5.h : 4.h,
+                            widthFactor: sizeDevice.height < 850 ? 8.w : 6.5.w,
                             child: Text(
                               'Sing-in',
                               style: TextStyle(
@@ -206,7 +212,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         Center(
                           child: Align(
                             alignment: Alignment.bottomLeft,
-                            heightFactor: 1.1.h,
+                            heightFactor:
+                                sizeDevice.height < 850 ? 1.3.h : 1.1.h,
                             widthFactor: 4.w,
                             child: smallCircle,
                           ),
@@ -214,8 +221,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         Center(
                           child: Align(
                             alignment: Alignment.bottomLeft,
-                            heightFactor: 4.h,
-                            widthFactor: 5.6.w,
+                            heightFactor: sizeDevice.height < 850 ? 4.5.h : 4.h,
+                            widthFactor:
+                                sizeDevice.height < 850 ? 6.5.w : 5.6.w,
                             child: Text(
                               'Previous',
                               style: TextStyle(

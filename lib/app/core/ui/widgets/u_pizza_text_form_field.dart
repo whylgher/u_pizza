@@ -10,11 +10,13 @@ class UPizzaTextFormField extends StatelessWidget {
   final bool obscureText;
   final ValueNotifier<bool> _obscureTextVn;
   final bool? focused;
+  final bool? isNumber;
 
   UPizzaTextFormField({
     Key? key,
     this.label,
     this.obscureText = false,
+    this.isNumber = false,
     this.controller,
     this.focused = false,
     this.validator,
@@ -27,6 +29,7 @@ class UPizzaTextFormField extends StatelessWidget {
       valueListenable: _obscureTextVn,
       builder: (_, obscureTextVnValue, child) {
         return TextFormField(
+          keyboardType: isNumber! ? TextInputType.number : null,
           autofocus: focused!,
           controller: controller,
           obscureText: obscureTextVnValue,
