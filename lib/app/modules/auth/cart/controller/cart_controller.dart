@@ -26,6 +26,29 @@ abstract class CartControllerBase with Store {
   }
 
   @action
+  void addItem(int index) {
+    if (drinks[index].countItem < 10) {
+      drinks[index].countItem++;
+      addTotal(drinks[index].price);
+      print(drinks[index].countItem);
+    }
+  }
+
+  @action
+  void removeItem(int index) {
+    if (drinks[index].countItem > 0) {
+      drinks[index].countItem--;
+      addTotal(-drinks[index].price);
+      print(drinks[index].countItem);
+    }
+  }
+
+  @action
+  void addTotal(double value) {
+    total = total + value;
+  }
+
+  @action
   Future<void> getDrinks() async {
     List<dynamic> allDrinks = await _drinkService.getDrinks();
     for (var drink in allDrinks) {

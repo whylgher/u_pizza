@@ -23,49 +23,84 @@ class Drinks extends StatelessWidget {
         separatorBuilder: (_, __) => Divider(height: 20.h),
         itemCount: controller.drinks.length,
         itemBuilder: ((context, index) {
-          return Container(
-            margin: EdgeInsets.symmetric(horizontal: 10.w),
-            width: 135.w,
-            padding: const EdgeInsets.all(15),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey.shade400,
-                width: .5,
+          return GestureDetector(
+            onTap: () {
+              showModalBottomSheet<void>(
+                backgroundColor: Colors.transparent,
+                context: context,
+                builder: (BuildContext context) {
+                  return ItemModal(index: index);
+                },
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 10.w),
+              width: 135.w,
+              padding: const EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.grey.shade400,
+                  width: .5,
+                ),
+                borderRadius: BorderRadius.circular(20),
+                color: const Color(0xFFF7F8FA),
               ),
-              borderRadius: BorderRadius.circular(20),
-              color: const Color(0xFFF7F8FA),
-            ),
-            child: Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.only(bottom: 5.h),
-                  height: 110.h,
-                  child: Image.network(controller.drinks[index].image),
-                ),
-                Container(
-                  padding: const EdgeInsets.only(top: 5),
-                  child: Text(
-                    controller.drinks[index].name,
-                    style: TextStyle(
-                      fontSize: 10.sp,
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(bottom: 5.h),
+                    height: 110.h,
+                    child: Stack(
+                      children: [
+                        Image.network(controller.drinks[index].image),
+                        Container(
+                          alignment: Alignment.center,
+                          width: 20.w,
+                          height: 20.h,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blueGrey.shade400,
+                              width: .5,
+                            ),
+                            borderRadius: BorderRadius.circular(20),
+                            color: const Color(0xFFF7F8FA),
+                          ),
+                          child: Text(
+                            '${controller.drinks[index].countItem}',
+                            textAlign: TextAlign.center,
+                            style:
+                                TextStyle(fontSize: 10.sp, color: Colors.black),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 3.h,
-                ),
-                Container(
-                  padding: const EdgeInsets.only(top: 5),
-                  width: sizeDevice.width * .7,
-                  child: Text(
-                    'U\$ ${controller.drinks[index].price.toStringAsFixed(2)}',
-                    style: TextStyle(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.bold,
+                  Container(
+                    padding: const EdgeInsets.only(top: 5),
+                    child: Text(
+                      controller.drinks[index].name,
+                      style: TextStyle(
+                        fontSize: 10.sp,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    height: 3.h,
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.only(top: 5),
+                    width: sizeDevice.width * .7,
+                    child: Text(
+                      'U\$ ${controller.drinks[index].price.toStringAsFixed(2)}',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         }),

@@ -41,7 +41,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                         ],
                       ),
                       Text(
-                        'U\$ ${controller.total}',
+                        'U\$ ${controller.total.toStringAsFixed(2)}',
                         style: TextStyle(
                           fontSize: 16.sp,
                           fontFamily: 'Montserrat',
