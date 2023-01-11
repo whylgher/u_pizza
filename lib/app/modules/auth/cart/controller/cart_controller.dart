@@ -2,6 +2,7 @@ import 'package:mobx/mobx.dart';
 
 import '../../../../models/drink_model.dart';
 import '../../../../service/drink/drink_service.dart';
+import '../model/product_model.dart';
 
 part 'cart_controller.g.dart';
 
@@ -15,8 +16,9 @@ abstract class CartControllerBase with Store {
 
   @observable
   double total = 0;
+
   @observable
-  ObservableList<DrinkModel> drinks = ObservableList.of([]);
+  var drinks = <ProductModelStore>[].asObservable();
 
   @action
   void sumTotal(List items) {
@@ -29,8 +31,7 @@ abstract class CartControllerBase with Store {
   void addItem(int index) {
     if (drinks[index].countItem < 10) {
       drinks[index].countItem++;
-      addTotal(drinks[index].price);
-      print(drinks[index].countItem);
+      addTotal(drinks[index].drink.price);
     }
   }
 
@@ -38,8 +39,7 @@ abstract class CartControllerBase with Store {
   void removeItem(int index) {
     if (drinks[index].countItem > 0) {
       drinks[index].countItem--;
-      addTotal(-drinks[index].price);
-      print(drinks[index].countItem);
+      addTotal(-drinks[index].drink.price);
     }
   }
 
@@ -53,7 +53,8 @@ abstract class CartControllerBase with Store {
     List<dynamic> allDrinks = await _drinkService.getDrinks();
     for (var drink in allDrinks) {
       DrinkModel drinkModel = DrinkModel.fromMap(drink);
-      drinks.add(drinkModel);
+      var productData = ProductModelStore(countItem: 0, drink: drinkModel);
+      drinks.add(productData);
     }
   }
 }
