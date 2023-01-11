@@ -11,10 +11,10 @@ class SmoothPageRegisterIndicatorWidget extends StatelessWidget {
       effect: WormEffect(
         dotColor: Colors.white,
         activeDotColor: context.primaryColor,
-        spacing: 31.0,
+        spacing: 31.0.w,
         dotWidth: 31.0.w,
-        dotHeight: 31.h,
-        radius: 50,
+        dotHeight: 31.w,
+        radius: 50.h,
       ),
     );
   }
