@@ -97,4 +97,9 @@ class DrinkModel {
       countItem: countItem ?? this.countItem,
     );
   }
+
+  @override
+  String toString() {
+    return 'DrinkModel(id: $id, name: $name, price: $price, image: $image, description: $description, ml: $ml, amount: $amount, countItem: $countItem)';
+  }
 }

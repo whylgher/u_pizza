@@ -49,36 +49,48 @@ class Drinks extends StatelessWidget {
                 children: [
                   Container(
                     padding: EdgeInsets.only(bottom: 5.h),
+                    width: 90.w,
                     height: 110.h,
                     child: Stack(
                       children: [
-                        Image.network(controller.drinks[index].image),
-                        Container(
-                          alignment: Alignment.center,
-                          width: 20.w,
-                          height: 20.h,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.blueGrey.shade400,
-                              width: .5,
-                            ),
-                            borderRadius: BorderRadius.circular(20),
-                            color: const Color(0xFFF7F8FA),
-                          ),
-                          child: Text(
-                            '${controller.drinks[index].countItem}',
-                            textAlign: TextAlign.center,
-                            style:
-                                TextStyle(fontSize: 10.sp, color: Colors.black),
+                        Center(
+                          child: Image.network(
+                            controller.drinks[index].drink.image,
                           ),
                         ),
+                        Observer(builder: (_) {
+                          return Visibility(
+                            visible: controller.drinks[index].countItem >= 1,
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: 20.w,
+                              height: 20.h,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: context.primaryColorLight,
+                                  width: .5,
+                                ),
+                                borderRadius: BorderRadius.circular(20),
+                                color: context.primaryColorDark,
+                              ),
+                              child: Text(
+                                '${controller.drinks[index].countItem}',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 10.sp,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          );
+                        }),
                       ],
                     ),
                   ),
                   Container(
                     padding: const EdgeInsets.only(top: 5),
                     child: Text(
-                      controller.drinks[index].name,
+                      controller.drinks[index].drink.name,
                       style: TextStyle(
                         fontSize: 10.sp,
                       ),
@@ -92,7 +104,7 @@ class Drinks extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 5),
                     width: sizeDevice.width * .7,
                     child: Text(
-                      'U\$ ${controller.drinks[index].price.toStringAsFixed(2)}',
+                      'U\$ ${controller.drinks[index].drink.price.toStringAsFixed(2)}',
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.bold,

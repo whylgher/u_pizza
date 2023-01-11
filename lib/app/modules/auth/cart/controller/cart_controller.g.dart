@@ -29,13 +29,13 @@ mixin _$CartController on CartControllerBase, Store {
       Atom(name: 'CartControllerBase.drinks', context: context);
 
   @override
-  ObservableList<DrinkModel> get drinks {
+  ObservableList<ProductModelStore> get drinks {
     _$drinksAtom.reportRead();
     return super.drinks;
   }
 
   @override
-  set drinks(ObservableList<DrinkModel> value) {
+  set drinks(ObservableList<ProductModelStore> value) {
     _$drinksAtom.reportWrite(value, super.drinks, () {
       super.drinks = value;
     });
@@ -58,6 +58,39 @@ mixin _$CartController on CartControllerBase, Store {
         name: 'CartControllerBase.sumTotal');
     try {
       return super.sumTotal(items);
+    } finally {
+      _$CartControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addItem(int index) {
+    final _$actionInfo = _$CartControllerBaseActionController.startAction(
+        name: 'CartControllerBase.addItem');
+    try {
+      return super.addItem(index);
+    } finally {
+      _$CartControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void removeItem(int index) {
+    final _$actionInfo = _$CartControllerBaseActionController.startAction(
+        name: 'CartControllerBase.removeItem');
+    try {
+      return super.removeItem(index);
+    } finally {
+      _$CartControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addTotal(double value) {
+    final _$actionInfo = _$CartControllerBaseActionController.startAction(
+        name: 'CartControllerBase.addTotal');
+    try {
+      return super.addTotal(value);
     } finally {
       _$CartControllerBaseActionController.endAction(_$actionInfo);
     }
