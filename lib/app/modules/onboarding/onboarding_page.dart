@@ -23,7 +23,21 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   @override
   Widget build(BuildContext context) {
+    double valueInitial = 0;
+    double valueFinal = 0;
     final sizeDevice = MediaQuery.of(context).size;
+    if (sizeDevice.height < 800) {
+      setState(() {
+        valueInitial = 1.85;
+        valueFinal = 1.7;
+      });
+    } else if (sizeDevice.height < 950) {
+      setState(() {
+        valueInitial = 1.5;
+        valueFinal = 1.4;
+      });
+    }
+
     OnboardingPage.controller.addListener(
       () {
         setState(() {
@@ -33,72 +47,86 @@ class _OnboardingPageState extends State<OnboardingPage> {
     );
 
     return Scaffold(
-      floatingActionButton: Align(
-        alignment: Alignment(0.1.w, 0.85.h),
-        child: FloatingActionButton.extended(
-          extendedIconLabelSpacing: 20,
-          icon: const Icon(
-            UPizzaIcons.right_circle,
-            color: Color(0xFFED4631),
-            size: 30,
-          ),
-          onPressed: () {
-            Modular.to.navigate('/home');
-          },
-          backgroundColor: context.primaryColor,
-          label: Text(
-            'Get Started',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontSize: 20.sp,
-            ),
-          ),
-        ),
-      ),
       backgroundColor: context.primaryColor,
-      body: Stack(
-        children: [
-          AnimatedAlign(
-            duration: const Duration(seconds: 1),
-            curve: Curves.fastOutSlowIn,
-            heightFactor: currentPageValue == 0 ? 2.h : 13.h,
-            alignment: Alignment(0, currentPageValue == 0 ? 17.h : 13.h),
-            child: FractionallySizedBox(
-              widthFactor: 2,
-              child: Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  image: const DecorationImage(
-                    fit: BoxFit.fitHeight,
+      body: SingleChildScrollView(
+        physics: const NeverScrollableScrollPhysics(),
+        child: Stack(
+          children: [
+            AnimatedAlign(
+              duration: const Duration(seconds: 1),
+              curve: Curves.fastOutSlowIn,
+              heightFactor:
+                  currentPageValue == 0 ? valueInitial.h : valueFinal.h,
+              alignment: Alignment.bottomCenter,
+              child: FractionallySizedBox(
+                widthFactor: sizeDevice.width * .005.w,
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: const DecorationImage(
+                      fit: BoxFit.fitHeight,
+                      image: AssetImage("assets/images/bg.png"),
+                    ),
+                    color: context.primaryColorDark,
+                  ),
+                  child: const Image(
                     image: AssetImage("assets/images/bg.png"),
+                    opacity: AlwaysStoppedAnimation(0),
                   ),
-                  color: context.primaryColorDark,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(sizeDevice.width),
-                    topRight: Radius.circular(sizeDevice.width),
-                  ),
-                ),
-                child: const Image(
-                  image: AssetImage("assets/images/bg.png"),
-                  opacity: AlwaysStoppedAnimation(0),
                 ),
               ),
             ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(top: 100),
-            alignment: Alignment.topCenter,
-            child: const LogoWidget(
-              widthLogo: 136,
-              heigthLogo: 135,
-              logo: 'logo_white.png',
+            Container(
+              padding: const EdgeInsets.only(top: 100),
+              alignment: Alignment.topCenter,
+              child: Column(
+                children: const [
+                  LogoWidget(
+                    widthLogo: 136,
+                    heigthLogo: 135,
+                    logo: 'logo_white.png',
+                  ),
+                  OnboardingPageViewWidget(),
+                ],
+              ),
             ),
-          ),
-          const OnboardingPageViewWidget(),
-          const SmoothPageIndicatorWidget(),
-        ],
+            Container(
+              padding: EdgeInsets.all(55.h),
+              alignment: Alignment.bottomCenter,
+              height: sizeDevice.height,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  const SmoothPageIndicatorWidget(),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  FloatingActionButton.extended(
+                    extendedIconLabelSpacing: 20,
+                    icon: const Icon(
+                      UPizzaIcons.right_circle,
+                      color: Color(0xFFED4631),
+                      size: 30,
+                    ),
+                    onPressed: () {
+                      Modular.to.navigate('/home');
+                    },
+                    backgroundColor: context.primaryColor,
+                    label: Text(
+                      'Get Started',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.sp,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
