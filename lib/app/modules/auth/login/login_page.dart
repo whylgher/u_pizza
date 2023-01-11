@@ -62,44 +62,46 @@ class LoginPage extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            height: sizeDevice.height * .9,
-            child: Padding(
-              padding: const EdgeInsets.all(25.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      Center(
-                        child: Image.asset(
-                          'assets/images/logo_white.png',
-                          width: 130.w,
-                          fit: BoxFit.fill,
+          SingleChildScrollView(
+            child: SizedBox(
+              height: sizeDevice.height * .9,
+              child: Padding(
+                padding: const EdgeInsets.all(25.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Center(
+                          child: Image.asset(
+                            'assets/images/logo_white.png',
+                            width: sizeDevice.height < 850 ? 100.w : 130.w,
+                            fit: BoxFit.fill,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      const _LoginForm(),
-                      SizedBox(
-                        height: 8.h,
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      const _OrSerparator(),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      const _LoginRegisterButtons(),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                    ],
-                  ),
-                ],
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        const _LoginForm(),
+                        SizedBox(
+                          height: 8.h,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        const _OrSerparator(),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        const _LoginRegisterButtons(),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
