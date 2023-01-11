@@ -7,6 +7,8 @@ class DrinkModel {
   String image;
   String description;
   int ml;
+  int amount;
+  int countItem;
 
   DrinkModel({
     required this.id,
@@ -15,6 +17,8 @@ class DrinkModel {
     required this.image,
     required this.description,
     required this.ml,
+    this.amount = 0,
+    this.countItem = 0,
   });
 
   Map<String, dynamic> toMap() {
@@ -25,6 +29,8 @@ class DrinkModel {
       'image': image,
       'description': description,
       'ml': ml,
+      'amount': amount,
+      'countItem': countItem,
     };
   }
 
@@ -43,4 +49,52 @@ class DrinkModel {
 
   factory DrinkModel.fromJson(String source) =>
       DrinkModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  bool operator ==(covariant DrinkModel other) {
+    if (identical(this, other)) return true;
+
+    return other.id == id &&
+        other.name == name &&
+        other.price == price &&
+        other.image == image &&
+        other.description == description &&
+        other.ml == ml &&
+        other.amount == amount &&
+        other.countItem == countItem;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+        name.hashCode ^
+        price.hashCode ^
+        image.hashCode ^
+        description.hashCode ^
+        ml.hashCode ^
+        amount.hashCode ^
+        countItem.hashCode;
+  }
+
+  DrinkModel copyWith({
+    int? id,
+    String? name,
+    double? price,
+    String? image,
+    String? description,
+    int? ml,
+    int? amount,
+    int? countItem,
+  }) {
+    return DrinkModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      price: price ?? this.price,
+      image: image ?? this.image,
+      description: description ?? this.description,
+      ml: ml ?? this.ml,
+      amount: amount ?? this.amount,
+      countItem: countItem ?? this.countItem,
+    );
+  }
 }
