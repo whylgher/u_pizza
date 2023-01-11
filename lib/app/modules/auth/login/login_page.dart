@@ -19,84 +19,91 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final sizeDevice = MediaQuery.of(context).size;
     return Scaffold(
-      body: SingleChildScrollView(
-        physics: const NeverScrollableScrollPhysics(),
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            FractionallySizedBox(
-              widthFactor: 2.3,
-              child: Container(
-                decoration: BoxDecoration(
-                  image: const DecorationImage(
-                    alignment: Alignment.topCenter,
-                    image: AssetImage("assets/images/bg.png"),
-                  ),
-                  color: context.primaryColor,
-                ),
-                child: const Image(
+      body: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          FractionallySizedBox(
+            widthFactor: 2.3,
+            child: Container(
+              decoration: BoxDecoration(
+                image: const DecorationImage(
+                  alignment: Alignment.topCenter,
                   image: AssetImage("assets/images/bg.png"),
-                  opacity: AlwaysStoppedAnimation(0),
                 ),
+                color: context.primaryColor,
+              ),
+              child: const Image(
+                image: AssetImage("assets/images/bg.png"),
+                opacity: AlwaysStoppedAnimation(0),
               ),
             ),
-            FractionallySizedBox(
-              widthFactor: 2,
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      context.primaryColorDark,
-                      const Color.fromARGB(255, 61, 0, 0),
+          ),
+          FractionallySizedBox(
+            widthFactor: 1.5,
+            child: Container(
+              height: sizeDevice.height * .9,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    context.primaryColorDark,
+                    const Color.fromARGB(255, 61, 0, 0),
+                  ],
+                ),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(sizeDevice.width),
+                  topRight: Radius.circular(sizeDevice.width),
+                ),
+              ),
+              child: const Image(
+                image: AssetImage("assets/images/bg.png"),
+                opacity: AlwaysStoppedAnimation(0),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: sizeDevice.height * .9,
+            child: Padding(
+              padding: const EdgeInsets.all(25.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      Center(
+                        child: Image.asset(
+                          'assets/images/logo_white.png',
+                          width: 130.w,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      const _LoginForm(),
+                      SizedBox(
+                        height: 8.h,
+                      ),
                     ],
                   ),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(sizeDevice.width),
-                    topRight: Radius.circular(sizeDevice.width),
-                  ),
-                ),
-                child: const Image(
-                  image: AssetImage("assets/images/bg.png"),
-                  opacity: AlwaysStoppedAnimation(0),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Column(
-                children: [
-                  Center(
-                    child: Image.asset(
-                      'assets/images/logo_white.png',
-                      width: 130.w,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  const _LoginForm(),
-                  SizedBox(
-                    height: 8.h,
-                  ),
-                  const _OrSerparator(),
-                  SizedBox(
-                    height: 8.h,
-                  ),
-                  SizedBox(
-                    height: 180.h,
-                  ),
-                  const _LoginRegisterButtons(),
-                  SizedBox(
-                    height: 110.h,
+                  Column(
+                    children: [
+                      const _OrSerparator(),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      const _LoginRegisterButtons(),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

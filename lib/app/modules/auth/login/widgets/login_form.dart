@@ -55,7 +55,6 @@ class _LoginFormState extends State<_LoginForm> {
             borderRadius: 50,
             labelColor: Colors.black,
             fontWeight: FontWeight.bold,
-            height: 70.h,
             onPressed: () async {
               final formValid = _formKey.currentState?.validate() ?? false;
               if (formValid) {
