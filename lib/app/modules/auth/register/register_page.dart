@@ -145,7 +145,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      print('next');
                       setState(() {
                         turns = 0.0;
                         currentPageValue = 0.0;

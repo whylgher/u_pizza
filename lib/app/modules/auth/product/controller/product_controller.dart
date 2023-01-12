@@ -167,7 +167,7 @@ abstract class ProductControllerBase with Store {
 
   @action
   Map<String, dynamic> generateMap() {
-    var typeBorder;
+    var typeBorder = '';
     for (var border in bordersList) {
       if (border.select == true) {
         typeBorder = border.name;
