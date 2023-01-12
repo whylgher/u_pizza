@@ -24,17 +24,22 @@ class _AuthHomePageState extends State<AuthHomePage> {
   @override
   void initState() {
     super.initState();
-    reaction<UserModel?>((_) => widget._authStore.userLogged, (userLogger) {
-      if (userLogger != null && userLogger.email.isNotEmpty) {
-        Modular.to.navigate('/home');
-      } else {
-        Modular.to.navigate('/onboarding');
-      }
-    });
+    reaction<UserModel?>(
+      (_) => widget._authStore.userLogged,
+      (userLogger) {
+        if (userLogger != null && userLogger.email.isNotEmpty) {
+          Modular.to.navigate('/home');
+        } else {
+          Modular.to.navigate('/onboarding');
+        }
+      },
+    );
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      widget._authStore.loadUserLogged();
-    });
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        widget._authStore.loadUserLogged();
+      },
+    );
   }
 
   final controllerCart = Modular.get<CartController>();

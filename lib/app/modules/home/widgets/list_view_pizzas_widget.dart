@@ -21,10 +21,10 @@ class ListViewPizzasWidget extends PreferredSize {
 
                   return GestureDetector(
                     onTap: () async {
-                      Loader.show();
                       final pizzId = controller.pizzasList[index];
                       controllerPizza.resetAll();
                       if (await controllerPizza.getPizza(pizzId['pizza_id'])) {
+                        Loader.show();
                         Modular.to.navigate('/auth/product_page');
                       }
                     },
