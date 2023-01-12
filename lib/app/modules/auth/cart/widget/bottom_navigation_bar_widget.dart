@@ -9,7 +9,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
     var sizeDevice = MediaQuery.of(context).size;
 
     return Container(
-      height: sizeDevice.height * .2,
+      height: sizeDevice.height * .3,
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
@@ -41,7 +41,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                       //   ],
                       // ),
                       // Text(
-                      //   'U\$ ${controller.total.toStringAsFixed(2)}',
+                      //   '\$ ${controller.total.toStringAsFixed(2)}',
                       //   style: TextStyle(
                       //     fontSize: 16.sp,
                       //     fontFamily: 'Montserrat',
@@ -56,38 +56,70 @@ class BottomNavigationBarWidget extends StatelessWidget {
                 //   endIndent: 20,
                 //   height: 5,
                 // ),
-                // SizedBox(
-                //   height: 30.h,
-                //   width: sizeDevice.width * .85,
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //     children: [
-                //       Row(
-                //         children: [
-                //           Text(
-                //             'Discount Coupon',
-                //             style: TextStyle(
-                //               fontSize: 12.sp,
-                //               fontFamily: 'Montserrat',
-                //               color: Colors.grey,
-                //             ),
-                //           ),
-                //         ],
-                //       ),
-                //       Text(
-                //         'U\$ 8,80',
-                //         style: TextStyle(
-                //           fontSize: 16.sp,
-                //           fontFamily: 'Montserrat',
-                //           color: Colors.grey,
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                // const Divider(
-                //   height: 20,
-                // ),
+                SizedBox(
+                  height: 30.h,
+                  width: sizeDevice.width * .85,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            'Subtotal',
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              fontFamily: 'Montserrat',
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        '\$ ${controller.total.toStringAsFixed(2)}',
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontFamily: 'Montserrat',
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Divider(
+                  height: 20,
+                ),
+                SizedBox(
+                  height: 20.h,
+                  width: sizeDevice.width * .85,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            'Tax',
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              fontFamily: 'Montserrat',
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        '\$ ${(controller.total * .07).toStringAsFixed(2)}',
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontFamily: 'Montserrat',
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Divider(
+                  height: 20,
+                ),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: SizedBox(
@@ -109,7 +141,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          'U\$ ${controller.total.toStringAsFixed(2)}',
+                          '\$ ${((controller.total * .07) + controller.total).toStringAsFixed(2)}',
                           style: TextStyle(
                             fontSize: 17.sp,
                             fontWeight: FontWeight.bold,

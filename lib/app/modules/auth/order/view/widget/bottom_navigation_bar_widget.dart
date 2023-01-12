@@ -43,7 +43,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
                     ],
                   ),
                   Text(
-                    'U\$ 38,80',
+                    '\$ 38,80',
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontFamily: 'Montserrat',
@@ -77,7 +77,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
                     ],
                   ),
                   Text(
-                    'U\$ 8,80',
+                    '\$ 8,80',
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontFamily: 'Montserrat',
@@ -108,7 +108,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
                     ],
                   ),
                   Text(
-                    'U\$ 30,80',
+                    '\$ 30,80',
                     style: TextStyle(
                       fontSize: 17.sp,
                       fontWeight: FontWeight.bold,

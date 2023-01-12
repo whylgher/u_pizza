@@ -104,7 +104,7 @@ class Drinks extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 5),
                     width: sizeDevice.width * .7,
                     child: Text(
-                      'U\$ ${controller.drinks[index].drink.price.toStringAsFixed(2)}',
+                      '\$ ${controller.drinks[index].drink.price.toStringAsFixed(2)}',
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.bold,
