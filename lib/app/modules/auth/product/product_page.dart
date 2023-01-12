@@ -50,6 +50,9 @@ class ProductPage extends StatelessWidget {
                         Column(
                           children: [
                             SizedBox(
+                              height: 10.h,
+                            ),
+                            SizedBox(
                               height: 250.h,
                               child: Image.network(
                                 controllerPizza.pizzaModel.image.toString(),
