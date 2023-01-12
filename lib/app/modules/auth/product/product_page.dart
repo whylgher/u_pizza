@@ -132,7 +132,7 @@ class ProductPage extends StatelessWidget {
                                 label: '12" (Regular)',
                                 selected: controllerPizza.regular,
                                 price:
-                                    'U\$ ${controllerPizza.pizzaModel.regular}',
+                                    '\$ ${controllerPizza.pizzaModel.regular}',
                               ),
                             ),
                             GestureDetector(
@@ -143,10 +143,9 @@ class ProductPage extends StatelessWidget {
                                 controllerPizza.set();
                               },
                               child: PizzaAddedItens(
-                                label: '15" (Large)',
+                                label: '16" (Large)',
                                 selected: controllerPizza.large,
-                                price:
-                                    'U\$ ${controllerPizza.pizzaModel.large}',
+                                price: '\$ ${controllerPizza.pizzaModel.large}',
                               ),
                             ),
                             SizedBox(
@@ -170,40 +169,41 @@ class ProductPage extends StatelessWidget {
                                               .additionalList[index].price ==
                                           0
                                       ? ''
-                                      : "U\$ ${controllerPizza.additionalList[index].price}",
+                                      : "\$ ${controllerPizza.additionalList[index].price}",
                                 );
                               },
                             ),
                             SizedBox(
                               height: 20.h,
                             ),
-                            const TitleAddItems(
-                                title: 'Border', required: true),
-                            ListView.separated(
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: controllerPizza.bordersList.length,
-                              separatorBuilder: (_, __) =>
-                                  const Divider(height: 0),
-                              itemBuilder: (context, index) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    controllerPizza.selectBorder(index);
-                                  },
-                                  child: PizzaAddedItens(
-                                    selected: controllerPizza
-                                        .bordersList[index].select,
-                                    label:
-                                        controllerPizza.bordersList[index].name,
-                                    price: controllerPizza
-                                                .bordersList[index].price ==
-                                            0.0
-                                        ? ''
-                                        : "U\$ ${controllerPizza.bordersList[index].price}",
-                                  ),
-                                );
-                              },
-                            ),
+                            // const TitleAddItems(
+                            //     title: 'Border', required: true),
+                            // ListView.separated(
+                            //   physics: const NeverScrollableScrollPhysics(),
+                            //   shrinkWrap: true,
+                            //   itemCount: controllerPizza.bordersList.length,
+                            //   separatorBuilder: (_, __) =>
+                            //       const Divider(height: 0),
+                            //   itemBuilder: (context, index) {
+                            //     return GestureDetector(
+                            //       onTap: () {
+                            //         controllerPizza.selectBorder(index);
+                            //       },
+                            //       child: PizzaAddedItens(
+                            //         selected: controllerPizza
+                            //             .bordersList[index].select,
+                            //         label:
+                            //             controllerPizza.bordersList[index].name,
+                            //         price: controllerPizza
+                            //                     .bordersList[index].price ==
+                            //                 0.0
+                            //             ? ''
+                            //             : "\$ ${controllerPizza.bordersList[index].price}",
+                            //       ),
+                            //     );
+                            //   },
+                            // ),
+
                             SizedBox(
                               height: 20.h,
                             ),

@@ -24,7 +24,7 @@ class ListViewPizzasWidget extends PreferredSize {
                       final pizzId = controller.pizzasList[index];
                       controllerPizza.resetAll();
                       if (await controllerPizza.getPizza(pizzId['pizza_id'])) {
-                        Loader.show();
+                        // Loader.show();
                         Modular.to.navigate('/auth/product_page');
                       }
                     },
@@ -119,7 +119,7 @@ class ListViewPizzasWidget extends PreferredSize {
                                   padding:
                                       const EdgeInsets.only(top: 5, right: 15),
                                   child: Text(
-                                    'U\$ ${controller.pizzasList[index]['regular']}',
+                                    '\$ ${controller.pizzasList[index]['regular']}',
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontSize: 16.sp,

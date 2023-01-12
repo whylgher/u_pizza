@@ -44,15 +44,15 @@ class SizePizzaView extends StatelessWidget {
           SizedBox(
             height: 10.h,
           ),
-          const PizzaAddedItens(label: '12" Regular', price: 'U\$ 25,00'),
+          const PizzaAddedItens(label: '12" Regular', price: '\$ 25,00'),
           SizedBox(
             height: 10.h,
           ),
-          const PizzaAddedItens(label: '15" Regular', price: 'U\$ 28,00'),
+          const PizzaAddedItens(label: '15" Regular', price: '\$ 28,00'),
           SizedBox(
             height: 10.h,
           ),
-          const PizzaAddedItens(label: '18" Regular', price: 'U\$ 32,00'),
+          const PizzaAddedItens(label: '18" Regular', price: '\$ 32,00'),
         ],
       ),
     );
