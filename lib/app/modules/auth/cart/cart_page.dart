@@ -47,14 +47,23 @@ class CartPage extends StatelessWidget {
                   itemCount: controllerProduct.cardList.length,
                   separatorBuilder: (_, __) => Divider(height: 20.h),
                   itemBuilder: (context, index) {
-                    return ItensWidget(
-                      name: controllerProduct.cardList[index].name,
-                      description:
-                          controllerProduct.cardList[index].description,
-                      item: (index + 1).toString(),
-                      unitys: controllerProduct.cardList[index].amountPizzas,
-                      image: controllerProduct.cardList[index].img,
-                      total: controllerProduct.cardList[index].amount,
+                    final item = controllerProduct.cardList[index];
+                    return Dismissible(
+                      key: Key(item.name),
+                      onDismissed: (_) {
+                        controller.total = controller.total -
+                            controllerProduct.cardList[index].amount;
+                        controllerProduct.removeItenCart(index);
+                      },
+                      child: ItensWidget(
+                        name: controllerProduct.cardList[index].name,
+                        description:
+                            controllerProduct.cardList[index].description,
+                        item: (index + 1).toString(),
+                        unitys: controllerProduct.cardList[index].amountPizzas,
+                        image: controllerProduct.cardList[index].img,
+                        total: controllerProduct.cardList[index].amount,
+                      ),
                     );
                   },
                 ),

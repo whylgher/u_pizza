@@ -187,6 +187,11 @@ abstract class ProductControllerBase with Store {
   }
 
   @action
+  void removeItenCart(int index) {
+    cardList.removeAt(index);
+  }
+
+  @action
   Future<bool> getPizza(int id) async {
     var data = await _productService.getPizza(id);
     pizzaModel = PizzaModel.fromMap(data);
