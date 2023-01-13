@@ -97,6 +97,17 @@ mixin _$CartController on CartControllerBase, Store {
   }
 
   @override
+  void resetTotal() {
+    final _$actionInfo = _$CartControllerBaseActionController.startAction(
+        name: 'CartControllerBase.resetTotal');
+    try {
+      return super.resetTotal();
+    } finally {
+      _$CartControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 total: ${total},

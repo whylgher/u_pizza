@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -72,8 +73,9 @@ class AppBarMenuWidget extends PreferredSize {
                 backgroundColor: Colors.grey.shade100,
                 radius: 75,
                 child: CircleAvatar(
-                  backgroundImage: const NetworkImage(
-                    "https://scontent.fopo4-1.fna.fbcdn.net/v/t1.6435-9/75472695_2628515587229815_8525484424425373696_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=84a396&_nc_eui2=AeEKrO1q6zwsGN9-5r7AifcoNcNVzVspcQg1w1XNWylxCAM9oKwexA3HUtMcwQPPbbJ4XQCJfvyeRzCKzUlQ0nOI&_nc_ohc=i_aMZWb1YqsAX_Xcpce&_nc_ht=scontent.fopo4-1.fna&oh=00_AfAcTSrYWUD-KtfuIAZSwjnIC8aMpnpEYhVH_K7N75FZVg&oe=63C17EA9",
+                  backgroundImage: NetworkImage(
+                    FirebaseAuth.instance.currentUser?.photoURL ??
+                        'https://conteudo.imguol.com.br/c/entretenimento/80/2017/04/25/a-atriz-zoe-saldana-como-neytiri-em-avatar-1493136439818_v2_4x3.jpg',
                   ),
                   backgroundColor: Colors.grey[400],
                   radius: 70,
@@ -83,7 +85,7 @@ class AppBarMenuWidget extends PreferredSize {
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
-                  'Whylgher F. Lima',
+                  FirebaseAuth.instance.currentUser?.displayName ?? 'Whyll',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 18.sp,

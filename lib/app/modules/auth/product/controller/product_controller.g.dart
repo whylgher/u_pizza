@@ -437,6 +437,17 @@ mixin _$ProductController on ProductControllerBase, Store {
   }
 
   @override
+  void removeItenCart(int index) {
+    final _$actionInfo = _$ProductControllerBaseActionController.startAction(
+        name: 'ProductControllerBase.removeItenCart');
+    try {
+      return super.removeItenCart(index);
+    } finally {
+      _$ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 pizzaModel: ${pizzaModel},
