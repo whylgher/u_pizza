@@ -58,32 +58,34 @@ class Drinks extends StatelessWidget {
                             controller.drinks[index].drink.image,
                           ),
                         ),
-                        Observer(builder: (_) {
-                          return Visibility(
-                            visible: controller.drinks[index].countItem >= 1,
-                            child: Container(
-                              alignment: Alignment.center,
-                              width: 20.w,
-                              height: 20.h,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: context.primaryColorLight,
-                                  width: .5,
+                        Observer(
+                          builder: (_) {
+                            return Visibility(
+                              visible: controller.drinks[index].countItem >= 1,
+                              child: Container(
+                                alignment: Alignment.center,
+                                width: 20.w,
+                                height: 20.h,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: context.primaryColorLight,
+                                    width: .5,
+                                  ),
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: context.primaryColorDark,
                                 ),
-                                borderRadius: BorderRadius.circular(20),
-                                color: context.primaryColorDark,
+                                child: Text(
+                                  '${controller.drinks[index].countItem}',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 10.sp,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
-                              child: Text(
-                                '${controller.drinks[index].countItem}',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontSize: 10.sp,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          );
-                        }),
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ),

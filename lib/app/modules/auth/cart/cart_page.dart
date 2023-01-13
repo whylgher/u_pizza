@@ -36,79 +36,81 @@ class CartPage extends StatelessWidget {
       bottomNavigationBar: const BottomNavigationBarWidget(),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const AddressPaymenCouponWidget(),
-              Visibility(
-                visible: controllerProduct.cardList.isNotEmpty,
-                child: ListView.separated(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: controllerProduct.cardList.length,
-                  separatorBuilder: (_, __) => Divider(height: 20.h),
-                  itemBuilder: (context, index) {
-                    final item = controllerProduct.cardList[index];
-                    return Dismissible(
-                      key: Key(item.name),
-                      onDismissed: (_) {
-                        controller.total = controller.total -
-                            controllerProduct.cardList[index].amount;
-                        controllerProduct.removeItenCart(index);
+          child: Observer(
+            builder: (_) {
+              return Column(
+                children: [
+                  const AddressPaymenCouponWidget(),
+                  Visibility(
+                    visible: controllerProduct.cardList.isNotEmpty,
+                    child: ListView.separated(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: controllerProduct.cardList.length,
+                      separatorBuilder: (_, __) => Divider(height: 20.h),
+                      itemBuilder: (context, index) {
+                        final item = controllerProduct.cardList[index];
+                        return Dismissible(
+                          key: Key((item.name + item.id.toString())),
+                          onDismissed: (_) {
+                            controller.total = controller.total - item.amount;
+                            controllerProduct.removeItenCart(item.id);
+                          },
+                          child: ItensWidget(
+                            name: item.name,
+                            description: item.description,
+                            item: (index + 1).toString(),
+                            unitys: item.amountPizzas,
+                            image: item.img,
+                            total: item.amount,
+                          ),
+                        );
                       },
-                      child: ItensWidget(
-                        name: controllerProduct.cardList[index].name,
-                        description:
-                            controllerProduct.cardList[index].description,
-                        item: (index + 1).toString(),
-                        unitys: controllerProduct.cardList[index].amountPizzas,
-                        image: controllerProduct.cardList[index].img,
-                        total: controllerProduct.cardList[index].amount,
-                      ),
-                    );
-                  },
-                ),
-              ),
-              Visibility(
-                visible: !controllerProduct.cardList.isNotEmpty,
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.remove_shopping_cart_outlined,
-                      size: 80.w,
-                      color: Colors.grey.shade700,
                     ),
-                    Text(
-                      'EMPTY CART',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14.sp,
-                      ),
+                  ),
+                  Visibility(
+                    visible: !controllerProduct.cardList.isNotEmpty,
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.remove_shopping_cart_outlined,
+                          size: 80.w,
+                          color: Colors.grey.shade700,
+                        ),
+                        Text(
+                          'EMPTY CART',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14.sp,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 15.h,
-              ),
-              Text(
-                'Want to add some drink?',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14.sp,
-                ),
-              ),
-              SizedBox(
-                height: 15.h,
-              ),
-              Drinks(),
-              SizedBox(
-                height: 20.h,
-              ),
-            ],
+                  ),
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  Text(
+                    'Want to add some drink?',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14.sp,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  Drinks(),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                ],
+              );
+            },
           ),
         ),
       ),

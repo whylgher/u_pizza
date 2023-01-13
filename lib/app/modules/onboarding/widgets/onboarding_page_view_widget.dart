@@ -10,36 +10,40 @@ class OnboardingPageViewWidget extends StatelessWidget {
       child: PageView(
         controller: OnboardingPage.controller,
         children: [
-          Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Are',
-                    style: TextStyle(
-                      fontSize: 48.sp,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+          Container(
+            padding: EdgeInsets.only(top: 50.h),
+            height: 350.h,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Are',
+                      style: TextStyle(
+                        fontSize: 48.sp,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 15.w,
-                  ),
-                  const LogoWidget(
-                    logo: 'logo_u_black.png',
-                  ),
-                ],
-              ),
-              Text(
-                'hungry?',
-                style: TextStyle(
-                  fontSize: 48.sp,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
+                    SizedBox(
+                      width: 15.w,
+                    ),
+                    const LogoWidget(
+                      logo: 'logo_u_black.png',
+                    ),
+                  ],
                 ),
-              ),
-            ],
+                Text(
+                  'hungry?',
+                  style: TextStyle(
+                    fontSize: 48.sp,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
           ),
           Column(
             children: [

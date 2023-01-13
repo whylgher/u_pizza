@@ -23,40 +23,6 @@ class BottomNavigationBarWidget extends StatelessWidget {
             return Column(
               children: [
                 SizedBox(
-                  height: 20.h,
-                  width: sizeDevice.width * .85,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      // Row(
-                      //   children: [
-                      //     Text(
-                      //       'Subtotal',
-                      //       style: TextStyle(
-                      //         fontSize: 12.sp,
-                      //         fontFamily: 'Montserrat',
-                      //         color: Colors.grey,
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-                      // Text(
-                      //   '\$ ${controller.total.toStringAsFixed(2)}',
-                      //   style: TextStyle(
-                      //     fontSize: 16.sp,
-                      //     fontFamily: 'Montserrat',
-                      //     color: Colors.grey,
-                      //   ),
-                      // ),
-                    ],
-                  ),
-                ),
-                // const Divider(
-                //   indent: 20,
-                //   endIndent: 20,
-                //   height: 5,
-                // ),
-                SizedBox(
                   height: 30.h,
                   width: sizeDevice.width * .85,
                   child: Row(
@@ -161,6 +127,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
+                        controller.resetTotal();
                         // Modular.to.navigate('/auth/payment');
                       },
                       child: Container(
