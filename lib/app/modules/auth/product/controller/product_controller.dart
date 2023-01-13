@@ -2,7 +2,6 @@
 
 import 'package:mobx/mobx.dart';
 
-import '../../../../core/ui/widgets/loader.dart';
 import '../../../../models/additional_model.dart';
 import '../../../../models/border_model.dart';
 import '../../../../models/cart_model.dart';
@@ -73,7 +72,7 @@ abstract class ProductControllerBase with Store {
 
   @action
   void addAdditional(int index) {
-    if (additionalList[index].count < 5) {
+    if (additionalList[index].count < 2) {
       additionalList[index].count++;
       priceAdditional = priceAdditional + additionalList[index].price;
       additionalList[index] = additionalList[index];
@@ -159,9 +158,6 @@ abstract class ProductControllerBase with Store {
   bool addToCard() {
     CartModel c = CartModel.fromMap(generateMap());
     cardList.add(c);
-    print('cardList');
-    print(cardList);
-    print('cardList');
     return true;
   }
 
@@ -174,6 +170,7 @@ abstract class ProductControllerBase with Store {
       }
     }
     return {
+      'id': pizzaModel.id,
       'name': pizzaModel.name,
       'description': pizzaModel.description,
       'img': pizzaModel.image,
@@ -188,7 +185,7 @@ abstract class ProductControllerBase with Store {
 
   @action
   void removeItenCart(int index) {
-    cardList.removeAt(index);
+    cardList.removeWhere((item) => item.id == index);
   }
 
   @action
@@ -210,7 +207,7 @@ abstract class ProductControllerBase with Store {
         c.select = true;
       }
     }
-    Loader.hide();
+    // Loader.hide();
     return true;
   }
 }

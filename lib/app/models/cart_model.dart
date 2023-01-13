@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'additional_model.dart';
 
 class CartModel {
+  int id;
   String name;
   String img;
   String description;
@@ -16,6 +17,7 @@ class CartModel {
   double amount;
 
   CartModel({
+    required this.id,
     required this.name,
     required this.img,
     required this.description,
@@ -29,6 +31,7 @@ class CartModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'id': id,
       'name': name,
       'img': img,
       'description': description,
@@ -43,6 +46,7 @@ class CartModel {
 
   factory CartModel.fromMap(Map<String, dynamic> map) {
     return CartModel(
+      id: map['id'] as int,
       name: map['name'] as String,
       img: map['img'] as String,
       description: map['description'] as String,
@@ -62,7 +66,7 @@ class CartModel {
 
   @override
   String toString() {
-    return 'CartModel(name: $name, img: $img, description: $description, cut: $cut, size: $size, border: $border, additional: $additional, amountPizzas: $amountPizzas, amount: $amount)';
+    return 'CartModel(id: $id, name: $name, img: $img, description: $description, cut: $cut, size: $size, border: $border, additional: $additional, amountPizzas: $amountPizzas, amount: $amount)';
   }
 
   @override
@@ -70,6 +74,7 @@ class CartModel {
     if (identical(this, other)) return true;
 
     return other.name == name &&
+        other.id == id &&
         other.img == img &&
         other.description == description &&
         other.cut == cut &&
@@ -83,6 +88,7 @@ class CartModel {
   @override
   int get hashCode {
     return name.hashCode ^
+        id.hashCode ^
         img.hashCode ^
         description.hashCode ^
         cut.hashCode ^

@@ -43,7 +43,7 @@ class ButtonMakePizza extends StatelessWidget {
               Center(
                 child: RichText(
                   text: TextSpan(
-                    text: 'MAKE ',
+                    text: 'CREATE ',
                     style: TextStyle(
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w500,

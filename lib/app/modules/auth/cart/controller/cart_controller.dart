@@ -49,6 +49,14 @@ abstract class CartControllerBase with Store {
   }
 
   @action
+  void resetTotal() {
+    total = 0;
+    for (var drink in drinks) {
+      total = total + (drink.drink.price * drink.countItem);
+    }
+  }
+
+  @action
   Future<void> getDrinks() async {
     List<dynamic> allDrinks = await _drinkService.getDrinks();
     for (var drink in allDrinks) {
