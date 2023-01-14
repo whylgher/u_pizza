@@ -42,14 +42,14 @@ class CartPage extends StatelessWidget {
                 children: [
                   const AddressPaymenCouponWidget(),
                   Visibility(
-                    visible: controllerProduct.cardList.isNotEmpty,
+                    visible: controllerProduct.cartList.isNotEmpty,
                     child: ListView.separated(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: controllerProduct.cardList.length,
+                      itemCount: controllerProduct.cartList.length,
                       separatorBuilder: (_, __) => Divider(height: 20.h),
                       itemBuilder: (context, index) {
-                        final item = controllerProduct.cardList[index];
+                        final item = controllerProduct.cartList[index];
                         return Dismissible(
                           key: Key((item.name + item.id.toString())),
                           onDismissed: (_) {
@@ -69,7 +69,7 @@ class CartPage extends StatelessWidget {
                     ),
                   ),
                   Visibility(
-                    visible: !controllerProduct.cardList.isNotEmpty,
+                    visible: !controllerProduct.cartList.isNotEmpty,
                     child: Column(
                       children: [
                         Icon(

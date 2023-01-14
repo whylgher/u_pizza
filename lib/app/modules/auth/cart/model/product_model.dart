@@ -16,4 +16,10 @@ abstract class ProductModelBase with Store {
     required this.drink,
     required this.countItem,
   });
+
+  @action
+  void setCountItem() {
+    drink.countItem = countItem;
+    drink.amount = drink.price * countItem;
+  }
 }

@@ -6,6 +6,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Modular.get<CartController>();
+    final controllerProduct = Modular.get<ProductController>();
     var sizeDevice = MediaQuery.of(context).size;
 
     return Container(
@@ -127,8 +128,9 @@ class BottomNavigationBarWidget extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        controller.resetTotal();
-                        // Modular.to.navigate('/auth/payment');
+                        controller.placeOrders();
+                        // print(controller.drinks[1].drink.toMap());
+                        // print(controller.total);
                       },
                       child: Container(
                           decoration: BoxDecoration(

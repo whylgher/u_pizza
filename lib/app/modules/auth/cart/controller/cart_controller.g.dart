@@ -25,6 +25,22 @@ mixin _$CartController on CartControllerBase, Store {
     });
   }
 
+  late final _$totalWithTaxAtom =
+      Atom(name: 'CartControllerBase.totalWithTax', context: context);
+
+  @override
+  double get totalWithTax {
+    _$totalWithTaxAtom.reportRead();
+    return super.totalWithTax;
+  }
+
+  @override
+  set totalWithTax(double value) {
+    _$totalWithTaxAtom.reportWrite(value, super.totalWithTax, () {
+      super.totalWithTax = value;
+    });
+  }
+
   late final _$drinksAtom =
       Atom(name: 'CartControllerBase.drinks', context: context);
 
@@ -49,8 +65,27 @@ mixin _$CartController on CartControllerBase, Store {
     return _$getDrinksAsyncAction.run(() => super.getDrinks());
   }
 
+  late final _$placeOrdersAsyncAction =
+      AsyncAction('CartControllerBase.placeOrders', context: context);
+
+  @override
+  Future<void> placeOrders() {
+    return _$placeOrdersAsyncAction.run(() => super.placeOrders());
+  }
+
   late final _$CartControllerBaseActionController =
       ActionController(name: 'CartControllerBase', context: context);
+
+  @override
+  void addTax() {
+    final _$actionInfo = _$CartControllerBaseActionController.startAction(
+        name: 'CartControllerBase.addTax');
+    try {
+      return super.addTax();
+    } finally {
+      _$CartControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void sumTotal(List<dynamic> items) {
@@ -111,6 +146,7 @@ mixin _$CartController on CartControllerBase, Store {
   String toString() {
     return '''
 total: ${total},
+totalWithTax: ${totalWithTax},
 drinks: ${drinks}
     ''';
   }
