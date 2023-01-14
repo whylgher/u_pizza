@@ -48,7 +48,7 @@ class _AuthHomePageState extends State<AuthHomePage> {
   @override
   Widget build(BuildContext context) {
     controllerCart.getDrinks();
-    controllerCart.sumTotal(controllerProduct.cardList);
+    controllerCart.sumTotal(controllerProduct.cartList);
     return Scaffold(
       body: Center(
         child: Image.asset(

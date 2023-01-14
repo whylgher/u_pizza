@@ -18,6 +18,7 @@ class AppModule extends Module {
         Bind.lazySingleton(
           (i) => CartController(
             drinkService: i(),
+            localStorage: i(),
           ),
         ),
       ];

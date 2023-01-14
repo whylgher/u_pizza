@@ -41,6 +41,20 @@ mixin _$ProductModelStore on ProductModelBase, Store {
     });
   }
 
+  late final _$ProductModelBaseActionController =
+      ActionController(name: 'ProductModelBase', context: context);
+
+  @override
+  void setCountItem() {
+    final _$actionInfo = _$ProductModelBaseActionController.startAction(
+        name: 'ProductModelBase.setCountItem');
+    try {
+      return super.setCountItem();
+    } finally {
+      _$ProductModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''

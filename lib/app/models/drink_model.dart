@@ -7,7 +7,7 @@ class DrinkModel {
   String image;
   String description;
   int ml;
-  int amount;
+  double amount;
   int countItem;
 
   DrinkModel({
@@ -17,7 +17,7 @@ class DrinkModel {
     required this.image,
     required this.description,
     required this.ml,
-    this.amount = 0,
+    this.amount = 0.0,
     this.countItem = 0,
   });
 
@@ -83,7 +83,7 @@ class DrinkModel {
     String? image,
     String? description,
     int? ml,
-    int? amount,
+    double? amount,
     int? countItem,
   }) {
     return DrinkModel(

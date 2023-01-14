@@ -42,7 +42,7 @@ class MenuPage extends StatelessWidget {
                     final controller = Modular.get<CartController>();
                     final controllerProduct = Modular.get<ProductController>();
                     controller.resetTotal();
-                    controller.sumTotal(controllerProduct.cardList);
+                    controller.sumTotal(controllerProduct.cartList);
                     Modular.to.navigate('/auth/order_page');
                   },
                 ),

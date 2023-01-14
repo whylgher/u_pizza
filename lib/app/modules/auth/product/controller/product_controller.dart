@@ -47,7 +47,7 @@ abstract class ProductControllerBase with Store {
   ObservableList<AdditionalModel> additionalList =
       ObservableList<AdditionalModel>.of([]);
   @observable
-  ObservableList<CartModel> cardList = ObservableList<CartModel>.of([]);
+  ObservableList<CartModel> cartList = ObservableList<CartModel>.of([]);
   @observable
   ObservableList<BorderModel> bordersList = ObservableList<BorderModel>.of([]);
 
@@ -157,7 +157,7 @@ abstract class ProductControllerBase with Store {
   @action
   bool addToCard() {
     CartModel c = CartModel.fromMap(generateMap());
-    cardList.add(c);
+    cartList.add(c);
     return true;
   }
 
@@ -185,7 +185,7 @@ abstract class ProductControllerBase with Store {
 
   @action
   void removeItenCart(int index) {
-    cardList.removeWhere((item) => item.id == index);
+    cartList.removeWhere((item) => item.id == index);
   }
 
   @action

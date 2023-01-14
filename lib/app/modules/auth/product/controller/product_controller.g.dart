@@ -217,19 +217,19 @@ mixin _$ProductController on ProductControllerBase, Store {
     });
   }
 
-  late final _$cardListAtom =
-      Atom(name: 'ProductControllerBase.cardList', context: context);
+  late final _$cartListAtom =
+      Atom(name: 'ProductControllerBase.cartList', context: context);
 
   @override
-  ObservableList<CartModel> get cardList {
-    _$cardListAtom.reportRead();
-    return super.cardList;
+  ObservableList<CartModel> get cartList {
+    _$cartListAtom.reportRead();
+    return super.cartList;
   }
 
   @override
-  set cardList(ObservableList<CartModel> value) {
-    _$cardListAtom.reportWrite(value, super.cardList, () {
-      super.cardList = value;
+  set cartList(ObservableList<CartModel> value) {
+    _$cartListAtom.reportWrite(value, super.cartList, () {
+      super.cartList = value;
     });
   }
 
@@ -463,7 +463,7 @@ cutPizza: ${cutPizza},
 regular: ${regular},
 large: ${large},
 additionalList: ${additionalList},
-cardList: ${cardList},
+cartList: ${cartList},
 bordersList: ${bordersList}
     ''';
   }
