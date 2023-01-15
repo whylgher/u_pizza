@@ -1,7 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'modules/auth/auth_module.dart';
-import 'modules/auth/cart/controller/cart_controller.dart';
 import 'modules/auth/product/controller/product_controller.dart';
 import 'modules/core/core_module.dart';
 import 'modules/home/home_module.dart';
@@ -13,12 +12,6 @@ class AppModule extends Module {
         Bind.lazySingleton(
           (i) => ProductController(
             productService: i(),
-          ),
-        ),
-        Bind.lazySingleton(
-          (i) => CartController(
-            drinkService: i(),
-            localStorage: i(),
           ),
         ),
       ];

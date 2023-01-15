@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:flutter_modular/flutter_modular.dart';
@@ -6,6 +7,7 @@ import 'package:u_pizzas/app/core/ui/widgets/messages.dart';
 
 import '../../../../core/helpers/constants.dart';
 import '../../../../core/local_storage/local_storage.dart';
+import '../../../../core/logger/app_logger.dart';
 import '../../../../models/drink_model.dart';
 import '../../../../models/user_model.dart';
 import '../../../../service/drink/drink_service.dart';
@@ -19,11 +21,14 @@ class CartController = CartControllerBase with _$CartController;
 abstract class CartControllerBase with Store {
   final DrinkService _drinkService;
   final LocalStorage _localStorage;
+  final AppLogger _log;
 
   CartControllerBase({
     required DrinkService drinkService,
     required LocalStorage localStorage,
+    required AppLogger log,
   })  : _drinkService = drinkService,
+        _log = log,
         _localStorage = localStorage;
 
   @observable
@@ -113,11 +118,12 @@ abstract class CartControllerBase with Store {
         'order': orders,
         'drink': orderDrink,
       };
-      print(purchase);
+
       if (controllerProduct.cartList.isEmpty) {
         throw Exception();
       }
-    } on Exception {
+    } on Exception catch (e, s) {
+      _log.error('Empty car', e, s);
       Messages.alert('Empty Car');
       throw Exception();
     }

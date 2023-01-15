@@ -19,6 +19,7 @@ import '../../service/pizza/pizza_service.dart';
 import '../../service/pizza/pizza_service_impl.dart';
 import '../../service/product/product_service.dart';
 import '../../service/product/product_service_impl.dart';
+import '../auth/cart/controller/cart_controller.dart';
 import 'auth/auth_store.dart';
 
 class CoreModule extends Module {
@@ -78,6 +79,14 @@ class CoreModule extends Module {
     Bind.lazySingleton<DrinkService>(
       (i) => DrinkServiceImpl(
         drinkRepository: i(),
+      ),
+      export: true,
+    ),
+    Bind.lazySingleton(
+      (i) => CartController(
+        drinkService: i(),
+        localStorage: i(),
+        log: i(),
       ),
       export: true,
     ),
