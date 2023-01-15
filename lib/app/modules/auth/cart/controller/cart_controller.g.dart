@@ -69,7 +69,7 @@ mixin _$CartController on CartControllerBase, Store {
       AsyncAction('CartControllerBase.placeOrders', context: context);
 
   @override
-  Future<void> placeOrders() {
+  Future<bool> placeOrders() {
     return _$placeOrdersAsyncAction.run(() => super.placeOrders());
   }
 

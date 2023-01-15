@@ -87,6 +87,7 @@ class CoreModule extends Module {
         drinkService: i(),
         localStorage: i(),
         log: i(),
+        cartService: i(),
       ),
       export: true,
     ),

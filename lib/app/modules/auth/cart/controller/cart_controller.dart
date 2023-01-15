@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:flutter_modular/flutter_modular.dart';
@@ -10,6 +9,7 @@ import '../../../../core/local_storage/local_storage.dart';
 import '../../../../core/logger/app_logger.dart';
 import '../../../../models/drink_model.dart';
 import '../../../../models/user_model.dart';
+import '../../../../service/cart/cart_service.dart';
 import '../../../../service/drink/drink_service.dart';
 import '../../product/controller/product_controller.dart';
 import '../model/product_model.dart';
@@ -20,15 +20,18 @@ class CartController = CartControllerBase with _$CartController;
 
 abstract class CartControllerBase with Store {
   final DrinkService _drinkService;
+  final CartService _cartService;
   final LocalStorage _localStorage;
   final AppLogger _log;
 
   CartControllerBase({
     required DrinkService drinkService,
     required LocalStorage localStorage,
+    required CartService cartService,
     required AppLogger log,
   })  : _drinkService = drinkService,
         _log = log,
+        _cartService = cartService,
         _localStorage = localStorage;
 
   @observable
@@ -94,7 +97,7 @@ abstract class CartControllerBase with Store {
   }
 
   @action
-  Future<void> placeOrders() async {
+  Future<bool> placeOrders() async {
     final controllerProduct = Modular.get<ProductController>();
 
     try {
@@ -102,12 +105,12 @@ abstract class CartControllerBase with Store {
       final userData = jsonDecode(
           await _localStorage.read(Constants.LOCAL_STORAGE_USER_LOGGED_DATA));
       final user = UserModel.fromMap(userData);
-      List orders =
+      List orderPizzas =
           controllerProduct.cartList.map((item) => item.toJson()).toList();
       List orderDrink =
           drinks.map((element) => element.drink.toJson()).toList();
 
-      final purchase = {
+      Map<String, dynamic> purchase = {
         'user_id': user.data['id'],
         'name': controllerProduct.cartList[0].name,
         'description': controllerProduct.cartList[0].description,
@@ -115,13 +118,16 @@ abstract class CartControllerBase with Store {
         'amount': total,
         'tax': total * .07,
         'total': totalWithTax,
-        'order': orders,
+        'order': orderPizzas,
         'drink': orderDrink,
       };
+
+      await _cartService.purchase(purchase);
 
       if (controllerProduct.cartList.isEmpty) {
         throw Exception();
       }
+      return true;
     } on Exception catch (e, s) {
       _log.error('Empty car', e, s);
       Messages.alert('Empty Car');

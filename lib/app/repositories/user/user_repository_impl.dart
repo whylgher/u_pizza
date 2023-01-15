@@ -23,16 +23,19 @@ class UserRepositoryImpl implements UserRepository {
   Future<void> register(
       String email, String name, String password, String phone) async {
     try {
-      await _restClient.unAuth().post('/api/register', data: {
-        'name': name,
-        'password': password,
-        'email': email,
-        "social_login": "APP",
-        'phone': phone,
-        "img_url": "",
-        "android_token": "IOS_asdqweasdzxc",
-        "ios_token": ""
-      });
+      await _restClient.unAuth().post(
+        '/api/register',
+        data: {
+          'name': name,
+          'password': password,
+          'email': email,
+          'social_login': 'APP',
+          'phone': phone,
+          'img_url': '',
+          'android_token': 'IOS_asdqweasdzxc',
+          'ios_token': ''
+        },
+      );
     } on RestClientException catch (e, s) {
       if (e.statusCode == 400) {
         _log.error(e.error, e, s);
