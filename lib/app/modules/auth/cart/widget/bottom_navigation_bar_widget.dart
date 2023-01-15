@@ -127,10 +127,10 @@ class BottomNavigationBarWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     GestureDetector(
-                      onTap: () {
-                        controller.placeOrders();
-                        // print(controller.drinks[1].drink.toMap());
-                        // print(controller.total);
+                      onTap: () async {
+                        if (await controller.placeOrders()) {
+                          Modular.to.navigate('/auth/order/order-view');
+                        }
                       },
                       child: Container(
                           decoration: BoxDecoration(

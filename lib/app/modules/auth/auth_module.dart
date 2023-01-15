@@ -1,7 +1,11 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../repositories/cart/cart_repository.dart';
+import '../../repositories/cart/cart_repository_impl.dart';
 import '../../repositories/user/user_repository.dart';
 import '../../repositories/user/user_repository_impl.dart';
+import '../../service/cart/cart_service.dart';
+import '../../service/cart/cart_service_impl.dart';
 import '../../service/user/user_service.dart';
 import '../../service/user/user_service_impl.dart';
 import 'cart/cart_module.dart';
@@ -30,6 +34,16 @@ class AuthModule extends Module {
         log: i(), // CoreModule
         userRepository: i(), // AuthModule
         localStorage: i(), // CoreModule
+      ),
+    ),
+    Bind.lazySingleton<CartRepository>(
+      (i) => CartRepositoryImpl(
+        restClient: i(),
+      ),
+    ),
+    Bind.lazySingleton<CartService>(
+      (i) => CartServiceImpl(
+        cartRepository: i(),
       ),
     ),
   ];

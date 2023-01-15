@@ -1,1 +1,3 @@
-abstract class CartRepository {}
+abstract class CartRepository {
+  Future<void> purchase(Map<String, dynamic> map);
+}
