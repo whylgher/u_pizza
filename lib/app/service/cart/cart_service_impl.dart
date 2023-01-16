@@ -8,6 +8,6 @@ class CartServiceImpl implements CartService {
   }) : _cartRepository = cartRepository;
 
   @override
-  Future<void> purchase(Map<String, dynamic> map) =>
+  Future<Map> purchase(Map<String, dynamic> map) =>
       _cartRepository.purchase(map);
 }
