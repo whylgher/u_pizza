@@ -8,15 +8,11 @@ class CartRepositoryImpl implements CartRepository {
   }) : _restClient = restClient;
 
   @override
-  Future<void> purchase(Map<String, dynamic> map) async {
+  Future<Map> purchase(Map<String, dynamic> map) async {
     final pursh = await _restClient.auth().post(
           '/api/order/create',
           data: map,
         );
-  }
-
-  @override
-  Future<void> getOrder(int id) async {
-    final order = await _restClient.auth().get('/api/order/$id');
+    return pursh.data;
   }
 }

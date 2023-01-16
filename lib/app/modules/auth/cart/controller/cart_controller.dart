@@ -119,7 +119,7 @@ abstract class CartControllerBase with Store {
       final orderDrink =
           drinks.map((element) => element.drink.toMap()).toList();
 
-      Map<String, dynamic> purchase = {
+      final purchase = await _cartService.purchase({
         'user_id': user.data['id'],
         'name': controllerProduct.cartList[0].name,
         'description': controllerProduct.cartList[0].description,
@@ -129,9 +129,9 @@ abstract class CartControllerBase with Store {
         'total': totalWithTax,
         'order': orderPizzas,
         'drink': orderDrink,
-      };
-      await _cartService.purchase(purchase);
-
+      });
+      // ignore: avoid_print
+      print(purchase['order_id']);
       controllerProduct.cartList = ObservableList<CartModel>.of([]);
       for (var drink in drinks) {
         drink.countItem = 0;

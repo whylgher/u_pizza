@@ -1,3 +1,3 @@
 abstract class CartRepository {
-  Future<void> purchase(Map<String, dynamic> map);
+  Future<Map> purchase(Map<String, dynamic> map);
 }
