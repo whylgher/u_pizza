@@ -7,6 +7,8 @@ import 'package:u_pizzas/app/core/ui/widgets/messages.dart';
 import '../../../../core/helpers/constants.dart';
 import '../../../../core/local_storage/local_storage.dart';
 import '../../../../core/logger/app_logger.dart';
+import '../../../../core/ui/widgets/loader.dart';
+import '../../../../models/cart_model.dart';
 import '../../../../models/drink_model.dart';
 import '../../../../models/user_model.dart';
 import '../../../../service/cart/cart_service.dart';
@@ -101,14 +103,21 @@ abstract class CartControllerBase with Store {
     final controllerProduct = Modular.get<ProductController>();
 
     try {
+      Loader.show();
       addTax();
       final userData = jsonDecode(
           await _localStorage.read(Constants.LOCAL_STORAGE_USER_LOGGED_DATA));
+
       final user = UserModel.fromMap(userData);
-      List orderPizzas =
-          controllerProduct.cartList.map((item) => item.toJson()).toList();
-      List orderDrink =
-          drinks.map((element) => element.drink.toJson()).toList();
+
+      if (controllerProduct.cartList.isEmpty) {
+        throw Exception();
+      }
+
+      final orderPizzas =
+          controllerProduct.cartList.map((item) => item.toMap()).toList();
+      final orderDrink =
+          drinks.map((element) => element.drink.toMap()).toList();
 
       Map<String, dynamic> purchase = {
         'user_id': user.data['id'],
@@ -121,14 +130,16 @@ abstract class CartControllerBase with Store {
         'order': orderPizzas,
         'drink': orderDrink,
       };
-
       await _cartService.purchase(purchase);
 
-      if (controllerProduct.cartList.isEmpty) {
-        throw Exception();
+      controllerProduct.cartList = ObservableList<CartModel>.of([]);
+      for (var drink in drinks) {
+        drink.countItem = 0;
       }
+      Loader.hide();
       return true;
     } on Exception catch (e, s) {
+      Loader.hide();
       _log.error('Empty car', e, s);
       Messages.alert('Empty Car');
       throw Exception();
