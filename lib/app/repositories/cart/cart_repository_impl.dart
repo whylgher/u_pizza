@@ -14,4 +14,9 @@ class CartRepositoryImpl implements CartRepository {
           data: map,
         );
   }
+
+  @override
+  Future<void> getOrder(int id) async {
+    final order = await _restClient.auth().get('/api/order/$id');
+  }
 }
