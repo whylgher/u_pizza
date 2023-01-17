@@ -125,7 +125,7 @@ class ProductPage extends StatelessWidget {
                               onTap: () {
                                 controllerPizza.sizePizzaRegular();
                                 controllerPizza.price =
-                                    controllerPizza.pizzaModel.regular;
+                                    controllerPizza.pizzaModel.regular!;
                                 controllerPizza.set();
                               },
                               child: PizzaAddedItens(
@@ -139,7 +139,7 @@ class ProductPage extends StatelessWidget {
                               onTap: () {
                                 controllerPizza.sizePizzaLarge();
                                 controllerPizza.price =
-                                    controllerPizza.pizzaModel.large;
+                                    controllerPizza.pizzaModel.large!;
                                 controllerPizza.set();
                               },
                               child: PizzaAddedItens(

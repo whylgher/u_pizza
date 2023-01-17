@@ -30,7 +30,7 @@ class DrinkModel {
       'description': description,
       'ml': ml,
       'amount': amount,
-      'countItem': countItem,
+      'count_item': countItem,
     };
   }
 
@@ -42,6 +42,19 @@ class DrinkModel {
       image: map['image'] as String,
       description: map['description'] as String,
       ml: map['ml'] as int,
+    );
+  }
+
+  factory DrinkModel.fromMapOrder(Map<String, dynamic> map) {
+    return DrinkModel(
+      id: map['id'] as int,
+      name: map['name'] as String,
+      price: map['price'] as double,
+      image: map['image'] as String,
+      description: map['description'] as String,
+      ml: map['ml'] as int,
+      countItem: map['count_item'] as int,
+      amount: map['amount'] as double,
     );
   }
 

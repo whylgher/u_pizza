@@ -178,7 +178,7 @@ abstract class ProductControllerBase with Store {
       'size': regular ? 'regular' : 'large',
       'border': typeBorder,
       'additional': additionalList,
-      'amountPizzas': item,
+      'amount_pizzas': item,
       'amount': priceTotaly + priceAdditional + priceBorder,
     };
   }
@@ -194,7 +194,7 @@ abstract class ProductControllerBase with Store {
     pizzaModel = PizzaModel.fromMap(data);
     additionals = data['additionals'];
     borders = data['borders'];
-    price = pizzaModel.regular;
+    price = pizzaModel.regular!;
     set();
     for (var additional in pizzaModel.additionals) {
       AdditionalModel c = AdditionalModel.fromMap(additional);

@@ -2,10 +2,14 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../repositories/cart/cart_repository.dart';
 import '../../repositories/cart/cart_repository_impl.dart';
+import '../../repositories/order/order_repository.dart';
+import '../../repositories/order/order_repository_impl.dart';
 import '../../repositories/user/user_repository.dart';
 import '../../repositories/user/user_repository_impl.dart';
 import '../../service/cart/cart_service.dart';
 import '../../service/cart/cart_service_impl.dart';
+import '../../service/order/order_service.dart';
+import '../../service/order/order_service_impl.dart';
 import '../../service/user/user_service.dart';
 import '../../service/user/user_service_impl.dart';
 import 'cart/cart_module.dart';
@@ -44,6 +48,17 @@ class AuthModule extends Module {
     Bind.lazySingleton<CartService>(
       (i) => CartServiceImpl(
         cartRepository: i(),
+      ),
+    ),
+    Bind.lazySingleton<OrderRepository>(
+      (i) => OrderRepositoryImpl(
+        log: i(),
+        restClient: i(),
+      ),
+    ),
+    Bind.lazySingleton<OrderService>(
+      (i) => OrderServiceImpl(
+        orderRepository: i(),
       ),
     ),
   ];

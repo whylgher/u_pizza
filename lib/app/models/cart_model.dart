@@ -39,7 +39,7 @@ class CartModel {
       'size': size,
       'border': border,
       'additional': additional.map((x) => x.toMap()).toList(),
-      'amountPizzas': amountPizzas,
+      'amount_pizzas': amountPizzas,
       'amount': amount,
     };
   }
@@ -54,7 +54,7 @@ class CartModel {
       size: map['size'] as String,
       border: map['border'] as String,
       additional: map['additional'],
-      amountPizzas: map['amountPizzas'] as int,
+      amountPizzas: map['amount_pizzas'] as int,
       amount: map['amount'] as double,
     );
   }
