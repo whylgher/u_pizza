@@ -3,26 +3,30 @@ import 'dart:convert';
 class PizzaModel {
   int id;
   String name;
+  bool? cut;
   String image;
   String description;
   String category;
-  double regular;
-  double large;
+  double? regular;
+  double? large;
   List borders;
   List additionals;
   int countAdditionals;
+  double? amount;
 
   PizzaModel({
     required this.id,
     required this.name,
     required this.description,
     required this.category,
-    required this.regular,
-    required this.large,
+    this.regular,
+    this.large,
     required this.image,
     required this.borders,
     required this.additionals,
     required this.countAdditionals,
+    this.cut = true,
+    this.amount,
   });
 
   Map<String, dynamic> toMap() {
@@ -36,6 +40,7 @@ class PizzaModel {
       'image': image,
       'borders': borders,
       'additionals': additionals,
+      'cut': cut,
     };
   }
 
@@ -50,7 +55,23 @@ class PizzaModel {
       image: map['pizza']['image']['image'],
       borders: map['borders'],
       additionals: map['additionals'],
+      cut: map['cut'] ?? true,
       countAdditionals: 0,
+    );
+  }
+
+  factory PizzaModel.fromMapOrder(Map<String, dynamic> map) {
+    return PizzaModel(
+      id: map['id'] as int,
+      name: map['name'] as String,
+      description: map['description'] as String,
+      category: map['category'] ?? '',
+      image: map['img'],
+      borders: [map['border']],
+      additionals: map['additional'],
+      amount: map['amount'],
+      cut: map['cut'] ?? true,
+      countAdditionals: map['amount_pizzas'],
     );
   }
 
@@ -65,6 +86,7 @@ class PizzaModel {
         image: '',
         borders: [],
         additionals: [],
+        cut: false,
         countAdditionals: 0);
   }
 
@@ -75,6 +97,6 @@ class PizzaModel {
 
   @override
   String toString() {
-    return 'PizzaModel(id: $id, name: $name, description: $description, category: $category, regular: $regular, large: $large, image: $image, borders: $borders, additionals: $additionals, countAdditionals: $countAdditionals)';
+    return 'PizzaModel(id: $id, name: $name, name: $cut, description: $description, category: $category, regular: $regular, large: $large, image: $image, borders: $borders, additionals: $additionals, countAdditionals: $countAdditionals)';
   }
 }

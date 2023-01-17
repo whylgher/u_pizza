@@ -6,6 +6,7 @@ import '../../../core/ui/extensions/theme_extension.dart';
 import '../../../core/ui/icons/u_pizza_icons.dart';
 import '../../../core/ui/widgets/app_bar_default_widget.dart';
 import '../../../models/order_enum.dart';
+import 'controller/order_controller.dart';
 
 part 'widget/order_widget.dart';
 
@@ -15,6 +16,8 @@ class OrderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sizeDevide = MediaQuery.of(context).size;
+    final controller = Modular.get<OrderController>();
+    controller.getOrders();
     return Scaffold(
       appBar: AppBarDefaultWidget(
         label: 'Order History',
