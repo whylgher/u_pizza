@@ -25,6 +25,22 @@ mixin _$OrderController on OrderControllerBase, Store {
     });
   }
 
+  late final _$ordersModelAtom =
+      Atom(name: 'OrderControllerBase.ordersModel', context: context);
+
+  @override
+  ObservableList<OrderModel> get ordersModel {
+    _$ordersModelAtom.reportRead();
+    return super.ordersModel;
+  }
+
+  @override
+  set ordersModel(ObservableList<OrderModel> value) {
+    _$ordersModelAtom.reportWrite(value, super.ordersModel, () {
+      super.ordersModel = value;
+    });
+  }
+
   late final _$getOrdersAsyncAction =
       AsyncAction('OrderControllerBase.getOrders', context: context);
 
@@ -36,7 +52,8 @@ mixin _$OrderController on OrderControllerBase, Store {
   @override
   String toString() {
     return '''
-user: ${user}
+user: ${user},
+ordersModel: ${ordersModel}
     ''';
   }
 }
