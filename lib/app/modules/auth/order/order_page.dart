@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:intl/intl.dart';
 
 import '../../../core/ui/extensions/size_screen_extension.dart';
 import '../../../core/ui/extensions/theme_extension.dart';
 import '../../../core/ui/icons/u_pizza_icons.dart';
 import '../../../core/ui/widgets/app_bar_default_widget.dart';
 import '../../../models/order_enum.dart';
+import '../../../models/order_model.dart';
 import 'controller/order_controller.dart';
 
 part 'widget/order_widget.dart';
@@ -15,9 +18,10 @@ class OrderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sizeDevide = MediaQuery.of(context).size;
+    final sizeDevice = MediaQuery.of(context).size;
     final controller = Modular.get<OrderController>();
     controller.getOrders();
+    final orders = controller.ordersModel;
     return Scaffold(
       appBar: AppBarDefaultWidget(
         label: 'Order History',
@@ -25,45 +29,34 @@ class OrderPage extends StatelessWidget {
           Modular.to.navigate('/auth/menu');
         },
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            OrderProgressWidget(
-              label: 'Tuesday, 22 nov. 2022',
-              sizeDevide: sizeDevide,
-              progress: OrderEnum.completed,
-            ),
-            OrderProgressWidget(
-              label: 'Tuesday, 29 dez. 2022',
-              sizeDevide: sizeDevide,
-              progress: OrderEnum.waiting,
-            ),
-            OrderProgressWidget(
-              label: 'Tuesday, 31 dez. 2022',
-              sizeDevide: sizeDevide,
-              progress: OrderEnum.canceled,
-            ),
-            OrderProgressWidget(
-              label: 'Tuesday, 22 nov. 2022',
-              sizeDevide: sizeDevide,
-              progress: OrderEnum.completed,
-            ),
-            OrderProgressWidget(
-              label: 'Tuesday, 29 dez. 2022',
-              sizeDevide: sizeDevide,
-              progress: OrderEnum.waiting,
-            ),
-            OrderProgressWidget(
-              label: 'Tuesday, 31 dez. 2022',
-              sizeDevide: sizeDevide,
-              progress: OrderEnum.canceled,
-            ),
-            SizedBox(
-              height: 40.h,
-            ),
-          ],
-        ),
+      body: Observer(
+        builder: (_) {
+          return ListView.separated(
+            shrinkWrap: true,
+            separatorBuilder: (_, __) => Divider(height: 20.h),
+            itemCount: orders.length,
+            itemBuilder: ((_, index) {
+              return OrderWidget(
+                label: DateFormat.yMMMEd().format(orders[index].createdAt),
+                sizeDevice: sizeDevice,
+                status: progressOrder(orders[index].status),
+                orderModel: orders[index],
+              );
+            }),
+          );
+        },
       ),
     );
+  }
+}
+
+Map<String, Color> progressOrder(OrderEnum progress) {
+  switch (progress) {
+    case OrderEnum.completed:
+      return {'Completed': Colors.green};
+    case OrderEnum.canceled:
+      return {'Canceled': Colors.red};
+    case OrderEnum.waiting:
+      return {'Waiting': Colors.blueAccent};
   }
 }

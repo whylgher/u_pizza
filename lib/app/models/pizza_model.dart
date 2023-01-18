@@ -71,7 +71,7 @@ class PizzaModel {
       additionals: map['additional'],
       amount: map['amount'],
       cut: map['cut'] ?? true,
-      countAdditionals: map['amount_pizzas'],
+      countAdditionals: map['amount_pizzas'] ?? 0,
     );
   }
 

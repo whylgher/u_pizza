@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'package:mobx/mobx.dart';
 
 import '../../../../models/additional_model.dart';

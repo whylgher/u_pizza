@@ -2,19 +2,20 @@ part of '../order_page.dart';
 
 class OrderWidget extends StatelessWidget {
   final String label;
-  final dynamic sizeDevide;
-  final Map<String, Color> order;
+  final OrderModel orderModel;
+  final Size sizeDevice;
+  final Map<String, Color> status;
 
   const OrderWidget({
     Key? key,
     required this.label,
-    required this.sizeDevide,
-    required this.order,
+    required this.orderModel,
+    required this.sizeDevice,
+    required this.status,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final String labelProgress = order.keys.toString();
     return Container(
       padding: const EdgeInsets.all(15),
       child: Column(
@@ -31,8 +32,8 @@ class OrderWidget extends StatelessWidget {
             height: 10,
           ),
           Container(
-            width: sizeDevide.width * .9,
-            height: sizeDevide.height * .2,
+            width: sizeDevice.width * .9,
+            height: sizeDevice.height * .2,
             padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
             decoration: BoxDecoration(
               boxShadow: [
@@ -52,7 +53,7 @@ class OrderWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      height: sizeDevide.height * .12,
+                      height: sizeDevice.height * .15,
                       child: Column(
                         children: [
                           Row(
@@ -63,13 +64,12 @@ class OrderWidget extends StatelessWidget {
                                     children: [
                                       Icon(
                                         Icons.circle,
-                                        color: order[order.keys.first],
+                                        color: status[status.keys.first],
                                       ),
                                       SizedBox(
                                         width: 10.w,
                                       ),
-                                      Text(
-                                          '${labelProgress.replaceAll('(', '').replaceAll(')', '')} Order'),
+                                      Text('${status.keys.first} Order'),
                                     ],
                                   ),
                                 ],
@@ -94,7 +94,7 @@ class OrderWidget extends StatelessWidget {
                                   color: const Color(0xFFF7F8FA),
                                 ),
                                 child: Text(
-                                  '1',
+                                  orderModel.order.length.toString(),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       fontSize: 10.sp, color: Colors.black),
@@ -112,28 +112,40 @@ class OrderWidget extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 15.w),
-                            child: Row(
-                              children: [
-                                UPizzaIcons.separator(),
-                                SizedBox(
-                                  width: 15.w,
-                                ),
-                                Text(
-                                  'Slice Pizza',
-                                  style: TextStyle(
-                                    fontSize: 10.sp,
+                          SizedBox(
+                            height: sizeDevice.height * .08,
+                            width: 100,
+                            child: ListView.separated(
+                              shrinkWrap: true,
+                              separatorBuilder: (_, __) =>
+                                  const Divider(height: 0),
+                              itemCount: orderModel.order.length,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  padding: EdgeInsets.only(left: 15.w),
+                                  child: Row(
+                                    children: [
+                                      UPizzaIcons.separator(),
+                                      SizedBox(
+                                        width: 15.w,
+                                      ),
+                                      Text(
+                                        orderModel.order[index].name,
+                                        style: TextStyle(
+                                          fontSize: 10.sp,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                              ],
+                                );
+                              },
                             ),
                           ),
                         ],
                       ),
                     ),
                     Container(
-                      child: UPizzaIcons.pizza(height: sizeDevide.height * .12),
+                      child: UPizzaIcons.pizza(height: sizeDevice.height * .14),
                     ),
                   ],
                 ),
@@ -168,35 +180,5 @@ class OrderWidget extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-class OrderProgressWidget extends StatelessWidget {
-  final String label;
-  final dynamic sizeDevide;
-  final OrderEnum progress;
-
-  const OrderProgressWidget({
-    Key? key,
-    required this.label,
-    required this.sizeDevide,
-    required this.progress,
-  }) : super(key: key);
-
-  Map<String, Color> progressOrder(OrderEnum progress) {
-    switch (progress) {
-      case OrderEnum.completed:
-        return {'Completed': Colors.green};
-      case OrderEnum.canceled:
-        return {'Canceled': Colors.red};
-      case OrderEnum.waiting:
-        return {'Waiting': Colors.blueAccent};
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final order = progressOrder(progress);
-    return OrderWidget(label: label, sizeDevide: sizeDevide, order: order);
   }
 }
