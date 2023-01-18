@@ -25,14 +25,18 @@ abstract class OrderControllerBase with Store {
   @observable
   UserModel user = UserModel.empty();
 
+  @observable
+  ObservableList<OrderModel> ordersModel = ObservableList<OrderModel>.of([]);
+
   @action
   Future<void> getOrders() async {
+    ordersModel = ObservableList<OrderModel>.of([]);
     final userData = jsonDecode(
         await _localStorage.read(Constants.LOCAL_STORAGE_USER_LOGGED_DATA));
     user = UserModel.fromMap(userData);
     final orders = await _orderService.getOrders(user.data['id']);
-    orders['order'].forEach((e) {
-      final c = OrderModel.fromMap(e);
+    orders['order'].values.forEach((e) {
+      ordersModel.add(OrderModel.fromMap(e));
     });
   }
 }
