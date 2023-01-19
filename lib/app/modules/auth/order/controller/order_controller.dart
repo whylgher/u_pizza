@@ -28,6 +28,14 @@ abstract class OrderControllerBase with Store {
   @observable
   ObservableList<OrderModel> ordersModel = ObservableList<OrderModel>.of([]);
 
+  @observable
+  bool showDrink = true;
+
+  @action
+  void showDrinks(bool show) {
+    showDrink = show;
+  }
+
   @action
   Future<void> getOrders() async {
     ordersModel = ObservableList<OrderModel>.of([]);
