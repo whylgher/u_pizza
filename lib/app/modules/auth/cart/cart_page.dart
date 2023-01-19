@@ -4,17 +4,16 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../core/ui/extensions/size_screen_extension.dart';
-import '../../../core/ui/extensions/theme_extension.dart';
 import '../../../core/ui/icons/u_pizza_icons.dart';
 import '../../../core/ui/widgets/app_bar_default_widget.dart';
+import '../../../core/ui/widgets/drinks.dart';
+import '../../../core/ui/widgets/itens_widget.dart';
 import '../product/controller/product_controller.dart';
 import 'controller/cart_controller.dart';
 
-part '../../../core/ui/widgets/itens_widget.dart';
 part 'widget/address_paymen_coupon_widget.dart';
 part 'widget/bottom_navigation_bar_widget.dart';
 part 'widget/cart_app_bar.dart';
-part 'widget/drinks.dart';
 part 'widget/item_modal.dart';
 
 class CartPage extends StatelessWidget {
@@ -104,7 +103,9 @@ class CartPage extends StatelessWidget {
                   SizedBox(
                     height: 15.h,
                   ),
-                  Drinks(),
+                  Drinks(
+                    drinks: controller.drinks,
+                  ),
                   SizedBox(
                     height: 20.h,
                   ),
