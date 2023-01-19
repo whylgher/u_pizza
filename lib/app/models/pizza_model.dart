@@ -11,7 +11,7 @@ class PizzaModel {
   double? large;
   List borders;
   List additionals;
-  int countAdditionals;
+  int? countPizza;
   double? amount;
 
   PizzaModel({
@@ -24,9 +24,9 @@ class PizzaModel {
     required this.image,
     required this.borders,
     required this.additionals,
-    required this.countAdditionals,
     this.cut = true,
     this.amount,
+    this.countPizza = 0,
   });
 
   Map<String, dynamic> toMap() {
@@ -41,6 +41,7 @@ class PizzaModel {
       'borders': borders,
       'additionals': additionals,
       'cut': cut,
+      'count_pizza': countPizza,
     };
   }
 
@@ -56,38 +57,38 @@ class PizzaModel {
       borders: map['borders'],
       additionals: map['additionals'],
       cut: map['cut'] ?? true,
-      countAdditionals: 0,
+      countPizza: 0,
     );
   }
 
   factory PizzaModel.fromMapOrder(Map<String, dynamic> map) {
     return PizzaModel(
-      id: map['id'] as int,
-      name: map['name'] as String,
-      description: map['description'] as String,
-      category: map['category'] ?? '',
-      image: map['img'],
-      borders: [map['border']],
-      additionals: map['additional'],
-      amount: map['amount'],
-      cut: map['cut'] ?? true,
-      countAdditionals: map['amount_pizzas'] ?? 0,
-    );
+        id: map['id'] as int,
+        name: map['name'] as String,
+        description: map['description'] as String,
+        category: map['category'] ?? '',
+        image: map['img'],
+        borders: [map['border']],
+        additionals: map['additional'],
+        amount: map['amount'],
+        cut: map['cut'] ?? true,
+        countPizza: map['amount_pizzas']);
   }
 
   factory PizzaModel.setNull() {
     return PizzaModel(
-        id: 0,
-        name: '',
-        description: '',
-        category: '',
-        regular: 0,
-        large: 0,
-        image: '',
-        borders: [],
-        additionals: [],
-        cut: false,
-        countAdditionals: 0);
+      id: 0,
+      name: '',
+      description: '',
+      category: '',
+      regular: 0,
+      large: 0,
+      image: '',
+      borders: [],
+      additionals: [],
+      cut: false,
+      countPizza: 0,
+    );
   }
 
   String toJson() => json.encode(toMap());
@@ -97,6 +98,9 @@ class PizzaModel {
 
   @override
   String toString() {
-    return 'PizzaModel(id: $id, name: $name, name: $cut, description: $description, category: $category, regular: $regular, large: $large, image: $image, borders: $borders, additionals: $additionals, countAdditionals: $countAdditionals)';
+    return '''
+          PizzaModel(id: $id, name: $name, name: $cut, description: $description,count_pizza: $countPizza,
+          category: $category, regular: $regular, large: $large, image: $image, borders: $borders, additionals: $additionals)
+          ''';
   }
 }

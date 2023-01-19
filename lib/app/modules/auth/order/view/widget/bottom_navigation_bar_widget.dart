@@ -1,14 +1,16 @@
 part of '../order_view.dart';
 
-class BottomNavigationBarWidget extends StatefulWidget {
-  const BottomNavigationBarWidget({Key? key}) : super(key: key);
-
-  @override
-  State<BottomNavigationBarWidget> createState() =>
-      _BottomNavigationBarWidgetState();
-}
-
-class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
+// ignore: must_be_immutable
+class BottomNavigationBarWidget extends StatelessWidget {
+  double total;
+  double tax;
+  double subTotal;
+  BottomNavigationBarWidget({
+    Key? key,
+    required this.total,
+    required this.tax,
+    required this.subTotal,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     var sizeDevice = MediaQuery.of(context).size;
@@ -43,7 +45,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
                     ],
                   ),
                   Text(
-                    '\$ 38,80',
+                    '\$ ${subTotal.toStringAsFixed(2)}',
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontFamily: 'Montserrat',
@@ -67,7 +69,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
                   Row(
                     children: [
                       Text(
-                        'Discount Coupon',
+                        'Tax',
                         style: TextStyle(
                           fontSize: 12.sp,
                           fontFamily: 'Montserrat',
@@ -77,7 +79,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
                     ],
                   ),
                   Text(
-                    '\$ 8,80',
+                    '\$ ${tax.toStringAsFixed(2)}',
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontFamily: 'Montserrat',
@@ -108,7 +110,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
                     ],
                   ),
                   Text(
-                    '\$ 30,80',
+                    '\$ ${total.toStringAsFixed(2)}',
                     style: TextStyle(
                       fontSize: 17.sp,
                       fontWeight: FontWeight.bold,
