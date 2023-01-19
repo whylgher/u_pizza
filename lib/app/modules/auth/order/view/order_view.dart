@@ -5,25 +5,28 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../../../../core/ui/extensions/size_screen_extension.dart';
 import '../../../../core/ui/icons/u_pizza_icons.dart';
 import '../../../../core/ui/widgets/app_bar_default_widget.dart';
+import '../../../../core/ui/widgets/drinks.dart';
+import '../../../../core/ui/widgets/itens_widget.dart';
 import '../../../../models/order_enum.dart';
 import '../../../../models/order_model.dart';
 import '../../../../models/pizza_model.dart';
-import '../../cart/cart_page.dart';
+import '../controller/order_controller.dart';
 
 part 'widget/bottom_navigation_bar_widget.dart';
 part 'widget/order_widget.dart';
 
 class OrderView extends StatelessWidget {
   final OrderModel _args;
+
   const OrderView({
     Key? key,
     required args,
   })  : _args = args,
         super(key: key);
-
   @override
   Widget build(BuildContext context) {
     final sizeDevide = MediaQuery.of(context).size;
+    final controller = Modular.get<OrderController>();
     return Scaffold(
       backgroundColor: const Color(0xFFF7F8FA),
       appBar: AppBarDefaultWidget(
@@ -61,7 +64,6 @@ class OrderView extends StatelessWidget {
           child: Column(
             children: [
               const OrderWidget(),
-              // const ItensWidget(),
               ListView.separated(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -81,6 +83,29 @@ class OrderView extends StatelessWidget {
               ),
               SizedBox(
                 height: 20.h,
+              ),
+              Visibility(
+                visible: true,
+                child: Column(
+                  children: [
+                    Text(
+                      'Drinks',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14.sp,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15.h,
+                    ),
+                    Drinks(
+                      addDrink: false,
+                      drinks: _args.drink,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

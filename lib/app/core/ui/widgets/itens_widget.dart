@@ -1,6 +1,8 @@
 // ignore_for_file: must_be_immutable
 
-part of '../../../modules/auth/cart/cart_page.dart';
+import 'package:flutter/material.dart';
+
+import '../../../core/ui/extensions/size_screen_extension.dart';
 
 class ItensWidget extends StatelessWidget {
   String name;
