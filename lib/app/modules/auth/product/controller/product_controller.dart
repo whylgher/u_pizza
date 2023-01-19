@@ -178,6 +178,7 @@ abstract class ProductControllerBase with Store {
       'additional': additionalList,
       'amount_pizzas': item,
       'amount': priceTotaly + priceAdditional + priceBorder,
+      'count_pizza': item,
     };
   }
 

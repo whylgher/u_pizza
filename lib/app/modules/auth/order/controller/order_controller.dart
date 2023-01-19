@@ -35,8 +35,15 @@ abstract class OrderControllerBase with Store {
         await _localStorage.read(Constants.LOCAL_STORAGE_USER_LOGGED_DATA));
     user = UserModel.fromMap(userData);
     final orders = await _orderService.getOrders(user.data['id']);
-    orders['order'].values.forEach((e) {
-      ordersModel.add(OrderModel.fromMap(e));
-    });
+
+    if (orders['order'].length == 1) {
+      orders['order'].forEach((e) {
+        ordersModel.add(OrderModel.fromMap(e));
+      });
+    } else {
+      orders['order'].values.forEach((e) {
+        ordersModel.add(OrderModel.fromMap(e));
+      });
+    }
   }
 }

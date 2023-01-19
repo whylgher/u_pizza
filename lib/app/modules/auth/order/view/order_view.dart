@@ -1,16 +1,25 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../core/ui/extensions/size_screen_extension.dart';
 import '../../../../core/ui/icons/u_pizza_icons.dart';
 import '../../../../core/ui/widgets/app_bar_default_widget.dart';
+import '../../../../models/order_enum.dart';
+import '../../../../models/order_model.dart';
+import '../../../../models/pizza_model.dart';
+import '../../cart/cart_page.dart';
 
 part 'widget/bottom_navigation_bar_widget.dart';
-part 'widget/itens_widget.dart';
 part 'widget/order_widget.dart';
 
 class OrderView extends StatelessWidget {
-  const OrderView({Key? key}) : super(key: key);
+  final OrderModel _args;
+  const OrderView({
+    Key? key,
+    required args,
+  })  : _args = args,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +34,16 @@ class OrderView extends StatelessWidget {
           height: 45.h,
           decoration: BoxDecoration(
             border: Border.all(
-              color: Colors.green.shade100,
+              color: progressOrder()['2']!,
             ),
             borderRadius: BorderRadius.circular(10),
-            color: Colors.green.shade50,
+            color: progressOrder()['1'],
           ),
           child: Text(
-            'Completed Order',
+            '${(progressOrder().keys.first).toString().replaceAll('(', '').replaceAll(')', '')} Order',
             style: TextStyle(
-              fontWeight: FontWeight.w500,
-              color: Colors.green.shade700,
+              fontWeight: FontWeight.bold,
+              color: progressOrder()[progressOrder().keys.first],
             ),
           ),
         ),
@@ -42,13 +51,34 @@ class OrderView extends StatelessWidget {
           Modular.to.navigate('/auth/order');
         },
       ),
-      bottomNavigationBar: const BottomNavigationBarWidget(),
+      bottomNavigationBar: BottomNavigationBarWidget(
+        total: _args.total,
+        tax: _args.tax,
+        subTotal: _args.amount,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
               const OrderWidget(),
-              const ItensWidget(),
+              // const ItensWidget(),
+              ListView.separated(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: _args.order.length,
+                separatorBuilder: (_, __) => Divider(height: 20.h),
+                itemBuilder: (context, index) {
+                  PizzaModel item = _args.order[index];
+                  return ItensWidget(
+                    name: item.name,
+                    description: item.description,
+                    item: (index + 1).toString(),
+                    image: item.image,
+                    total: item.amount!,
+                    unitys: item.countPizza!,
+                  );
+                },
+              ),
               SizedBox(
                 height: 20.h,
               ),
@@ -57,5 +87,28 @@ class OrderView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Map<String, Color> progressOrder() {
+    switch (_args.status) {
+      case OrderEnum.completed:
+        return {
+          'Completed': Colors.green,
+          '1': Colors.green.shade50,
+          '2': Colors.green.shade200,
+        };
+      case OrderEnum.canceled:
+        return {
+          'Canceled': Colors.red,
+          '1': Colors.red.shade50,
+          '2': Colors.red.shade200,
+        };
+      case OrderEnum.waiting:
+        return {
+          'Waiting': Colors.blueAccent,
+          '1': Colors.blue.shade50,
+          '2': Colors.blue.shade200,
+        };
+    }
   }
 }

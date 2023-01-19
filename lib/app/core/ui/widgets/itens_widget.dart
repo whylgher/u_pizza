@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable
 
-part of '../cart_page.dart';
+part of '../../../modules/auth/cart/cart_page.dart';
 
 class ItensWidget extends StatelessWidget {
   String name;

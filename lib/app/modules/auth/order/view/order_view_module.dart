@@ -8,6 +8,9 @@ class OrderViewModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute(Modular.initialRoute, child: (_, __) => const OrderView())
+    ChildRoute(Modular.initialRoute,
+        child: (_, args) => OrderView(
+              args: args.data,
+            ))
   ];
 }

@@ -120,7 +120,7 @@ class OrderWidget extends StatelessWidget {
                               separatorBuilder: (_, __) =>
                                   const Divider(height: 0),
                               itemCount: orderModel.order.length,
-                              itemBuilder: (context, index) {
+                              itemBuilder: (_, index) {
                                 return Container(
                                   padding: EdgeInsets.only(left: 15.w),
                                   child: Row(
@@ -159,7 +159,10 @@ class OrderWidget extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Modular.to.navigate('/auth/order/order-view');
+                    Modular.to.navigate(
+                      '/auth/order/order-view',
+                      arguments: orderModel,
+                    );
                   },
                   child: SizedBox(
                     width: double.infinity,

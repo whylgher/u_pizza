@@ -56,7 +56,7 @@ class OrderModel {
           : (map['status'] == 'CANCELED'
               ? OrderEnum.canceled
               : OrderEnum.completed),
-      amount: map['amount'] as double,
+      amount: double.parse(map['amount'].toString()),
       tax: map['tax'] as double,
       total: map['total'] as double,
       order: map['order'].map((e) => PizzaModel.fromMapOrder(e)).toList(),

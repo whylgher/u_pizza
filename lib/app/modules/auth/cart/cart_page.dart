@@ -10,12 +10,12 @@ import '../../../core/ui/widgets/app_bar_default_widget.dart';
 import '../product/controller/product_controller.dart';
 import 'controller/cart_controller.dart';
 
+part '../../../core/ui/widgets/itens_widget.dart';
 part 'widget/address_paymen_coupon_widget.dart';
 part 'widget/bottom_navigation_bar_widget.dart';
 part 'widget/cart_app_bar.dart';
 part 'widget/drinks.dart';
 part 'widget/item_modal.dart';
-part 'widget/itens_widget.dart';
 
 class CartPage extends StatelessWidget {
   CartPage({Key? key}) : super(key: key);

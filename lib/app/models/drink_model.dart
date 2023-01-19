@@ -54,7 +54,7 @@ class DrinkModel {
       description: map['description'] as String,
       ml: map['ml'] as int,
       countItem: map['count_item'] ?? 0,
-      amount: map['amount'] as double,
+      amount: map['amount'] == 0 ? 0.0 : map['amount'],
     );
   }
 
