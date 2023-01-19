@@ -41,6 +41,22 @@ mixin _$OrderController on OrderControllerBase, Store {
     });
   }
 
+  late final _$showDrinkAtom =
+      Atom(name: 'OrderControllerBase.showDrink', context: context);
+
+  @override
+  bool get showDrink {
+    _$showDrinkAtom.reportRead();
+    return super.showDrink;
+  }
+
+  @override
+  set showDrink(bool value) {
+    _$showDrinkAtom.reportWrite(value, super.showDrink, () {
+      super.showDrink = value;
+    });
+  }
+
   late final _$getOrdersAsyncAction =
       AsyncAction('OrderControllerBase.getOrders', context: context);
 
@@ -49,11 +65,26 @@ mixin _$OrderController on OrderControllerBase, Store {
     return _$getOrdersAsyncAction.run(() => super.getOrders());
   }
 
+  late final _$OrderControllerBaseActionController =
+      ActionController(name: 'OrderControllerBase', context: context);
+
+  @override
+  void showDrinks(bool show) {
+    final _$actionInfo = _$OrderControllerBaseActionController.startAction(
+        name: 'OrderControllerBase.showDrinks');
+    try {
+      return super.showDrinks(show);
+    } finally {
+      _$OrderControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 user: ${user},
-ordersModel: ${ordersModel}
+ordersModel: ${ordersModel},
+showDrink: ${showDrink}
     ''';
   }
 }

@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../core/ui/extensions/size_screen_extension.dart';
@@ -71,6 +72,12 @@ class OrderView extends StatelessWidget {
                 separatorBuilder: (_, __) => Divider(height: 20.h),
                 itemBuilder: (context, index) {
                   PizzaModel item = _args.order[index];
+                  controller.showDrinks(false);
+                  for (var drink in _args.drink) {
+                    if (drink.countItem >= 1) {
+                      controller.showDrinks(true);
+                    }
+                  }
                   return ItensWidget(
                     name: item.name,
                     description: item.description,
@@ -84,29 +91,31 @@ class OrderView extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              Visibility(
-                visible: true,
-                child: Column(
-                  children: [
-                    Text(
-                      'Drinks',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14.sp,
+              Observer(builder: (_) {
+                return Visibility(
+                  visible: controller.showDrink,
+                  child: Column(
+                    children: [
+                      Text(
+                        'Drinks',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14.sp,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 15.h,
-                    ),
-                    Drinks(
-                      addDrink: false,
-                      drinks: _args.drink,
-                    ),
-                  ],
-                ),
-              ),
+                      SizedBox(
+                        height: 15.h,
+                      ),
+                      Drinks(
+                        addDrink: false,
+                        drinks: _args.drink,
+                      ),
+                    ],
+                  ),
+                );
+              }),
             ],
           ),
         ),
