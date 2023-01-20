@@ -57,10 +57,13 @@ class MenuPage extends StatelessWidget {
                   title: 'Payments',
                   titleSize: 15,
                 ),
-                const CardWidget(
-                  iconLeading: Icon(Icons.location_on_outlined),
+                CardWidget(
+                  iconLeading: const Icon(Icons.location_on_outlined),
                   title: 'Address',
                   titleSize: 15,
+                  action: () {
+                    Modular.to.navigate('/auth/address');
+                  },
                 ),
                 const CardWidget(
                   iconLeading: Icon(Icons.account_box_outlined),
