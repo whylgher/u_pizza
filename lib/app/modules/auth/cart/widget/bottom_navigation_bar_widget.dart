@@ -128,7 +128,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                     GestureDetector(
                       onTap: () async {
                         if (await controller.placeOrders()) {
-                          Modular.to.navigate('/auth/order/order-view');
+                          Modular.to.navigate('/auth/order');
                         }
                       },
                       child: Container(
