@@ -12,6 +12,7 @@ import '../../service/order/order_service.dart';
 import '../../service/order/order_service_impl.dart';
 import '../../service/user/user_service.dart';
 import '../../service/user/user_service_impl.dart';
+import 'address/address_module.dart';
 import 'cart/cart_module.dart';
 import 'chat/chat_module.dart';
 import 'home/auth_home_page.dart';
@@ -80,5 +81,6 @@ class AuthModule extends Module {
     ModuleRoute('/make_pizza', module: MakePizzaModule()),
     ModuleRoute('/order', module: OrderModule()),
     ModuleRoute('/chat', module: ChatModule()),
+    ModuleRoute('/address', module: AddressModule()),
   ];
 }
