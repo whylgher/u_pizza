@@ -1,10 +1,15 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'address_page.dart';
+import 'controller/address_controller.dart';
 
 class AddressModule extends Module {
   @override
-  final List<Bind> binds = [];
+  final List<Bind> binds = [
+    Bind.lazySingleton(
+      (i) => AddressController(),
+    ),
+  ];
 
   @override
   final List<ModularRoute> routes = [
