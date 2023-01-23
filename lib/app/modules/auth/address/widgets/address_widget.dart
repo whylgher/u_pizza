@@ -1,7 +1,14 @@
 part of '../address_page.dart';
 
 class AddressWidget extends StatelessWidget {
-  const AddressWidget({Key? key}) : super(key: key);
+  final String street;
+  final bool selected;
+
+  const AddressWidget({
+    Key? key,
+    required this.street,
+    required this.selected,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +26,34 @@ class AddressWidget extends StatelessWidget {
           SizedBox(
             width: 15.w,
           ),
-          UPizzaIcons.location(height: 25.h, color: Colors.red.shade400),
+          Visibility(
+            visible: selected,
+            child: UPizzaIcons.location(
+              height: 25.h,
+              color: Colors.red.shade400,
+            ),
+          ),
+          Visibility(
+            visible: !selected,
+            child: Container(
+              alignment: Alignment.center,
+              width: 20.w,
+              height: 20.h,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.blueGrey.shade400,
+                  width: .5,
+                ),
+                borderRadius: BorderRadius.circular(5),
+                color: const Color(0xFFF7F8FA),
+              ),
+            ),
+          ),
           SizedBox(
             width: 15.w,
           ),
           Text(
-            '1801 W Hillsobor, Deerfield Beach',
+            street,
             style: TextStyle(
               color: Colors.grey,
               fontWeight: FontWeight.bold,
