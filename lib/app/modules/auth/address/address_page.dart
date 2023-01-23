@@ -8,6 +8,7 @@ import '../../../core/ui/widgets/app_bar_default_widget.dart';
 import 'controller/address_controller.dart';
 
 part 'widgets/address_widget.dart';
+part 'widgets/title_widget.dart';
 
 class AddressPage extends StatelessWidget {
   const AddressPage({Key? key}) : super(key: key);
@@ -28,31 +29,19 @@ class AddressPage extends StatelessWidget {
               padding: EdgeInsets.all(15.h),
               child: Column(
                 children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Delivery Address',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15.sp,
-                          ),
-                        ),
-                        Text(
-                          'Selected address',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 12.sp,
-                          ),
-                        ),
-                      ],
-                    ),
+                  TitleWidget(),
+                  SizedBox(
+                    height: 5.w,
+                  ),
+                  const AddressWidget(),
+                  Divider(height: 20.h),
+                  TitleWidget(
+                    selectAddress: true,
                   ),
                   SizedBox(
                     height: 5.w,
                   ),
+                  const AddressWidget(),
                 ],
               ),
             ),
