@@ -1,11 +1,15 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../repositories/address/address_repository.dart';
+import '../../repositories/address/address_repository_impl.dart';
 import '../../repositories/cart/cart_repository.dart';
 import '../../repositories/cart/cart_repository_impl.dart';
 import '../../repositories/order/order_repository.dart';
 import '../../repositories/order/order_repository_impl.dart';
 import '../../repositories/user/user_repository.dart';
 import '../../repositories/user/user_repository_impl.dart';
+import '../../service/address/address_service.dart';
+import '../../service/address/address_service_impl.dart';
 import '../../service/cart/cart_service.dart';
 import '../../service/cart/cart_service_impl.dart';
 import '../../service/order/order_service.dart';
@@ -60,6 +64,18 @@ class AuthModule extends Module {
     Bind.lazySingleton<OrderService>(
       (i) => OrderServiceImpl(
         orderRepository: i(),
+      ),
+    ),
+    Bind.lazySingleton<AddressRepository>(
+      (i) => AddressRepositoryImpl(
+        localStorage: i(),
+        log: i(),
+        restClient: i(),
+      ),
+    ),
+    Bind.lazySingleton<AddressService>(
+      (i) => AddressServiceImpl(
+        addressRepository: i(),
       ),
     ),
   ];

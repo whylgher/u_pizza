@@ -56,7 +56,9 @@ class AddressPage extends StatelessWidget {
                 color: Color(0xFFED4631),
                 size: 30,
               ),
-              onPressed: () {},
+              onPressed: () {
+                controller.getAllAddresses();
+              },
               backgroundColor: context.primaryColor,
               label: Text(
                 'Add a new address',

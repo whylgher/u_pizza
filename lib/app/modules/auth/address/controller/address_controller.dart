@@ -2,15 +2,26 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:mobx/mobx.dart';
 
+import '../../../../models/address_model.dart';
+import '../../../../service/address/address_service.dart';
+
 part 'address_controller.g.dart';
 
 class AddressController = AddressControllerBase with _$AddressController;
 
 abstract class AddressControllerBase with Store {
+  final AddressService _addressService;
+
+  AddressControllerBase({
+    required AddressService addressService,
+  }) : _addressService = addressService;
+
   @observable
   late Position currentPosition;
   @observable
   late Placemark placemarks;
+  @observable
+  var addresses = <AddressModel>[].asObservable();
 
   @action
   Future<void> determinePosition() async {
@@ -39,5 +50,15 @@ abstract class AddressControllerBase with Store {
     List<Placemark> c = (await placemarkFromCoordinates(
         currentPosition.latitude, currentPosition.longitude));
     placemarks = c[0];
+  }
+
+  @action
+  Future<void> getAllAddresses() async {
+    final c = await _addressService.getAllAddresses();
+    List<dynamic> addressesList = c['data'];
+    for (var address in addressesList) {
+      AddressModel d = AddressModel.fromMap(address);
+      addresses.add(d);
+    }
   }
 }
