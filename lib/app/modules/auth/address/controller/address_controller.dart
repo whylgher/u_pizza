@@ -2,6 +2,8 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:mobx/mobx.dart';
 
+import '../../../../core/helpers/constants.dart';
+import '../../../../core/local_storage/local_storage.dart';
 import '../../../../models/address_model.dart';
 import '../../../../service/address/address_service.dart';
 
@@ -11,15 +13,20 @@ class AddressController = AddressControllerBase with _$AddressController;
 
 abstract class AddressControllerBase with Store {
   final AddressService _addressService;
+  final LocalStorage _localStorage;
 
   AddressControllerBase({
     required AddressService addressService,
-  }) : _addressService = addressService;
+    required LocalStorage localStorage,
+  })  : _addressService = addressService,
+        _localStorage = localStorage;
 
   @observable
   late Position currentPosition;
   @observable
   late Placemark placemarks;
+  @observable
+  late int addressSelected = 0;
   @observable
   var addresses = <AddressModel>[].asObservable();
 
@@ -54,11 +61,23 @@ abstract class AddressControllerBase with Store {
 
   @action
   Future<void> getAllAddresses() async {
+    addresses.removeRange(0, addresses.length);
     final c = await _addressService.getAllAddresses();
     List<dynamic> addressesList = c['data'];
     for (var address in addressesList) {
       AddressModel d = AddressModel.fromMap(address);
       addresses.add(d);
     }
+    final selected = await _localStorage.read(Constants.ADDRESS_SELECTED);
+
+    if (selected >= 0) {
+      setAddress(selected);
+    }
+  }
+
+  @action
+  Future<void> setAddress(int id) async {
+    await _localStorage.write(Constants.ADDRESS_SELECTED, id);
+    addressSelected = id;
   }
 }

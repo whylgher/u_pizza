@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../core/ui/extensions/size_screen_extension.dart';
@@ -17,6 +18,9 @@ class AddressPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Modular.get<AddressController>();
     final sizeDevice = MediaQuery.of(context).size;
+
+    controller.getAllAddresses();
+
     return Scaffold(
       appBar: AppBarDefaultWidget(
         action: () => Modular.to.navigate('/auth/menu'),
@@ -27,22 +31,40 @@ class AddressPage extends StatelessWidget {
           SingleChildScrollView(
             child: Container(
               padding: EdgeInsets.all(15.h),
-              child: Column(
-                children: [
-                  TitleWidget(),
-                  SizedBox(
-                    height: 5.w,
-                  ),
-                  const AddressWidget(),
-                  Divider(height: 20.h),
-                  TitleWidget(
-                    selectAddress: true,
-                  ),
-                  SizedBox(
-                    height: 5.w,
-                  ),
-                  const AddressWidget(),
-                ],
+              child: Observer(
+                builder: (_) {
+                  return Column(
+                    children: [
+                      TitleWidget(),
+                      SizedBox(
+                        height: 15.w,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          print(controller.addressSelected);
+                          print('teste ${controller.addressSelected}');
+                        },
+                        child: Text('Teste ${controller.addressSelected}'),
+                      ),
+                      ListView.separated(
+                        shrinkWrap: true,
+                        separatorBuilder: (_, __) => Divider(height: 20.h),
+                        itemCount: controller.addresses.length,
+                        itemBuilder: (context, index) {
+                          final address = controller.addresses[index];
+                          return GestureDetector(
+                            onTap: () => controller.setAddress(address.id),
+                            child: AddressWidget(
+                              street: address.street,
+                              selected:
+                                  address.id == controller.addressSelected,
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  );
+                },
               ),
             ),
           ),
@@ -56,9 +78,7 @@ class AddressPage extends StatelessWidget {
                 color: Color(0xFFED4631),
                 size: 30,
               ),
-              onPressed: () {
-                controller.getAllAddresses();
-              },
+              onPressed: () {},
               backgroundColor: context.primaryColor,
               label: Text(
                 'Add a new address',

@@ -16,14 +16,14 @@ class TitleWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            selectAddress ? 'Other Addresses' : 'Delivery Address',
+            'Delivery Address',
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 15.sp,
             ),
           ),
           Visibility(
-            visible: selectAddress,
+            visible: !selectAddress,
             child: Text(
               'Selected main address',
               style: TextStyle(

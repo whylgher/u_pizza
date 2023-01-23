@@ -9,6 +9,7 @@ class AddressModule extends Module {
     Bind.lazySingleton(
       (i) => AddressController(
         addressService: i(),
+        localStorage: i(),
       ),
     ),
   ];
