@@ -7,7 +7,9 @@ class AddressModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton(
-      (i) => AddressController(),
+      (i) => AddressController(
+        addressService: i(),
+      ),
     ),
   ];
 

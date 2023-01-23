@@ -3,6 +3,7 @@ import '../../core/rest_client/rest_client.dart';
 
 class CartRepositoryImpl implements CartRepository {
   final RestClient _restClient;
+
   CartRepositoryImpl({
     required RestClient restClient,
   }) : _restClient = restClient;
