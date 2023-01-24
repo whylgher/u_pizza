@@ -37,4 +37,13 @@ class AddressRepositoryImpl implements AddressRepository {
       throw Exception();
     }
   }
+
+  @override
+  Future<void> addNewAddress(Map map) async {
+    final address = await _restClient.auth().post(
+          '/api/address/create',
+          data: map,
+        );
+    print(address.data);
+  }
 }

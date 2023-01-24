@@ -19,6 +19,8 @@ class AddNewAddressPage extends StatelessWidget {
   final countryEC = TextEditingController();
   final countryCodeEC = TextEditingController();
 
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     final controller = Modular.get<AddressController>();
@@ -45,105 +47,108 @@ class AddNewAddressPage extends StatelessWidget {
       body: Stack(
         children: [
           SingleChildScrollView(
-            child: Container(
-              padding: EdgeInsets.all(15.h),
-              child: Column(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Add new address',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 15.sp,
+            child: Form(
+              key: _formKey,
+              child: Container(
+                padding: EdgeInsets.all(15.h),
+                child: Column(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Add new address',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15.sp,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 25.w,
-                  ),
-                  UPizzaTextFormField(
-                    label: 'Complete Street',
-                    isNumber: true,
-                    controller: streetEC,
-                    validator: Validatorless.multiple([
-                      Validatorless.required('required street'),
-                      Validatorless.min(5, 'invalid street'),
-                    ]),
-                  ),
-                  SizedBox(
-                    height: 15.w,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        width: sizeDevice.width * .55,
-                        child: UPizzaTextFormField(
-                          label: 'Locality',
-                          isNumber: true,
-                          controller: localityEC,
-                          validator: Validatorless.multiple([
-                            Validatorless.required('required locality'),
-                            Validatorless.min(3, 'invalid locality'),
-                          ]),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 25.w,
+                    ),
+                    UPizzaTextFormField(
+                      label: 'Complete Street',
+                      isNumber: true,
+                      controller: streetEC,
+                      validator: Validatorless.multiple([
+                        Validatorless.required('required street'),
+                        Validatorless.min(5, 'invalid street'),
+                      ]),
+                    ),
+                    SizedBox(
+                      height: 15.w,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: sizeDevice.width * .55,
+                          child: UPizzaTextFormField(
+                            label: 'Locality',
+                            isNumber: true,
+                            controller: localityEC,
+                            validator: Validatorless.multiple([
+                              Validatorless.required('required locality'),
+                              Validatorless.min(3, 'invalid locality'),
+                            ]),
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 5.w,
-                      ),
-                      SizedBox(
-                        width: sizeDevice.width * .35,
-                        child: UPizzaTextFormField(
-                          label: 'Postal Code',
-                          isNumber: true,
-                          controller: postalCodeEC,
-                          validator: Validatorless.multiple([
-                            Validatorless.required('required postal code'),
-                            Validatorless.min(2, 'invalid postal code'),
-                          ]),
+                        SizedBox(
+                          width: 5.w,
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 15.w,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        width: sizeDevice.width * .65,
-                        child: UPizzaTextFormField(
-                          label: 'Country',
-                          isNumber: true,
-                          controller: countryEC,
-                          validator: Validatorless.multiple([
-                            Validatorless.required('required country'),
-                            Validatorless.min(3, 'invalid country'),
-                          ]),
+                        SizedBox(
+                          width: sizeDevice.width * .35,
+                          child: UPizzaTextFormField(
+                            label: 'Postal Code',
+                            isNumber: true,
+                            controller: postalCodeEC,
+                            validator: Validatorless.multiple([
+                              Validatorless.required('required postal code'),
+                              Validatorless.min(2, 'invalid postal code'),
+                            ]),
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 5.w,
-                      ),
-                      SizedBox(
-                        width: sizeDevice.width * .25,
-                        child: UPizzaTextFormField(
-                          label: 'Code',
-                          isNumber: true,
-                          controller: countryCodeEC,
-                          validator: Validatorless.multiple([
-                            Validatorless.required('required country code'),
-                            Validatorless.min(2, 'invalid country code'),
-                          ]),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 15.w,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: sizeDevice.width * .65,
+                          child: UPizzaTextFormField(
+                            label: 'Country',
+                            isNumber: true,
+                            controller: countryEC,
+                            validator: Validatorless.multiple([
+                              Validatorless.required('required country'),
+                              Validatorless.min(3, 'invalid country'),
+                            ]),
+                          ),
                         ),
-                      ),
-                    ],
-                  )
-                ],
+                        SizedBox(
+                          width: 5.w,
+                        ),
+                        SizedBox(
+                          width: sizeDevice.width * .25,
+                          child: UPizzaTextFormField(
+                            label: 'Code',
+                            isNumber: true,
+                            controller: countryCodeEC,
+                            validator: Validatorless.multiple([
+                              Validatorless.required('required country code'),
+                              Validatorless.min(2, 'invalid country code'),
+                            ]),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),
@@ -157,7 +162,18 @@ class AddNewAddressPage extends StatelessWidget {
                 color: Color(0xFFED4631),
                 size: 30,
               ),
-              onPressed: () {},
+              onPressed: () {
+                final formValid = _formKey.currentState?.validate() ?? false;
+                if (formValid) {
+                  controller.addNewAddress(
+                    street: streetEC.text,
+                    countryCode: countryCodeEC.text,
+                    country: countryEC.text,
+                    postalCode: postalCodeEC.text,
+                    locality: localityEC.text,
+                  );
+                }
+              },
               backgroundColor: context.primaryColor,
               label: Text(
                 'Save new address',

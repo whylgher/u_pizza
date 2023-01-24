@@ -9,4 +9,7 @@ class AddressServiceImpl implements AddressService {
 
   @override
   Future<Map> getAllAddresses() => _addressRepository.getAllAddresses();
+
+  @override
+  Future<void> addNewAddress(Map map) => _addressRepository.addNewAddress(map);
 }

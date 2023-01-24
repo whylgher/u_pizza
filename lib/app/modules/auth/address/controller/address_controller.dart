@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:mobx/mobx.dart';
@@ -5,6 +8,7 @@ import 'package:mobx/mobx.dart';
 import '../../../../core/helpers/constants.dart';
 import '../../../../core/local_storage/local_storage.dart';
 import '../../../../models/address_model.dart';
+import '../../../../models/user_model.dart';
 import '../../../../service/address/address_service.dart';
 
 part 'address_controller.g.dart';
@@ -79,5 +83,36 @@ abstract class AddressControllerBase with Store {
   Future<void> setAddress(int id) async {
     await _localStorage.write(Constants.ADDRESS_SELECTED, id);
     addressSelected = id;
+  }
+
+  @action
+  Future<void> addNewAddress({
+    required String street,
+    required String countryCode,
+    required String country,
+    required String postalCode,
+    required String locality,
+  }) async {
+    final userData = jsonDecode(
+        await _localStorage.read(Constants.LOCAL_STORAGE_USER_LOGGED_DATA));
+
+    final user = UserModel.fromMap(userData);
+
+    Map newAddress = {
+      "user_id": user.data['id'],
+      "street": street,
+      "country_code": countryCode,
+      "country": country,
+      "postal_code": postalCode,
+      "locality": locality,
+      "latlng": "${currentPosition.latitude} ${currentPosition.longitude}"
+    };
+
+    try {
+      await _addressService.addNewAddress(newAddress);
+      Modular.to.navigate('/auth/address');
+    } on Exception catch (e) {
+      throw Error();
+    }
   }
 }
