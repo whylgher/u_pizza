@@ -44,7 +44,6 @@ class _AuthHomePageState extends State<AuthHomePage> {
 
   final controllerCart = Modular.get<CartController>();
   final controllerProduct = Modular.get<ProductController>();
-
   @override
   Widget build(BuildContext context) {
     controllerCart.getDrinks();

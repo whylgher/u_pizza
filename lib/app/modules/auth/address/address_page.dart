@@ -19,12 +19,13 @@ class AddressPage extends StatelessWidget {
     final controller = Modular.get<AddressController>();
     final sizeDevice = MediaQuery.of(context).size;
 
+    controller.determinePosition();
     controller.getAllAddresses();
 
     return Scaffold(
       appBar: AppBarDefaultWidget(
         action: () => Modular.to.navigate('/auth/menu'),
-        label: 'Address',
+        label: 'Addresses',
       ),
       body: Stack(
         children: [
@@ -39,13 +40,6 @@ class AddressPage extends StatelessWidget {
                       SizedBox(
                         height: 15.w,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          print(controller.addressSelected);
-                          print('teste ${controller.addressSelected}');
-                        },
-                        child: Text('Teste ${controller.addressSelected}'),
-                      ),
                       ListView.separated(
                         shrinkWrap: true,
                         separatorBuilder: (_, __) => Divider(height: 20.h),
@@ -53,7 +47,10 @@ class AddressPage extends StatelessWidget {
                         itemBuilder: (context, index) {
                           final address = controller.addresses[index];
                           return GestureDetector(
-                            onTap: () => controller.setAddress(address.id),
+                            onTap: () {
+                              controller.setAddress(address.id);
+                              controller.getAllAddresses();
+                            },
                             child: AddressWidget(
                               street: address.street,
                               selected:
@@ -78,7 +75,7 @@ class AddressPage extends StatelessWidget {
                 color: Color(0xFFED4631),
                 size: 30,
               ),
-              onPressed: () {},
+              onPressed: () => Modular.to.navigate('/auth/address/new'),
               backgroundColor: context.primaryColor,
               label: Text(
                 'Add a new address',
