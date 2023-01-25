@@ -19,9 +19,6 @@ class AddressPage extends StatelessWidget {
     final controller = Modular.get<AddressController>();
     final sizeDevice = MediaQuery.of(context).size;
 
-    controller.determinePosition();
-    controller.getAllAddresses();
-
     return Scaffold(
       appBar: AppBarDefaultWidget(
         action: () => Modular.to.navigate('/auth/menu'),

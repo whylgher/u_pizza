@@ -5,6 +5,7 @@ import 'package:mobx/mobx.dart';
 import '../../../core/ui/extensions/size_screen_extension.dart';
 import '../../../models/user_model.dart';
 import '../../core/auth/auth_store.dart';
+import '../address/controller/address_controller.dart';
 import '../cart/controller/cart_controller.dart';
 import '../product/controller/product_controller.dart';
 
@@ -28,7 +29,8 @@ class _AuthHomePageState extends State<AuthHomePage> {
       (_) => widget._authStore.userLogged,
       (userLogger) {
         if (userLogger != null && userLogger.email.isNotEmpty) {
-          Modular.to.navigate('/home');
+          final controllerAddress = Modular.get<AddressController>();
+          controllerAddress.getIdAddressStorage();
         } else {
           Modular.to.navigate('/onboarding');
         }

@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
+import 'modules/auth/address/controller/address_controller.dart';
 import 'modules/auth/auth_module.dart';
 import 'modules/auth/product/controller/product_controller.dart';
 import 'modules/core/core_module.dart';
@@ -12,6 +13,12 @@ class AppModule extends Module {
         Bind.lazySingleton(
           (i) => ProductController(
             productService: i(),
+          ),
+        ),
+        Bind.lazySingleton(
+          (i) => AddressController(
+            addressService: i(),
+            localStorage: i(),
           ),
         ),
       ];

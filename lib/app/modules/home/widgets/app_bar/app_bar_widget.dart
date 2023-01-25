@@ -1,7 +1,9 @@
 part of '../../home_page.dart';
 
 class AppBarWidget extends PreferredSize {
+  final String textAddress;
   AppBarWidget({
+    required this.textAddress,
     super.key,
   }) : super(
           preferredSize: const Size.fromHeight(250),
@@ -23,30 +25,25 @@ class AppBarWidget extends PreferredSize {
                     children: [
                       Padding(
                         padding: EdgeInsets.only(top: 30.0.w, left: 20.w),
-                        child: GestureDetector(
-                          onTap: () {
-                            Modular.to.navigate('/auth/login');
-                          },
-                          child: Row(
-                            children: [
-                              Wrap(
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                children: [
-                                  UPizzaIcons.location(height: 25.h),
-                                  SizedBox(
-                                    width: 5.w,
-                                  ),
-                                  Text(
-                                    'You need to login to order',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18.sp,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                        child: Row(
+                          children: [
+                            Wrap(
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              children: [
+                                UPizzaIcons.location(height: 25.h),
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                                Text(
+                                  textAddress,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                       Padding(

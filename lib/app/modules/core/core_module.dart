@@ -7,12 +7,16 @@ import '../../core/logger/app_logger.dart';
 import '../../core/logger/app_logger_impl.dart';
 import '../../core/rest_client/dio/dio_rest_client.dart';
 import '../../core/rest_client/rest_client.dart';
+import '../../repositories/address/address_repository.dart';
+import '../../repositories/address/address_repository_impl.dart';
 import '../../repositories/drink/drink_repository.dart';
 import '../../repositories/drink/drink_repository_impl.dart';
 import '../../repositories/pizza/pizza_repository.dart';
 import '../../repositories/pizza/pizza_repository_impl.dart';
 import '../../repositories/product/product_repository.dart';
 import '../../repositories/product/product_repository_impl.dart';
+import '../../service/address/address_service.dart';
+import '../../service/address/address_service_impl.dart';
 import '../../service/drink/drink_service.dart';
 import '../../service/drink/drink_service_impl.dart';
 import '../../service/pizza/pizza_service.dart';
@@ -88,6 +92,20 @@ class CoreModule extends Module {
         localStorage: i(),
         log: i(),
         cartService: i(),
+      ),
+      export: true,
+    ),
+    Bind.lazySingleton<AddressRepository>(
+      (i) => AddressRepositoryImpl(
+        localStorage: i(),
+        log: i(),
+        restClient: i(),
+      ),
+      export: true,
+    ),
+    Bind.lazySingleton<AddressService>(
+      (i) => AddressServiceImpl(
+        addressRepository: i(),
       ),
       export: true,
     ),

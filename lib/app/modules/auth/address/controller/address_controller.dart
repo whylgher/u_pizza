@@ -33,6 +33,8 @@ abstract class AddressControllerBase with Store {
   late int addressSelected = 0;
   @observable
   var addresses = <AddressModel>[].asObservable();
+  @observable
+  String addressText = 'You need to login to order';
 
   @action
   Future<void> determinePosition() async {
@@ -80,9 +82,27 @@ abstract class AddressControllerBase with Store {
   }
 
   @action
+  Future<void> getIdAddressStorage() async {
+    int idAddress = await _localStorage.read(Constants.ADDRESS_SELECTED) ?? 0;
+    determinePosition();
+    await getAllAddresses();
+    for (var address in addresses) {
+      if (address.id == idAddress) {
+        addressText = address.street;
+      }
+    }
+    Modular.to.navigate('/home');
+  }
+
+  @action
   Future<void> setAddress(int id) async {
     await _localStorage.write(Constants.ADDRESS_SELECTED, id);
     addressSelected = id;
+    for (var address in addresses) {
+      if (address.id == id) {
+        addressText = address.street;
+      }
+    }
   }
 
   @action
@@ -111,7 +131,7 @@ abstract class AddressControllerBase with Store {
     try {
       await _addressService.addNewAddress(newAddress);
       Modular.to.navigate('/auth/address');
-    } on Exception catch (e) {
+    } on Exception {
       throw Error();
     }
   }
