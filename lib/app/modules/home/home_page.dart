@@ -9,6 +9,7 @@ import '../../core/ui/extensions/size_screen_extension.dart';
 import '../../core/ui/extensions/theme_extension.dart';
 import '../../core/ui/icons/u_pizza_icons.dart';
 import '../../core/ui/widgets/button_make_pizza.dart';
+import '../auth/address/controller/address_controller.dart';
 import '../auth/product/controller/product_controller.dart';
 import 'controller/home_controller.dart';
 
@@ -49,9 +50,13 @@ class _HomePageState extends State<HomePage> {
       });
     });
 
+    final controllerAddress = Modular.get<AddressController>();
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(218, 232, 232, 232),
-      appBar: AppBarWidget(),
+      appBar: AppBarWidget(
+        textAddress: controllerAddress.addressText,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
