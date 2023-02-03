@@ -75,7 +75,6 @@ abstract class AddressControllerBase with Store {
       addresses.add(d);
     }
     final selected = await _localStorage.read(Constants.ADDRESS_SELECTED);
-
     if (selected >= 0) {
       setAddress(selected);
     }

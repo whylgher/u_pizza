@@ -16,6 +16,7 @@ part 'widget/bottom_start_widget.dart';
 part 'widget/drop_down_sauce_widget.dart';
 part 'widget/item_select_widget.dart';
 part 'widget/make_pizza_app_bar.dart';
+part 'widget/pizza_added_itens.dart';
 
 class MakePizzaPage extends StatefulWidget {
   const MakePizzaPage({Key? key}) : super(key: key);

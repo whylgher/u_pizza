@@ -68,14 +68,36 @@ class AddNewAddressPage extends StatelessWidget {
                     SizedBox(
                       height: 25.w,
                     ),
-                    UPizzaTextFormField(
-                      label: 'Complete Street',
-                      isNumber: true,
-                      controller: streetEC,
-                      validator: Validatorless.multiple([
-                        Validatorless.required('required street'),
-                        Validatorless.min(5, 'invalid street'),
-                      ]),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: sizeDevice.width * .65,
+                          child: UPizzaTextFormField(
+                            label: 'Address',
+                            isNumber: true,
+                            controller: streetEC,
+                            validator: Validatorless.multiple([
+                              Validatorless.required('required street'),
+                              Validatorless.min(5, 'invalid street'),
+                            ]),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 5.w,
+                        ),
+                        SizedBox(
+                          width: sizeDevice.width * .25,
+                          child: UPizzaTextFormField(
+                            label: 'Unit.',
+                            isNumber: true,
+                            validator: Validatorless.multiple([
+                              Validatorless.required('unit required'),
+                              Validatorless.min(2, 'invalid postal code'),
+                            ]),
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 15.w,
@@ -86,7 +108,7 @@ class AddNewAddressPage extends StatelessWidget {
                         SizedBox(
                           width: sizeDevice.width * .55,
                           child: UPizzaTextFormField(
-                            label: 'Locality',
+                            label: 'City',
                             isNumber: true,
                             controller: localityEC,
                             validator: Validatorless.multiple([
@@ -101,7 +123,7 @@ class AddNewAddressPage extends StatelessWidget {
                         SizedBox(
                           width: sizeDevice.width * .35,
                           child: UPizzaTextFormField(
-                            label: 'Postal Code',
+                            label: 'Zip Code',
                             isNumber: true,
                             controller: postalCodeEC,
                             validator: Validatorless.multiple([
