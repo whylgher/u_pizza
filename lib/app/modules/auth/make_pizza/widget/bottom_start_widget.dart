@@ -19,7 +19,7 @@ class BottomStartWidget extends StatelessWidget {
       alignment: const Alignment(0, 0),
       child: GestureDetector(
         onTap: () {
-          if (currentPageValue != 4) {
+          if (currentPageValue != 5) {
             MakePizzaPage.controller.nextPage(
               duration: const Duration(seconds: 1),
               curve: Curves.ease,
@@ -87,7 +87,7 @@ class BottomStartWidget extends StatelessWidget {
                             Visibility(
                               visible: currentPageValue == 1,
                               child: Text(
-                                "Let's go to the sauce",
+                                "Select U Pizza",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 16.sp,
@@ -99,7 +99,7 @@ class BottomStartWidget extends StatelessWidget {
                             Visibility(
                               visible: currentPageValue == 2,
                               child: Text(
-                                "And now the protein",
+                                "Let's go to the sauce",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 16.sp,
@@ -111,7 +111,7 @@ class BottomStartWidget extends StatelessWidget {
                             Visibility(
                               visible: currentPageValue == 3,
                               child: Text(
-                                "Vegetables and others cheeses",
+                                "And now the protein",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 16.sp,
@@ -122,6 +122,18 @@ class BottomStartWidget extends StatelessWidget {
                             ),
                             Visibility(
                               visible: currentPageValue == 4,
+                              child: Text(
+                                "Vegetables and others cheeses",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                            Visibility(
+                              visible: currentPageValue == 5,
                               child: Padding(
                                 padding: const EdgeInsets.all(8),
                                 child: Text(

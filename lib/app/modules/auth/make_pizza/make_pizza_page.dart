@@ -10,6 +10,7 @@ import '../product/product_page.dart';
 
 part 'view/cheese_pizza_view.dart';
 part 'view/protein_pizza_view.dart';
+part 'view/select_type_pizza.dart';
 part 'view/size_pizza_view.dart';
 part 'view/vegetables_and_cheeses_view.dart';
 part 'widget/bottom_start_widget.dart';
@@ -60,7 +61,7 @@ class _MakePizzaPageState extends State<MakePizzaPage> {
               height: sizeDevice.height * .65,
               decoration: BoxDecoration(
                 color:
-                    currentPageValue == 0.0 ? Colors.transparent : Colors.white,
+                    currentPageValue <= 1.0 ? Colors.transparent : Colors.white,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: PageView(
@@ -69,6 +70,9 @@ class _MakePizzaPageState extends State<MakePizzaPage> {
                 controller: MakePizzaPage.controller,
                 children: [
                   Container(),
+                  SelectTypePizza(
+                    sizeDevice: sizeDevice,
+                  ),
                   SizePizzaView(
                     sizeDevice: sizeDevice,
                   ),
