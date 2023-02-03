@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import './address_repository.dart';
 import '../../core/helpers/constants.dart';
@@ -44,6 +45,6 @@ class AddressRepositoryImpl implements AddressRepository {
           '/api/address/create',
           data: map,
         );
-    print(address.data);
+    log(address.data);
   }
 }
