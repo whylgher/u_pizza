@@ -1,1 +1,3 @@
-abstract class MakePizzaRepository {}
+abstract class MakePizzaRepository {
+  Future<Map> getPizzas();
+}

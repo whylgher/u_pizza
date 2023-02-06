@@ -7,6 +7,7 @@ import '../../../core/ui/icons/u_pizza_icons.dart';
 import '../../../core/ui/widgets/app_bar_default_widget.dart';
 import '../../../core/ui/widgets/button_make_pizza.dart';
 import '../product/product_page.dart';
+import 'controller/make_pizza_controller.dart';
 
 part 'view/cheese_pizza_view.dart';
 part 'view/protein_pizza_view.dart';
@@ -44,6 +45,8 @@ class _MakePizzaPageState extends State<MakePizzaPage> {
         }
       },
     );
+    final _controller = Modular.get<MakePizzaControllerBase>();
+    _controller.getPizzas();
 
     return Scaffold(
       backgroundColor: context.primaryColorDark,

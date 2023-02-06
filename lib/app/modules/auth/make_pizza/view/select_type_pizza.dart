@@ -88,7 +88,7 @@ class TypePizza extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w500,
-                  color: Color.fromARGB(255, 77, 0, 0),
+                  color: const Color.fromARGB(255, 77, 0, 0),
                 ),
               ),
               SizedBox(
@@ -107,7 +107,7 @@ class TypePizza extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w500,
-                  color: Color.fromARGB(255, 77, 0, 0),
+                  color: const Color.fromARGB(255, 77, 0, 0),
                 ),
               ),
               SizedBox(
