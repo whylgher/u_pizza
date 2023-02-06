@@ -36,7 +36,7 @@ class ListViewPizzasWidget extends PreferredSize {
                           image: DecorationImage(
                             alignment: Alignment(-1.2.w, 0.h),
                             image: NetworkImage(
-                                controller.pizzasList[index]['image']),
+                                "${Environments.param(Constants.ENV_BASE_URL_KEY)}${controller.pizzasList[index]['image']}"),
                           ),
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white),
