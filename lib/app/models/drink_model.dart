@@ -1,5 +1,8 @@
 import 'dart:convert';
 
+import '../core/helpers/constants.dart';
+import '../core/helpers/environments.dart';
+
 class DrinkModel {
   int id;
   String name;
@@ -39,7 +42,7 @@ class DrinkModel {
       id: map['id'] as int,
       name: map['name'] as String,
       price: map['price'] as double,
-      image: map['image'] as String,
+      image: "${Environments.param(Constants.ENV_BASE_URL_KEY)}${map['image']}",
       description: map['description'] as String,
       ml: map['ml'] as int,
     );
@@ -50,7 +53,7 @@ class DrinkModel {
       id: map['id'] as int,
       name: map['name'] as String,
       price: map['price'] as double,
-      image: map['image'] as String,
+      image: "${Environments.param(Constants.ENV_BASE_URL_KEY)}${map['image']}",
       description: map['description'] as String,
       ml: map['ml'] as int,
       countItem: map['count_item'] ?? 0,

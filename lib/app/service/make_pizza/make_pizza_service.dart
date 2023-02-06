@@ -1,1 +1,3 @@
-abstract class MakePizzaService {}
+abstract class MakePizzaService {
+  Future<Map> getPizzas();
+}

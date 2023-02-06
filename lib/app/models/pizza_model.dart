@@ -1,5 +1,8 @@
 import 'dart:convert';
 
+import '../core/helpers/constants.dart';
+import '../core/helpers/environments.dart';
+
 class PizzaModel {
   int id;
   String name;
@@ -53,7 +56,8 @@ class PizzaModel {
       category: map['pizza']['category'] as String,
       regular: map['pizza']['prices']['regular'],
       large: map['pizza']['prices']['large'],
-      image: map['pizza']['image']['image'],
+      image:
+          "${Environments.param(Constants.ENV_BASE_URL_KEY)}${map['pizza']['image']['image']}",
       borders: map['borders'],
       additionals: map['additionals'],
       cut: map['cut'] ?? true,
