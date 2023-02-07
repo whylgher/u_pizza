@@ -19,12 +19,16 @@ class BottomStartWidget extends StatelessWidget {
       alignment: const Alignment(0, 0),
       child: GestureDetector(
         onTap: () {
-          if (currentPageValue != 5) {
+          if (currentPageValue == 1) {
+            Messages.alert('Select the pizza');
+          }
+          if (currentPageValue != 5 && currentPageValue != 1) {
             MakePizzaPage.controller.nextPage(
               duration: const Duration(seconds: 1),
               curve: Curves.ease,
             );
-          } else {
+          }
+          if (currentPageValue == 5) {
             Modular.to.navigate('/auth/order_page');
           }
         },
