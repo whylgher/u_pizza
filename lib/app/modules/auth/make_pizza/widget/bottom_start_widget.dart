@@ -89,7 +89,7 @@ class BottomStartWidget extends StatelessWidget {
                         child: Column(
                           children: [
                             Visibility(
-                              visible: currentPageValue == 1,
+                              visible: currentPageValue == 5,
                               child: Text(
                                 "Select U Pizza",
                                 textAlign: TextAlign.center,
@@ -101,7 +101,7 @@ class BottomStartWidget extends StatelessWidget {
                               ),
                             ),
                             Visibility(
-                              visible: currentPageValue == 2,
+                              visible: currentPageValue == 1,
                               child: Text(
                                 "Let's go to the sauce",
                                 textAlign: TextAlign.center,
@@ -113,7 +113,7 @@ class BottomStartWidget extends StatelessWidget {
                               ),
                             ),
                             Visibility(
-                              visible: currentPageValue == 3,
+                              visible: currentPageValue == 2,
                               child: Text(
                                 "And now the protein",
                                 textAlign: TextAlign.center,
@@ -125,7 +125,7 @@ class BottomStartWidget extends StatelessWidget {
                               ),
                             ),
                             Visibility(
-                              visible: currentPageValue == 4,
+                              visible: currentPageValue == 3,
                               child: Text(
                                 "Vegetables and others cheeses",
                                 textAlign: TextAlign.center,
@@ -137,7 +137,7 @@ class BottomStartWidget extends StatelessWidget {
                               ),
                             ),
                             Visibility(
-                              visible: currentPageValue == 5,
+                              visible: currentPageValue == 4,
                               child: Padding(
                                 padding: const EdgeInsets.all(8),
                                 child: Text(
