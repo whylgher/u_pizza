@@ -78,9 +78,9 @@ class _MakePizzaPageState extends State<MakePizzaPage> {
                   SelectTypePizza(
                     sizeDevice: sizeDevice,
                   ),
-                  SizePizzaView(
-                    sizeDevice: sizeDevice,
-                  ),
+                  // SizePizzaView(
+                  //   sizeDevice: sizeDevice,
+                  // ),
                   CheesePizzaView(
                     sizeDevice: sizeDevice,
                   ),
