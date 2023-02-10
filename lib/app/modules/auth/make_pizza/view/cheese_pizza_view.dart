@@ -40,7 +40,7 @@ class CheesePizzaView extends StatelessWidget {
           SizedBox(
             height: 20.h,
           ),
-          const DropDownSauceWidget(),
+          DropDownSauceWidget(),
           SizedBox(
             height: 20.h,
           ),

@@ -16,4 +16,10 @@ class MakePizzaRepositoryImpl implements MakePizzaRepository {
     final result = await _restClient.auth().get('/api/v1/make_pizza');
     return result.data;
   }
+
+  @override
+  Future<Map> getSauces() async {
+    final result = await _restClient.auth().get('/api/v1/sauce');
+    return result.data;
+  }
 }

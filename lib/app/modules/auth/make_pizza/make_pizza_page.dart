@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -47,8 +49,8 @@ class _MakePizzaPageState extends State<MakePizzaPage> {
         }
       },
     );
-    final _controller = Modular.get<MakePizzaControllerBase>();
-    _controller.getPizzas();
+    final controller = Modular.get<MakePizzaController>();
+    controller.getPizzas();
 
     return Scaffold(
       backgroundColor: context.primaryColorDark,

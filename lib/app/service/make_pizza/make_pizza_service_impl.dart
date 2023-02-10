@@ -11,4 +11,7 @@ class MakePizzaServiceImpl implements MakePizzaService {
 
   @override
   Future<Map> getPizzas() => _makePizzaRepository.getPizzas();
+
+  @override
+  Future<Map> getSauces() => _makePizzaRepository.getSauces();
 }

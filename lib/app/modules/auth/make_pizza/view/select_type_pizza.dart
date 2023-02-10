@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of '../make_pizza_page.dart';
 
 class SelectTypePizza extends StatelessWidget {
@@ -12,7 +11,7 @@ class SelectTypePizza extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _controller = Modular.get<MakePizzaControllerBase>();
+    final controller = Modular.get<MakePizzaController>();
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -30,12 +29,12 @@ class SelectTypePizza extends StatelessWidget {
           ListView.separated(
             shrinkWrap: true,
             separatorBuilder: (_, __) => Divider(height: 20.h),
-            itemCount: _controller.pizzas.length,
+            itemCount: controller.pizzas.length,
             itemBuilder: (_, index) {
               return TypePizza(
                 leftSide: index.isOdd,
                 sizeDevice: sizeDevice,
-                pizza: _controller.pizzas[index],
+                pizza: controller.pizzas[index],
               );
             },
           ),
