@@ -1,25 +1,13 @@
 part of '../make_pizza_page.dart';
 
-const List<String> list = <String>[
-  'none',
-  'Sauce',
-  'Sauce1',
-  'Sauce2',
-  'Sauce3',
-];
+class DropDownSauceWidget extends StatelessWidget {
+  final controller = Modular.get<MakePizzaController>();
 
-class DropDownSauceWidget extends StatefulWidget {
-  const DropDownSauceWidget({super.key});
-
-  @override
-  State<DropDownSauceWidget> createState() => _DropDownSauceWidgetState();
-}
-
-class _DropDownSauceWidgetState extends State<DropDownSauceWidget> {
-  String dropdownValue = list.first;
+  DropDownSauceWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    String dropdownValue = controller.sauces.first.name;
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
@@ -39,23 +27,23 @@ class _DropDownSauceWidgetState extends State<DropDownSauceWidget> {
           size: 30.h,
         ),
         onChanged: (String? value) {
-          setState(() {
-            dropdownValue = value!;
-          });
+          dropdownValue = value!;
         },
-        items: list.map<DropdownMenuItem<String>>((String value) {
-          return DropdownMenuItem<String>(
-            alignment: AlignmentDirectional.center,
-            value: value,
-            child: Text(
-              value,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontWeight: FontWeight.w600,
+        items: controller.sauces.map<DropdownMenuItem<String>>(
+          (value) {
+            return DropdownMenuItem<String>(
+              alignment: AlignmentDirectional.center,
+              value: value.name,
+              child: Text(
+                value.name,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-            ),
-          );
-        }).toList(),
+            );
+          },
+        ).toList(),
       ),
     );
   }
