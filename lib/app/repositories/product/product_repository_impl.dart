@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import './product_repository.dart';
@@ -23,10 +22,9 @@ class ProductRepositoryImpl implements ProductRepository {
       final result = await _restClient.auth().get(url);
       return result.data;
     } on Exception catch (e) {
-      FirebaseAuth.instance.signOut();
-      Modular.to.navigate('/auth/login');
       _log.error('Usuário não logado', e);
       Messages.alert('You must be logged.');
+      Modular.to.navigate('/auth/login');
       throw Exception;
     }
   }

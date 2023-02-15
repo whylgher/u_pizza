@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../core/ui/extensions/size_screen_extension.dart';
 import '../cart/controller/cart_controller.dart';
 import '../product/controller/product_controller.dart';
 import 'widgets/app_bar_menu_widget.dart';
@@ -18,12 +17,8 @@ class MenuPage extends StatelessWidget {
       appBar: AppBarMenuWidget(),
       body: Column(
         children: [
-          SizedBox(
-            height: (sizeDevide.height / 2).h * .1,
-          ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            height: sizeDevide.height * .4.h,
             child: Column(
               children: [
                 CardWidget(
@@ -81,19 +76,6 @@ class MenuPage extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
-            height: (sizeDevide.height / 5).h * .1,
-          ),
-          Container(
-            padding: const EdgeInsets.only(bottom: 10),
-            height: sizeDevide.height * .1.h,
-            child: const Align(
-              alignment: Alignment.bottomCenter,
-              child: Image(
-                image: AssetImage("assets/images/logo.png"),
-              ),
-            ),
-          )
         ],
       ),
     );

@@ -90,7 +90,6 @@ abstract class AddressControllerBase with Store {
         addressText = address.street;
       }
     }
-    Modular.to.navigate('/home');
   }
 
   @action

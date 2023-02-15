@@ -31,7 +31,7 @@ class _AuthHomePageState extends State<AuthHomePage> {
         if (userLogger != null && userLogger.email.isNotEmpty) {
           final controllerAddress = Modular.get<AddressController>();
           controllerAddress.getIdAddressStorage();
-          // Modular.to.navigate('/home');
+          Modular.to.navigate('/home');
         } else {
           Modular.to.navigate('/onboarding');
         }
