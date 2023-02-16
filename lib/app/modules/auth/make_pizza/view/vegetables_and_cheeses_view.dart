@@ -9,6 +9,7 @@ class VegetablesAndCheesesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Modular.get<MakePizzaController>();
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -54,59 +55,15 @@ class VegetablesAndCheesesView extends StatelessWidget {
           ),
           Wrap(
             direction: Axis.horizontal,
-            spacing: 20.w,
-            runSpacing: 20.h,
+            spacing: 10.w,
+            runSpacing: 10.h,
             alignment: WrapAlignment.center,
-            children: [
-              VegetableAndOthersWidget(
-                label: 'Black Olives',
-                sizeDevice: sizeDevice,
-              ),
-              VegetableAndOthersWidget(
-                label: 'Cream Cheese',
-                sizeDevice: sizeDevice,
-              ),
-              VegetableAndOthersWidget(
-                label: 'Gorgonzola',
-                sizeDevice: sizeDevice,
-              ),
-              VegetableAndOthersWidget(
-                label: 'Pepper',
-                sizeDevice: sizeDevice,
-              ),
-              VegetableAndOthersWidget(
-                label: 'Champignom',
-                sizeDevice: sizeDevice,
-              ),
-              VegetableAndOthersWidget(
-                label: 'Corn',
-                sizeDevice: sizeDevice,
-              ),
-              VegetableAndOthersWidget(
-                label: 'Basil',
-                sizeDevice: sizeDevice,
-              ),
-              VegetableAndOthersWidget(
-                label: 'Quail Egg',
-                sizeDevice: sizeDevice,
-              ),
-              VegetableAndOthersWidget(
-                label: 'Oregano',
-                sizeDevice: sizeDevice,
-              ),
-              VegetableAndOthersWidget(
-                label: 'Onion',
-                sizeDevice: sizeDevice,
-              ),
-              VegetableAndOthersWidget(
-                label: 'Parmesan',
-                sizeDevice: sizeDevice,
-              ),
-              VegetableAndOthersWidget(
-                label: 'Tomato',
-                sizeDevice: sizeDevice,
-              ),
-            ],
+            children: controller.veggies
+                .map((veggie) => VegetableAndOthersWidget(
+                      label: veggie.name,
+                      sizeDevice: sizeDevice,
+                    ))
+                .toList(),
           ),
           SizedBox(
             height: 10.h,

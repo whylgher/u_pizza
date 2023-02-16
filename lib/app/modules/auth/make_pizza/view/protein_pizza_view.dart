@@ -10,6 +10,7 @@ class ProteinPizzaView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Modular.get<MakePizzaController>();
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -55,23 +56,22 @@ class ProteinPizzaView extends StatelessWidget {
           SizedBox(
             height: 5.h,
           ),
-          const ItemSelectWidget(
-            label: 'Pepperoni',
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          const ItemSelectWidget(
-            label: 'Pepperoni',
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          const ItemSelectWidget(
-            label: 'Pepperoni',
-          ),
-          SizedBox(
-            height: 20.h,
+          ListView.separated(
+            shrinkWrap: true,
+            separatorBuilder: (_, __) => Divider(height: 20.h),
+            itemCount: controller.toppings.length,
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  ItemSelectWidget(
+                    label: controller.toppings[index].name,
+                  ),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                ],
+              );
+            },
           ),
         ],
       ),

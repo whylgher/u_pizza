@@ -41,6 +41,54 @@ mixin _$MakePizzaController on MakePizzaControllerBase, Store {
     });
   }
 
+  late final _$cheesesAtom =
+      Atom(name: 'MakePizzaControllerBase.cheeses', context: context);
+
+  @override
+  ObservableList<CheeseModelStore> get cheeses {
+    _$cheesesAtom.reportRead();
+    return super.cheeses;
+  }
+
+  @override
+  set cheeses(ObservableList<CheeseModelStore> value) {
+    _$cheesesAtom.reportWrite(value, super.cheeses, () {
+      super.cheeses = value;
+    });
+  }
+
+  late final _$toppingsAtom =
+      Atom(name: 'MakePizzaControllerBase.toppings', context: context);
+
+  @override
+  ObservableList<ToopingModelStore> get toppings {
+    _$toppingsAtom.reportRead();
+    return super.toppings;
+  }
+
+  @override
+  set toppings(ObservableList<ToopingModelStore> value) {
+    _$toppingsAtom.reportWrite(value, super.toppings, () {
+      super.toppings = value;
+    });
+  }
+
+  late final _$veggiesAtom =
+      Atom(name: 'MakePizzaControllerBase.veggies', context: context);
+
+  @override
+  ObservableList<VeggieModelStore> get veggies {
+    _$veggiesAtom.reportRead();
+    return super.veggies;
+  }
+
+  @override
+  set veggies(ObservableList<VeggieModelStore> value) {
+    _$veggiesAtom.reportWrite(value, super.veggies, () {
+      super.veggies = value;
+    });
+  }
+
   late final _$getPizzasAsyncAction =
       AsyncAction('MakePizzaControllerBase.getPizzas', context: context);
 
@@ -53,7 +101,10 @@ mixin _$MakePizzaController on MakePizzaControllerBase, Store {
   String toString() {
     return '''
 pizzas: ${pizzas},
-sauces: ${sauces}
+sauces: ${sauces},
+cheeses: ${cheeses},
+toppings: ${toppings},
+veggies: ${veggies}
     ''';
   }
 }

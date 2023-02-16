@@ -15,20 +15,21 @@ class BottomStartWidget extends StatelessWidget {
     return AnimatedAlign(
       duration: const Duration(seconds: 1),
       curve: Curves.fastOutSlowIn,
-      heightFactor: currentPageValue == 0 ? 2.h : 5.1.h,
+      heightFactor: currentPageValue == 0 ? 2.h : 6.h,
       alignment: const Alignment(0, 0),
       child: GestureDetector(
         onTap: () {
+          print(currentPageValue);
           if (currentPageValue == 1) {
             Messages.alert('Select the pizza');
           }
-          if (currentPageValue != 5 && currentPageValue != 1) {
+          if (currentPageValue != 4 && currentPageValue != 1) {
             MakePizzaPage.controller.nextPage(
               duration: const Duration(seconds: 1),
               curve: Curves.ease,
             );
           }
-          if (currentPageValue == 5) {
+          if (currentPageValue == 4) {
             Modular.to.navigate('/auth/order_page');
           }
         },
@@ -85,7 +86,7 @@ class BottomStartWidget extends StatelessWidget {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 40.h,
+                        height: 45.h,
                         child: Column(
                           children: [
                             Visibility(
