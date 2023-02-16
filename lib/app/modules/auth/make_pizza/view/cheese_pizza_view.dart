@@ -10,6 +10,7 @@ class CheesePizzaView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Modular.get<MakePizzaController>();
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -42,13 +43,24 @@ class CheesePizzaView extends StatelessWidget {
           ),
           DropDownSauceWidget(),
           SizedBox(
-            height: 20.h,
+            height: 10.h,
           ),
-          const ItemSelectWidget(
-            label: 'Cheese',
-          ),
-          SizedBox(
-            height: 20.h,
+          ListView.separated(
+            shrinkWrap: true,
+            separatorBuilder: (_, __) => Divider(height: 20.h),
+            itemCount: controller.cheeses.length,
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  ItemSelectWidget(
+                    label: controller.cheeses[index].name,
+                  ),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                ],
+              );
+            },
           ),
         ],
       ),

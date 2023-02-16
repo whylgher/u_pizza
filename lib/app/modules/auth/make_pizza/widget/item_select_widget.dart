@@ -11,7 +11,7 @@ class ItemSelectWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 75.h,
+      height: 85.h,
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
